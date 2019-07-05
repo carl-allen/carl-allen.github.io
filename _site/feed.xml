@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Carl Alllen: Machine Learning Blog</title>
+    <description>PhD student, University of Edinburgh
+</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 05 Jul 2019 13:16:31 +0100</pubDate>
+    <lastBuildDate>Fri, 05 Jul 2019 13:16:31 +0100</lastBuildDate>
+    <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>''Analogies Explained'' ... Explained</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;This post provides a `less maths, more intuition’ explanation of &lt;a href=&quot;https://arxiv.org/abs/1901.09813&quot;&gt;Analogies Explained: Towards Understanding Word Embeddings&lt;/a&gt; (ICML, 2019, Honourable Mention) with the aim of being accessible to a general machine learning audience, and others (e.g. NLP, linguists) that may prefer a less formal “theorem-proof” approach than the original paper. The outline follows the &lt;a href=&quot;https://icml.cc/media/Slides/icml/2019/104(13-11-00)-13-11-00-4883-analogies_expla.pdf&quot;&gt;ICML presentation&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;background-skip-to-main-result&quot;&gt;Background &lt;a href=&quot;#proof&quot;&gt;&lt;font size=&quot;3&quot;&gt;[Skip to main result]&lt;/font&gt;&lt;/a&gt;&lt;/h2&gt;
+
+&lt;h3 id=&quot;word-embeddings&quot;&gt;Word Embeddings&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Word embeddings&lt;/em&gt; are numerical vector representations of words. Each entry, or dimension, of a word embedding can be thought of as capturing some semantic or syntactic feature of the word, and the full vector can be considered as co-ordinates of the word in a high-dimensional space. Word embeddings can be generated explicitly, e.g. from rows of word co-occurrence statistics (or low-rank approximations of such statistics); or by &lt;em&gt;neural network&lt;/em&gt; methods such as &lt;em&gt;&lt;a href=&quot;https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf&quot;&gt;Word2Vec&lt;/a&gt;&lt;/em&gt; (W2V) or &lt;em&gt;&lt;a href=&quot;https://www.aclweb.org/anthology/D14-1162&quot;&gt;Glove&lt;/a&gt;&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;The latter, &lt;em&gt;neural word embeddings&lt;/em&gt;, are found to be highly useful in natural language processing (NLP) tasks, such as evaluating word similarity, identifying named entities and assessing positive or negative sentiment in a passage of text (e.g. a customer review).&lt;/p&gt;
+
+&lt;h3 id=&quot;analogies&quot;&gt;Analogies&lt;/h3&gt;
+
+&lt;p&gt;An intriguing property of neural word embeddings is that &lt;em&gt;analogies&lt;/em&gt; can often be solved simply by adding/subtracting word embeddings. For example, analogy:&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;``man&lt;/script&gt; is to &lt;script type=&quot;math/tex&quot;&gt;king&lt;/script&gt; as &lt;script type=&quot;math/tex&quot;&gt;woman&lt;/script&gt; is to &lt;script type=&quot;math/tex&quot;&gt;queen\!&quot;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;can be &lt;em&gt;solved&lt;/em&gt; using word embeddings by finding that closest to &lt;script type=&quot;math/tex&quot;&gt;\mathbf{w}_{king} - \mathbf{w}_{man} + \mathbf{w}_{woman}&lt;/script&gt;, which turns out to be &lt;script type=&quot;math/tex&quot;&gt;\mathbf{w}_{queen}&lt;/script&gt;
+($\mathbf{w}_{x}$ denotes the embedding of word $x$). Note that words in the question (e.g. &lt;em&gt;man&lt;/em&gt;, &lt;em&gt;woman&lt;/em&gt; and &lt;em&gt;king&lt;/em&gt;) are typically omitted from the search.
+In other words,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+  \mathbf{w}_{king} - \mathbf{w}_{man} + \mathbf{w}_{woman} \approx \mathbf{w}_{queen}
+  \tag{1}\label{eq:one}
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;That is, &lt;strong&gt;&lt;em&gt;word embeddings of analogies approximately form parallelograms:&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;/assets/parallelogram5.png&quot; alt=&quot;word embeddings of analogies approximately form a paralellogram&quot; height=&quot;150px&quot; /&gt;.&lt;/p&gt;
+
+&lt;p&gt;Whilst fitting intuition, this phenomenon is intriguing since word embeddings are not trained to achieve it!&lt;/p&gt;
+
+&lt;p&gt;In practice, the word embeddings of analogies do not perfectly form a parallelogram:&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;/assets/analogy_embeddings.png&quot; alt=&quot;word embeddings of analogies not quite a paralellogram&quot; height=&quot;250px&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;This shows the (exact) parallelogram formed by &lt;script type=&quot;math/tex&quot;&gt;\mathbf{w}_{king}, \mathbf{w}_{man}&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;\mathbf{w}_{woman}&lt;/script&gt; and  &lt;script type=&quot;math/tex&quot;&gt;\mathbf{w}_{king} {\small-} \mathbf{w}_{man} {\small+} \mathbf{w}_{woman}&lt;/script&gt; fixed in the $xy$-plane and a selection of word embeddings shown relative to them. We see that the embedding of queen &lt;script type=&quot;math/tex&quot;&gt;\mathbf{w}_{queen}&lt;/script&gt; does not sit at the corner, but is the closest to it. Word embeddings of related words, e.g. &lt;em&gt;prince&lt;/em&gt; and &lt;em&gt;lord&lt;/em&gt;, lie relatively close by and random unrelated words further away.&lt;/p&gt;
+
+&lt;table class=&quot;mbtablestyle&quot; style=&quot;text-align: center&quot;&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Our work explains the gap (indicated) between &lt;script type=&quot;math/tex&quot;&gt;\mathbf{w}_{queen}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\mathbf{w}_{king} {\small-} \mathbf{w}_{man} {\small+} \mathbf{w}_{woman}&lt;/script&gt;; and why that gap is small, often smallest, for the word that completes the analogy.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;To understand why &lt;em&gt;semantic&lt;/em&gt; relationships between words give rise to &lt;em&gt;geometric&lt;/em&gt; relationships between word embeddings, we first consider what W2V embeddings learn.&lt;/p&gt;
+
+&lt;h3 id=&quot;word2vec&quot;&gt;Word2Vec&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/neural_network.png&quot; alt=&quot;W2V architecture&quot; style=&quot;float: right; margin-right: 0px; margin-top: -10px;&quot; height=&quot;250px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;W2V (specifically, SkipGram with negative sampling) is an algorithm that generates word embeddings by training the weights of a 2-layer “neural network”
+to predict &lt;script type=&quot;math/tex&quot;&gt;c_j&lt;/script&gt; the &lt;em&gt;context words&lt;/em&gt; (words that fall within a fixed size context window) around each word  &lt;script type=&quot;math/tex&quot;&gt;w_i&lt;/script&gt; (referred to as a &lt;em&gt;target word&lt;/em&gt;) accross a text corpus.&lt;/p&gt;
+
+&lt;p&gt;Whilst predicting &lt;script type=&quot;math/tex&quot;&gt;p(c_j\!\mid\! w_i)&lt;/script&gt; for all &lt;script type=&quot;math/tex&quot;&gt;c_j&lt;/script&gt; in a dictionary of unique words &lt;script type=&quot;math/tex&quot;&gt;\mathcal{E}&lt;/script&gt; using a softmax function was initially considered, a sigmoid function and negative sampling are instead used due to computational cost.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://papers.nips.cc/paper/5477-neural-word-embedding-as-implicit-matrix-factorization.pdf&quot;&gt;Levy &amp;amp; Goldberg (2014)&lt;/a&gt; showed that, as a result, the two weight matrices &lt;script type=&quot;math/tex&quot;&gt;\mathbf{W}, \mathbf{C}&lt;/script&gt; (columns of which form the word embeddings &lt;script type=&quot;math/tex&quot;&gt;\mathbf{w}_i, \mathbf{c}_j&lt;/script&gt;) factorise a matrix of &lt;em&gt;shifted&lt;/em&gt; Pointwise Mutual Information (PMI), i.e.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+\mathbf{W}^\top\mathbf{C} \approx \textbf{PMI} - \log k
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;where $k$ is the chosen number of negative samples and
+&lt;script type=&quot;math/tex&quot;&gt;\begin{equation}
+\textbf{PMI}_{i,j} = \text{PMI}(w_i, c_j) = \log\tfrac{p(w_i,\, c_j)}{p(w_i)p(c_j)}
+\end{equation}\ .&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;Dropping the &lt;em&gt;shift&lt;/em&gt; term (&lt;script type=&quot;math/tex&quot;&gt;\log k&lt;/script&gt;), an artefact of the &lt;em&gt;W2V&lt;/em&gt; algorithm, the relationship
+&lt;script type=&quot;math/tex&quot;&gt;\begin{equation}
+\mathbf{W}^\top\!\mathbf{C} \!\approx\! \textbf{PMI}
+\end{equation}&lt;/script&gt;
+shows an embedding &lt;script type=&quot;math/tex&quot;&gt;\mathbf{w}_i&lt;/script&gt; to be a &lt;em&gt;low-dimensional projection&lt;/em&gt; of a row of the PMI matrix, &lt;script type=&quot;math/tex&quot;&gt;\text{PMI}_i&lt;/script&gt; (a &lt;em&gt;PMI vector&lt;/em&gt;).&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;hr /&gt;
+&lt;p id=&quot;proof&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;proving-the-embedding-relationship-of-analogies&quot;&gt;Proving the embedding relationship of analogies&lt;/h2&gt;
+
+&lt;p&gt;From above, we see that the additive relationship between word embeddings of analogies \eqref{eq:one} follows if
+an equivalent relationship exists between PMI vectors, i.e.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+  \text{PMI}_{king} - \text{PMI}_{man} + \text{PMI}_{woman} \approx \text{PMI}_{queen}\ ;
+  \tag{2}\label{eq:two}
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;and vector addition is sufficiently preserved under the low-rank projection induced by the loss function – as readily achieved by a least squares loss function and approximately achieved by &lt;em&gt;W2V&lt;/em&gt; and &lt;em&gt;Glove&lt;/em&gt;.&lt;/p&gt;
+
+&lt;table class=&quot;mbtablestyle&quot; style=&quot;text-align: center&quot;&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;To prove that relationship \eqref{eq:two} arises between PMI vectors of an analogy, we show that \eqref{eq:two} follows from a particular &lt;strong&gt;paraphrase&lt;/strong&gt; relationship, which is then shown to be equivalent to an analogy.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;paraphrases&quot;&gt;Paraphrases&lt;/h3&gt;
+
+&lt;p&gt;When we say a word &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt; &lt;em&gt;paraphrases&lt;/em&gt; a set of words &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}&lt;/script&gt;, we mean intuitively that they are &lt;em&gt;semantically interchangeable&lt;/em&gt; in the text. For example, where &lt;script type=&quot;math/tex&quot;&gt;king&lt;/script&gt; appears, we might instead see  &lt;script type=&quot;math/tex&quot;&gt;man&lt;/script&gt; &lt;u&gt;and&lt;/u&gt;  &lt;script type=&quot;math/tex&quot;&gt;royal&lt;/script&gt; close together.
+Mathematically, a best choice paraphrase word &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt; can be defined as that which maximises the likelihood of the context words observed around &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}&lt;/script&gt;.
+In other words, the distribution of words observed around $w_*$ defined over the dictionary &lt;script type=&quot;math/tex&quot;&gt;p(\mathcal{E}\!\mid\!w_*)&lt;/script&gt;, should be similar to that around &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}&lt;/script&gt; &lt;script type=&quot;math/tex&quot;&gt;p(\mathcal{E}\!\mid\!\mathcal{W})&lt;/script&gt;, as measured by Kullback-Leibler (KL) divergence. Whilst these distributions are discrete and unordered, we can picture this as:&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;/assets/distributions.png&quot; alt=&quot;Paraphrase distributions&quot; height=&quot;120px&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Formally, we say &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt; &lt;strong&gt;paraphrases&lt;/strong&gt; $\mathcal{W}$ if the &lt;strong&gt;paraphrase error&lt;/strong&gt; &lt;script type=&quot;math/tex&quot;&gt;{\rho}^{\mathcal{W}, w_*}\!\in\! \mathbb{R}^{n}&lt;/script&gt;
+ is (element-wise) small:
+&lt;script type=&quot;math/tex&quot;&gt;\begin{equation}
+    {\rho}^{\mathcal{W}, w_*}_j = \log \tfrac{p(c_j|w_*)}{p(c_j|\mathcal{W})}\ ,   \quad c_j\!\in\!\mathcal{E}.
+    \tag{3}\label{eq:three}
+\end{equation}&lt;/script&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;To see the relevance of paraphrases, we compare the sum of PMI vectors of two words &lt;script type=&quot;math/tex&quot;&gt;w_1, w_2&lt;/script&gt; to that of &lt;strong&gt;&lt;u&gt;any word&lt;/u&gt;&lt;/strong&gt; &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt; by considering each (&lt;script type=&quot;math/tex&quot;&gt;j^{th}&lt;/script&gt;) component of the difference vector &lt;script type=&quot;math/tex&quot;&gt;\text{PMI}_* - (\text{PMI}_1 + \text{PMI}_2)&lt;/script&gt;:&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;/assets/equation_PMI.png&quot; alt=&quot;W2V architecture&quot; height=&quot;230px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We see that the difference can be written as a &lt;em&gt;paraphrase error&lt;/em&gt;, small only if &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt; paraphrases &lt;script type=&quot;math/tex&quot;&gt;\{w_1, w_2\}&lt;/script&gt;, and &lt;em&gt;dependence error&lt;/em&gt; terms that are inherent to &lt;script type=&quot;math/tex&quot;&gt;w_1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;w_2&lt;/script&gt; and do not depend on &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt;.
+Formally, for context window size &lt;script type=&quot;math/tex&quot;&gt;l&lt;/script&gt;, we have:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Lemma 1:
+For any word &lt;script type=&quot;math/tex&quot;&gt;w_*\!\in\!\mathcal{E}&lt;/script&gt; and word set &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}\!\subseteq\!\mathcal{E}&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+|\mathcal{W}|\!&lt;\!l %]]&gt;&lt;/script&gt;:&lt;/p&gt;
+
+  &lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+    \text{PMI}_*
+    \ =\
+    \sum_{w_i\in\mathcal{W}} \text{PMI}_{i}
+     \,+\, \rho^{\mathcal{W}, w_*}
+     \,+\, \sigma^{\mathcal{W}}
+     \,-\, \tau^\mathcal{W}\mathbf{1}\ .
+\end{equation}&lt;/script&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This connects paraphrasing to PMI vector &lt;em&gt;addition&lt;/em&gt;, as appears in \eqref{eq:two}. To extend this, paraphrasing can be generalised to a relationship between any &lt;em&gt;two word sets&lt;/em&gt;, replacing &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt; by  &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}_*&lt;/script&gt;. The underlying principle remains the same: word sets paraphrase one another if the distributions of context words around them are similar. (Note: if &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}_*&lt;/script&gt; contains a single word, the previous paraphrase definition is recovered.) Analogously to above, we find that:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Lemma 2:
+For any word sets &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}, \mathcal{W}_*\!\subseteq\!\mathcal{E}&lt;/script&gt;; &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+|\mathcal{W}|, |\mathcal{W}_*|\!&lt;\!l %]]&gt;&lt;/script&gt;:&lt;/p&gt;
+
+  &lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+    \sum_{w_i\in\mathcal{W}_*} \text{PMI}_{i}
+    \ =\
+    \sum_{w_i\in\mathcal{W}} \text{PMI}_{i}
+     \,+\, \rho^{\mathcal{W}, \mathcal{W}_*}
+     \,+\, (\sigma^{\mathcal{W}} - \sigma^{\mathcal{W}_*})
+     \,-\, (\tau^\mathcal{W} - \tau^{\mathcal{W}_*})\mathbf{1}
+\end{equation}&lt;/script&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Turning to our example, setting &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W} \!=\! \{woman, king\}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}_* \!=\!  \{man, queen\}&lt;/script&gt;, we have:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{equation}
+  \text{PMI}_{king} - \text{PMI}_{man} + \text{PMI}_{woman} \ \approx\ \text{PMI}_{queen}\ ,
+\end{equation}&lt;/script&gt;
+
+&lt;p&gt;if &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}&lt;/script&gt; paraphrases &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}_*&lt;/script&gt; (meaning &lt;script type=&quot;math/tex&quot;&gt;\rho^{\mathcal{W}, \mathcal{W}_*}&lt;/script&gt; is small), subject to &lt;em&gt;net&lt;/em&gt; statistical dependencies of words within &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}_*&lt;/script&gt;, i.e. &lt;script type=&quot;math/tex&quot;&gt;\sigma^{\mathcal{W}} - \sigma^{\mathcal{W}_*}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\tau^\mathcal{W} - \tau^{\mathcal{W}_*}&lt;/script&gt;. Thus,&lt;/p&gt;
+
+&lt;table class=&quot;mbtablestyle&quot; style=&quot;text-align: center&quot;&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Relation \eqref{eq:two} holds, subject to dependence error, if &lt;script type=&quot;math/tex&quot;&gt;\{woman, king\}&lt;/script&gt; paraphrases &lt;script type=&quot;math/tex&quot;&gt;\{man, queen\}&lt;/script&gt;.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;This gives a semantic relationship as a sufficient condition for the geometric relationship we aim to explain – but that semantic relationship is not an analogy.
+What remains then, is to explain why a general analogy &lt;script type=&quot;math/tex&quot;&gt;``w_a&lt;/script&gt; is to &lt;script type=&quot;math/tex&quot;&gt;w_{a^*}&lt;/script&gt; as &lt;script type=&quot;math/tex&quot;&gt;w_b&lt;/script&gt; is to &lt;script type=&quot;math/tex&quot;&gt;w_{b^*}\!\!&quot;&lt;/script&gt; implies that &lt;script type=&quot;math/tex&quot;&gt;\{w_b, w_{a^*}\!\}&lt;/script&gt; paraphrases &lt;script type=&quot;math/tex&quot;&gt;\{w_a, w_{b^*}\!\}&lt;/script&gt;.
+We show that these conditions are in fact equivalent by reinterpreting paraphrases as &lt;em&gt;word transformations&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;word-transformation&quot;&gt;Word Transformation&lt;/h3&gt;
+
+&lt;p&gt;From &lt;a href=&quot;#paraphrases&quot;&gt;above&lt;/a&gt;, the paraphrase of a word set &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}&lt;/script&gt; by a word &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt; can be thought of as drawing semantic equivalence between &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt;. Alternatively, we can choose a particular word $w$ in $\mathcal{W}$ and view the paraphrase as indicating words (i.e. all others in &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}&lt;/script&gt;, denoted &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}^+&lt;/script&gt;) that, when added to &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt;, make it “more like” – or &lt;em&gt;transform&lt;/em&gt; it to – &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt;. For example, the paraphrase of &lt;script type=&quot;math/tex&quot;&gt;\{man, royal\}&lt;/script&gt;  by &lt;script type=&quot;math/tex&quot;&gt;king&lt;/script&gt; can be interpreted as a &lt;em&gt;word transformation&lt;/em&gt; from &lt;script type=&quot;math/tex&quot;&gt;man&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;king&lt;/script&gt; by adding &lt;script type=&quot;math/tex&quot;&gt;royal&lt;/script&gt;. In effect, the added words &lt;em&gt;narrow the context&lt;/em&gt;. More precisely, they alter the distribution of context words found around &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt; to more closely align with that of &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt;. Denoting a paraphrase by &lt;script type=&quot;math/tex&quot;&gt;\approx_p&lt;/script&gt;, we can represent this as:&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;/assets/word_trans_1.png&quot; alt=&quot;W2V architecture&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;in which the paraphrase can be seen as the “glue” in a relationship between, or rather, &lt;em&gt;from&lt;/em&gt; &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt; &lt;em&gt;to&lt;/em&gt; &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt;.
+Thus, if &lt;script type=&quot;math/tex&quot;&gt;w\!\in\!\mathcal{W}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}^+ \!=\! \mathcal{W}\!\setminus\!\!\{w\}&lt;/script&gt;, to say “&lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt; paraphrases &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}&lt;/script&gt;” is equivalent to saying “there exists a word transformation from &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt; by adding &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}^+&lt;/script&gt;”.
+To be clear, nothing changes other than perspective.&lt;/p&gt;
+
+&lt;p&gt;Extending the concept to paraphrases between word sets &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}_*&lt;/script&gt;, we can choose any &lt;script type=&quot;math/tex&quot;&gt;w \!\in\! \mathcal{W}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;w_* \!\in\! \mathcal{W}_*&lt;/script&gt; and view the paraphrase as defining a relationship between &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt; in which &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}^+ \!=\! \mathcal{W}\!\setminus\!\!\{w\}&lt;/script&gt; is added to &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}^- \!=\! \mathcal{W_*}\!\!\setminus\!\!\{w_*\}&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt;:&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;/assets/word_trans_2.png&quot; alt=&quot;W2V architecture&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is not a word transformation as above, since it lacks the same notion of direction &lt;em&gt;from&lt;/em&gt; &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt; &lt;em&gt;to&lt;/em&gt; &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt;. To overcome this, we consider &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}^-&lt;/script&gt;, the words added to &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt;, as being &lt;em&gt;subtracted&lt;/em&gt; from &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt; (hence the naming convention chosen):&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;/assets/word_trans_3.png&quot; alt=&quot;W2V architecture&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Where added words narrow context, subtracted words can be thought of as &lt;em&gt;broadening&lt;/em&gt; the context.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We say there exists a &lt;strong&gt;&lt;em&gt;word transformation&lt;/em&gt;&lt;/strong&gt; from word &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt; to word &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt;, with &lt;strong&gt;&lt;em&gt;transformation parameters&lt;/em&gt;&lt;/strong&gt; &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}^+\!\!&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}^-\!\subseteq\mathcal{E}\&lt;/script&gt;    &lt;em&gt;iff&lt;/em&gt;   &lt;script type=&quot;math/tex&quot;&gt;\ \{w\}\!\cup\!\mathcal{W}^+ \approx_\text{P} \{w_*\}\!\cup\!\mathcal{W}^-&lt;/script&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;intuition&quot;&gt;Intuition&lt;/h4&gt;
+
+&lt;p&gt;The intuition behind word transformations mirrors simple algebra, e.g. 8 is made &lt;em&gt;equivalent&lt;/em&gt; to 5 by adding 3 to the right, or subtracting 3 from the left. Analogously, with paraphrasing as a measure of &lt;em&gt;equivalence&lt;/em&gt;, we can identify words (&lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}^+, \mathcal{W}^-&lt;/script&gt;) that when added to/subtracted from &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt;, make it equivalent to &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt;.
+In doing so, just as 3 &lt;em&gt;describes the difference&lt;/em&gt; between 8 and 5 in the numeric example, we find words that describe the difference between &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt;, that is, how “&lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt; is to &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt;”.&lt;/p&gt;
+
+&lt;p&gt;Where, in our initial case, words could only be &lt;em&gt;added&lt;/em&gt; to &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt;, limiting the tools available to describe its semantic difference to &lt;script type=&quot;math/tex&quot;&gt;w_*&lt;/script&gt; to discrete words in &lt;script type=&quot;math/tex&quot;&gt;\mathcal{E}&lt;/script&gt;. Now, “differences between other words” can also be used, providing a far richer toolkit, e.g. the difference between &lt;script type=&quot;math/tex&quot;&gt;man&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;king&lt;/script&gt; can be approximately explained by, say, &lt;script type=&quot;math/tex&quot;&gt;royal&lt;/script&gt; or $crown$, but can be more accurately described by the difference between $woman$ and $queen$.&lt;/p&gt;
+
+&lt;h3 id=&quot;interpreting-analogies&quot;&gt;Interpreting Analogies&lt;/h3&gt;
+
+&lt;p&gt;We can now mathematically interpret the language of an analogy:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We say &lt;em&gt;&lt;script type=&quot;math/tex&quot;&gt;\ `\!`w_a&lt;/script&gt; is to &lt;script type=&quot;math/tex&quot;&gt;w_{a^*}&lt;/script&gt; as &lt;script type=&quot;math/tex&quot;&gt;w_b&lt;/script&gt; is to &lt;script type=&quot;math/tex&quot;&gt;w_{b^*}\!&lt;/script&gt;”&lt;/em&gt; &lt;em&gt;iff&lt;/em&gt; there exist &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}^+\!, \mathcal{W}^-\!\subseteq\!\mathcal{E}&lt;/script&gt; that serve as transformation parameters that transform both &lt;script type=&quot;math/tex&quot;&gt;w_a&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;w_{a^*}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;w_b&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;w_{b^*}&lt;/script&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;That is, we interpret analogy wording: each instance of “is to” refers to the parameters of a word transformation; and the “as” implies their equality. Thus the semantic differences  within each word pair, as captured by the transformation parameters, are the same – fitting intuition and now defined explicitly.&lt;/p&gt;
+
+&lt;p&gt;So, an analogy is a pair of word transformations with common parameters &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}^+, \mathcal{W}^-&lt;/script&gt;, but what are those parameters? Fortunately, we need not search or guess. We show in the &lt;a href=&quot;https://arxiv.org/abs/1901.09813&quot;&gt;paper&lt;/a&gt; (Sec 6.4) that if an analogy holds, then &lt;em&gt;any&lt;/em&gt; parameters that transform one word pair, e.g. &lt;script type=&quot;math/tex&quot;&gt;w_a&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;w_{a^*}&lt;/script&gt;, &lt;em&gt;must also transform the other pair&lt;/em&gt;.
+As such, we can chose &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}^+\!=\!\{w_{a^*}\!\}&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;\mathcal{W}^-\!=\!\{w_{a}\}&lt;/script&gt;, which perfectly transform &lt;script type=&quot;math/tex&quot;&gt;w_a&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;w_{a^*}&lt;/script&gt; since &lt;script type=&quot;math/tex&quot;&gt;\{w_a, w_{a^*}\!\}&lt;/script&gt; paraphrases &lt;script type=&quot;math/tex&quot;&gt;\{w_{a^*\!}, w_a\}&lt;/script&gt; exactly (note that ordering is irrelevant in paraphrases, e.g. &lt;script type=&quot;math/tex&quot;&gt;\{man&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;royal\}&lt;/script&gt; paraphrases  &lt;script type=&quot;math/tex&quot;&gt;\{royal&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;man\}&lt;/script&gt;). But, if the analogy holds, those same parameters must also transform &lt;script type=&quot;math/tex&quot;&gt;w_b&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;w_{b^*}&lt;/script&gt;, meaning that &lt;script type=&quot;math/tex&quot;&gt;\{w_b, w_{a^*}\}&lt;/script&gt; paraphrases &lt;script type=&quot;math/tex&quot;&gt;\{w_{b^*}, w_a\}&lt;/script&gt;. Thus,&lt;/p&gt;
+
+&lt;table class=&quot;mbtablestyle&quot; style=&quot;text-align: center&quot;&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;&lt;script type=&quot;math/tex&quot;&gt;`\!`w_a&lt;/script&gt; is to &lt;script type=&quot;math/tex&quot;&gt;w_{a^*}&lt;/script&gt; as &lt;script type=&quot;math/tex&quot;&gt;w_b&lt;/script&gt; is to &lt;script type=&quot;math/tex&quot;&gt;w_{b^*}\!\!&quot;&lt;/script&gt;&lt;/em&gt; &lt;script type=&quot;math/tex&quot;&gt;\&lt;/script&gt; if and only if &lt;script type=&quot;math/tex&quot;&gt;\&lt;/script&gt; &lt;script type=&quot;math/tex&quot;&gt;\{w_b, w_{a^*}\}&lt;/script&gt; paraphrases &lt;script type=&quot;math/tex&quot;&gt;\{w_{b^*}, w_a\}&lt;/script&gt;.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;This completes the chain:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;analogies are equivalent to word transformations with common transformation parameters that describe the semantic difference,&lt;/li&gt;
+  &lt;li&gt;those word transformations are equivalent to paraphrases, one of which is rendered trivial under a particular choice of transformation parameters,&lt;/li&gt;
+  &lt;li&gt;the other paraphrase leads to a geometric relationship between PMI vectors \eqref{eq:two}, subject to the accuracy of the paraphrase (&lt;script type=&quot;math/tex&quot;&gt;\rho&lt;/script&gt;) and dependence error terms (&lt;script type=&quot;math/tex&quot;&gt;\sigma, \tau&lt;/script&gt;),&lt;/li&gt;
+  &lt;li&gt;under low-dimensional projection (induced by the loss function), the same geometric relationship manifests in word embeddings of analogies \eqref{eq:one}, as seen in word embeddings of &lt;em&gt;W2V&lt;/em&gt; and &lt;em&gt;Glove&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Returning to an earlier plot, we can now explain the “gap” in terms of paraphrase (&lt;script type=&quot;math/tex&quot;&gt;\rho&lt;/script&gt;) and dependence &lt;script type=&quot;math/tex&quot;&gt;(\sigma, \tau&lt;/script&gt;) error terms, and understand why it is small, often smallest, for the word completing the analogy.&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;/assets/solution.png&quot; alt=&quot;W2V architecture&quot; height=&quot;300px&quot; /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 01 Jul 2019 15:44:00 +0100</pubDate>
+        <link>http://localhost:4000/nlp/2019/07/01/explaining-analogies-explained.html</link>
+        <guid isPermaLink="true">http://localhost:4000/nlp/2019/07/01/explaining-analogies-explained.html</guid>
+        
+        
+        <category>NLP</category>
+        
+      </item>
+    
+  </channel>
+</rss>
