@@ -46,7 +46,7 @@ $$
 
 That is, ***word embeddings of analogies approximately form parallelograms:***
 ^
-![word embeddings of analogies approximately form a paralellogram](/assets/parallelogram5.png){:height="150px"}.
+![word embeddings of analogies approximately form a paralellogram](/assets/parallelogram.svg){:height="150px"}.
 {: style="text-align: center"}
 
 Whilst fitting intuition, this phenomenon is intriguing since word embeddings are not trained to achieve it!
