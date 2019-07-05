@@ -9,7 +9,7 @@ categories: NLP
 
 ---
 
-> This post provides a `less maths, more intuition' explanation of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Honourable Mention) with the aim of being accessible to a general machine learning audience, and others (e.g. NLP, linguists) that may prefer a less formal "theorem-proof" approach than the original paper. The outline follows the [ICML presentation][presentation].
+> This post provides a `less maths, more intuition' explanation of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper Honourable Mention) with the aim of being accessible to a general machine learning audience, and others (e.g. NLP, linguists) that may prefer a less formal "theorem-proof" approach than the original paper. The outline follows the [ICML presentation][presentation].
 
 [comment]: # (`)
 
