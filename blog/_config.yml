@@ -23,7 +23,7 @@ email: carl.allen@ed.ac.uk
 description: > # this means to ignore newlines until "baseurl:"
   PhD student, University of Edinburgh
 baseurl: "/carl-allen.github.io" #/carl-allen"            ### the subpath of your site, e.g. /blog
-url: "https://carl-allen.github.io"              ### "http://homepages.inf.ed.ac.uk/s1577741"          # url: "http://example.com" # the base hostname & protocol for your site
+url: "https://carl-allen"              ### "http://homepages.inf.ed.ac.uk/s1577741"          # url: "http://example.com" # the base hostname & protocol for your site
 
 
 twitter_username: carl_s_allen
