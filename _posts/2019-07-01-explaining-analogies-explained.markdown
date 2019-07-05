@@ -129,9 +129,10 @@ In other words, the distribution of words observed around $w_*$ defined over the
 $$
 \begin{equation}
     {\rho}^{\mathcal{W}, w_*}_j = \log \tfrac{p(c_j|w_*)}{p(c_j|\mathcal{W})}\ ,   \quad c_j\!\in\!\mathcal{E}.
-    \tag{3}\label{eq:three}
 \end{equation}
 $$
+
+[comment]: # (\tag{3}\label{eq:three})
 
 To see the relevance of paraphrases, we compare the sum of PMI vectors of two words $$w_1, w_2$$ to that of **<u>any word</u>** $$w_*$$ by considering each ($$j^{th}$$) component of the difference vector $$\text{PMI}_* - (\text{PMI}_1 + \text{PMI}_2)$$:
 
