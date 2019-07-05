@@ -13,7 +13,8 @@ categories: NLP
 
 [comment]: # (`)
 
-## Background [<font size="3">[Skip to main result]</font>](#proof)
+## Background
+[comment]: # ([<font size="3">[Skip to main result]</font>](#proof))
 
 ### Word Embeddings
 
