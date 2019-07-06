@@ -132,7 +132,7 @@ blockquote {
   color: $text-color;
   border-left: 4px solid $grey-color-light;
   padding-left: $spacing-unit / 2;
-  @include relative-font-size(1.125);
+  @include relative-font-size(1.0);
   letter-spacing: -1px;
   font-style: italic;
 
@@ -227,14 +227,14 @@ pre {
 
 /**
  * Tables
+  color: lighten($text-color, 18%);
  */
 table {
   margin-bottom: $spacing-unit;
   width: 100%;
   text-align: $table-text-align;
-  color: lighten($text-color, 18%);
   border-collapse: collapse;
-  border: 1px solid $grey-color-light;
+  border: 1px $grey-color-light;
   tr {
     &:nth-child(even) {
       background-color: lighten($grey-color-light, 6%);
@@ -257,6 +257,7 @@ table {
         border-collapse: collapse;
 
    > table, td, th {
-        border: 4px solid grey;
+        border: 0px solid grey;
+        background-color: lighten($grey-color-light, 0%);
         }
 }
