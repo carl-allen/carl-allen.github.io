@@ -268,7 +268,7 @@ Several other works aim to theoretically explain the analogy phenomenon, in part
  - [Ethayarajh et al. (2019)][ethayarajh] look to show that word embeddings of analogies form parallelograms by considering the latter's geometric properties. However:
  (i) that all points must be co-planar is assumed without explanation;
  (ii) that opposite sides must have similar direction is omitted (as such, a "bow-tie" shape satisfies their Lemma 1); and
- (iii) that opposite sides must have similar Euclidean distance is translated to a statistical relationship based on "csPMI" -- the translation is erroneous since it relies on the embedding matrices satisfying $$\mathbf{W} \!=\! \lambda\mathbf{C},\ \lambda \!\in\! \mathbb{R}$$, which is false, and csPMI bears no connection to analogies or semantics.
+ (iii) that opposite sides must have similar Euclidean distance is translated to a statistical relationship based on "csPMI" -- unfortunately that translation is erroneous since it relies on the embedding matrices satisfying $$\mathbf{W} \!=\! \lambda\mathbf{C},\ \lambda \!\in\! \mathbb{R}$$, which is false, and also csPMI bears no connection to analogies or semantics.
 
 As such, we provide the first end-to-end explanation for the geometric relationship between word embeddings observed for analogies.
 
