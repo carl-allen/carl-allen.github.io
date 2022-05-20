@@ -33,13 +33,13 @@ or negative sentiment in a passage of text (e.g. a customer review).
 
 An intriguing property of neural word embeddings is that *analogies* can often be solved simply by adding/subtracting word embeddings. For example, the classic analogy:
 
-$$``man$$ is to $$king$$ as $$woman$$ is to $$queen\!"$$
+"***man*** is to ***king*** as ***woman*** is to ***queen***"
 {: style="text-align: center"}
 
 [comment]: # (``)
 
-can be *solved* using word embeddings by finding that closest to $$\mathbf{w}_{king} - \mathbf{w}_{man} + \mathbf{w}_{woman}$$, which turns out to be $$ \mathbf{w}_{queen} $$
-($\mathbf{w}_{x}$ denotes the embedding of word $x$). Note that words in the question (e.g. $$man$$, $$woman$$ and $$king$$) are typically omitted from the search.
+can be *solved* using word embeddings by finding that closest to $$\mathbf{w}_{king}-\mathbf{w}_{man}+\mathbf{w}_{woman}$$, which turns out to be $$\mathbf{w}_{queen}$$
+($$\mathbf{w}_{x}$$ denotes the embedding of word $$x$$). Note that words in the question (e.g. $$man$$, $$woman$$ and $$king$$) are typically omitted from the search.
 This suggests the relationship:
 
 $$
@@ -63,8 +63,7 @@ This shows the (exact) parallelogram formed by $$\mathbf{w}_{king}, \mathbf{w}_{
 fixed in the $$xy$$-plane and a selection of word embeddings shown relative to it. We see that the embedding of $$queen$$ does not sit at its corner, but is the closest to it. Word embeddings of 
 related words, e.g. $$prince$$ and $$lord$$, lie relatively close by and random unrelated words are further away.
 
-|We explain the relationship between word embeddings of analogies \eqref{eq:one}, by explaining the gap (indicated) between $$\mathbf{w}_{queen}$$ and $$\mathbf{w}_{king} {\small-} \mathbf{w}_{man} 
-{\small+} \mathbf{w}_{woman}$$; and why it is small, often smallest, for the word that completes the analogy.|
+|We explain the relationship between word embeddings of analogies \eqref{eq:one}, by explaining the gap (indicated) between $$\mathbf{w}_{queen}$$ and $$\mathbf{w}_{king} {\small-} \mathbf{w}_{man} {\small+} \mathbf{w}_{woman}$$; and why it is small, often smallest, for the word that completes the analogy.|
 {:.mbtablestyle}
 
 To understand why *semantic* relationships between words give rise to *geometric* relationships between word embeddings, we first consider what W2V embeddings learn.
@@ -122,8 +121,7 @@ $$
 and (b) vector addition is sufficiently preserved under the low-rank projection induced by the loss function, as readily achieved by a least squares loss function and as approximated by W2V and 
 Glove.
 
-|To prove that relationship \eqref{eq:two} arises between PMI vectors of an analogy, we show that \eqref{eq:two} follows from a particular **paraphrase** relationship, which is, in turn, shown to be 
-equivalent to an analogy.|
+|To prove that relationship \eqref{eq:two} arises between PMI vectors of an analogy, we show that \eqref{eq:two} follows from a particular **paraphrase** relationship, which is, in turn, shown to be equivalent to an analogy.|
 {:.mbtablestyle}
 
 [comment]: # (  style="text-align: center")
@@ -227,7 +225,7 @@ like" -- or *transform* it to -- $$w_*$$. For example, the paraphrase of $$\{man
 In effect, the added words *narrow the context*. More precisely, they alter the distribution of context words found around $$w$$ to more closely align with that of $$w_*$$. Denoting a paraphrase by 
 $$\approx_p$$, we can represent this as:
 
-![word transformation](/assets/analogy/tword_trans_1.png){:width="300px"}
+![word transformation](/assets/analogy/word_trans_1.png){:width="300px"}
 {: style="text-align: center"}
 
 in which the paraphrase can be seen as the "glue" in a relationship between, or rather, *from* $$w$$ *to* $$w_*$$.
@@ -250,8 +248,7 @@ added to $$w_*$$, we consider them *subtracted* from $$w$$ (hence the naming con
 
 Where added words narrow context, subtracted words can be thought of as *broadening* the context.
 
-> We say there exists a ***word transformation*** from word $$w$$ to word $$w_*$$, with ***transformation parameters*** $$\mathcal{W}^+\!\!$$, $$\mathcal{W}^-\!\subseteq\mathcal{E}\ $$    *iff*   
-$$\ \{w\}\!\cup\!\mathcal{W}^+ \approx_\text{P} \{w_*\}\!\cup\!\mathcal{W}^-$$.
+> We say there exists a ***word transformation*** from word $$w$$ to word $$w_*$$, with ***transformation parameters*** $$\mathcal{W}^+$$, $$\mathcal{W}^-\subseteq\mathcal{E}$$    *iff*   $$\ \{w\}\!\cup\!\mathcal{W}^+ \approx_\text{P} \{w_*\}\!\cup\!\mathcal{W}^-$$.
 
 #### Intuition
 
@@ -267,7 +264,7 @@ more closely be described by the difference between $woman$ and $queen$.
 
 We can now mathematically interpret the language of an analogy:
 
-> We say *$$\ `\!`w_a$$ is to $$w_{a^*}$$ as $$w_b$$ is to $$w_{b^*}\!$$"* *iff* there exist $$\mathcal{W}^+\!, \mathcal{W}^-\!\subseteq\!\mathcal{E}$$ that serve as transformation parameters to 
+> We say *"$$w_a$$ is to $$w_{a^*}$$ as $$w_b$$ is to $$w_{b^*}\!$$"* *iff* there exist $$\mathcal{W}^+\!, \mathcal{W}^-\!\subseteq\!\mathcal{E}$$ that serve as transformation parameters to 
 transform both $$w_a$$ to $$w_{a^*}$$ and $$w_b$$ to $$w_{b^*}$$.
 
 That is, within the analogy wording, each instance of "is to" refers to the parameters of a word transformation and "as" implies their equality. Thus the semantic differences  within each word pair, 
@@ -279,7 +276,7 @@ As such, we can chose $$\mathcal{W}^+\!=\!\{w_{a^*}\!\}$$, $$\mathcal{W}^-\!=\!\
 w_a\}$$ exactly (note that ordering is irrelevant in paraphrases, e.g. $$\{man$$, $$royal\}$$ paraphrases  $$\{royal$$, $$man\}$$). But, if the analogy holds, those same parameters must also 
 transform $$w_b$$ to $$w_{b^*}$$, meaning that $$\{w_b, w_{a^*}\}$$ paraphrases $$\{w_{b^*}, w_a\}$$.
 
-|Thus, *$$`\!`w_a$$ is to $$w_{a^*}$$ as $$w_b$$ is to $$w_{b^*}\!\!"$$* $$\ $$ if and only if $$\ $$ $$\{w_b, w_{a^*}\}$$ paraphrases $$\{w_{b^*}, w_a\}$$.|
+|Thus, *$$`\!`w_a$$ is to $$w_{a^*}$$ as $$w_b$$ is to $$w_{b^*}\!\!"$$*  if and only if  $$\{w_b, w_{a^*}\}$$ paraphrases $$\{w_{b^*}, w_a\}$$.|
 {:.mbtablestyle}
 
 This completes the chain:
