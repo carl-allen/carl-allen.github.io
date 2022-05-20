@@ -34,6 +34,9 @@ markdown: kramdown
 ### theme: minimal-mistakes-jekyll 
 theme: minima
 
+kramdown:
+  math_engine: mathjax
+
 # plugins:
 #   - jekyll-include-cache
 
