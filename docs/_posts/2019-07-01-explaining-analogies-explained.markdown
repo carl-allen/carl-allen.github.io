@@ -9,6 +9,10 @@ categories: NLP
 
 ---
 
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
 > This post provides a `less maths, more intuition' overview of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper Honourable Mention). The outline follows 
 that of the [conference presentation][presentation]. Target audience: general machine learning, NLP, computational linguistics.
 
