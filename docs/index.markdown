@@ -3,7 +3,7 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: home
-title:  "Carl Allen"
+title:  "About me..."
 ---
 
 I am a post doc in Machine LEarning at the ETH AI Centre. I recently completed my PhD in Machine Learning at the <a href="https://www.ed.ac.uk/informatics"> 
@@ -68,11 +68,4 @@ MScs in Artificial Intelligence and Data Science from the <a href="https://www.e
   <em> International Conference on Artificial Neural Networks</em>, 2019 <strong>(oral)</strong> <br />
   </p>
 
-
-
-<!--   <h2 id="contact">Contact</h2>  -->
-<a class="u-email" href="mailto:carl.allen@ed.ac.uk">carl.allen@ed.ac.uk</a>
-  &nbsp|&nbsp
-  <a href="https://carl-allen.github.io/">Blog </a>
-  &nbsp|&nbsp
-  Informatics Forum, 10 Crichton Street, Edinburgh, EH8 9AB</p>
+---
