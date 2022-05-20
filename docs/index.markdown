@@ -6,12 +6,12 @@ layout: home
 title:  "Carl Allen"
 ---
 
-> I am a post doc in Machine LEarning at the ETH AI Centre. I recently completed my PhD in Machine Learning at the <a href="https://www.ed.ac.uk/informatics"> 
+I am a post doc in Machine LEarning at the ETH AI Centre. I recently completed my PhD in Machine Learning at the <a href="https://www.ed.ac.uk/informatics"> 
 University of Edinburgh</a>,
   supervised by <a href="https://homepages.inf.ed.ac.uk/thospeda/">Tim Hospedales</a> and <a href="https://homepages.inf.ed.ac.uk/imurray2/bio.html">Iain Murray</a>.
   I am a member of the  <a href="http://datascience.inf.ed.ac.uk/"> Centre for Doctoral Training in Data Science</a>.
   My main interest is in theoretically understanding how machine learning methods work, with a current focus on the representation of discrete objects, eg. word embeddings,
-  knowledge graph representation methods and network/graph embeddings more generally.</p>
+  knowledge graph representation methods and network/graph embeddings more generally.
 
 
 ## Background
@@ -19,7 +19,7 @@ University of Edinburgh</a>,
 I moved into Artificial Intelligence/Machine Learning research after some time working in Project Finance.
 I hold a BSc in Mathematics and Chemistry from the <a href="https://www.southampton.ac.uk/">University of Southampton</a>,
 an MSc Mathematics and the Foundations of Computer Science (MFoCS) from the <a href="https://www.ox.ac.uk/">University of Oxford</a> and
-MScs in Artificial Intelligence and Data Science from the <a href="https://www.ed.ac.uk/">University of Edinburgh</a>.</p>
+MScs in Artificial Intelligence and Data Science from the <a href="https://www.ed.ac.uk/">University of Edinburgh</a>.
 
 
 ## Publications
@@ -51,7 +51,7 @@ MScs in Artificial Intelligence and Data Science from the <a href="https://www.e
   <p><strong>Analogies Explained: Towards Understanding Word Embeddings</strong>
     <a href="https://arxiv.org/abs/1901.09813">[arXiv]</a>
     <a href="/_posts/2019-07-01-explaining-analogies-explained.md">[blog post]</a>
-    <a href="/assets/Analogies_Explained_slides_ICML.pdf">[slides]</a><br />
+    <a href="Analogies_Explained_slides_ICML.pdf">[slides]</a><br />
   <u>C Allen</u>, T Hospedales;
   <em> International Conference on Machine Learning</em>, 2019 <strong>(honorable mention)</strong><br />
   </p>
