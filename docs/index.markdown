@@ -50,8 +50,8 @@ MScs in Artificial Intelligence and Data Science from the <a href="https://www.e
 
   <p><strong>Analogies Explained: Towards Understanding Word Embeddings</strong>
     <a href="https://arxiv.org/abs/1901.09813">[arXiv]</a>
-    <a href="/_posts/2019-07-01-explaining-analogies-explained.md">[blog post]</a>
-    <a href="Analogies_Explained_slides_ICML.pdf">[slides]</a><br />
+    <a href="https://carl-allen.github.io/nlp/2019/07/01/explaining-analogies-explained.html">[blog post]</a>
+    <a href="/assets/Analogies_Explained_slides_ICML.pdf">[slides]</a><br />
   <u>C Allen</u>, T Hospedales;
   <em> International Conference on Machine Learning</em>, 2019 <strong>(honorable mention)</strong><br />
   </p>
