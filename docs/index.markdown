@@ -15,7 +15,7 @@ the interestection of representation learning and logical reasoning.
 
 PhD thesis: "[_Towards a Theoretical Understanding of Word and Relation Representation_](https://arxiv.org/pdf/2202.00486.pdf)" 
 
-*Main Research Interest*: developing a theoretical/mathematical understanding of how successful machine learning methods work. The goal being to: 
+**Main Research Interest**: developing a theoretical/mathematical understanding of how successful machine learning methods work. The goal being to: 
 (i) deepen our general understanding of the underlying latent structure of the data -- i.e. of language, images, speech, DNA, etc -- and of the often implicit mechanisms by which it can be learned; 
 and 
 from 
@@ -25,7 +25,7 @@ Where my PhD focused on representing discrete objects (word embeddings, knowledg
 general latent variable/representation models.
 
 
-*Background*: I moved into Artificial Intelligence/Machine Learning research after some time working in [Project Finance](https://tenor.com/view/why-why-why-dee-pqperplqnes-gif-20613669).
+**Background**: I moved into Artificial Intelligence/Machine Learning research after some time working in [Project Finance](https://tenor.com/view/why-why-why-dee-pqperplqnes-gif-20613669).
 I hold a BSc in Mathematics and Chemistry from the <a href="https://www.southampton.ac.uk/">University of Southampton</a>,
 an MSc Mathematics and the Foundations of Computer Science (MFoCS) from the <a href="https://www.ox.ac.uk/">University of Oxford</a> and
 MScs in Artificial Intelligence and Data Science from the <a href="https://www.ed.ac.uk/">University of Edinburgh</a>.
