@@ -9,12 +9,12 @@ title:  "About me..."
 I am a [Laplace Postdoctoral Chair](https://data-ens.github.io/jobs/) in Data Science at École Normale Supérieure, Paris. Previously I was a postdoctoral fellow at [ETH Zurich](https://ai.ethz.ch/) after completing my PhD in 2021 at the [University of Edinburgh](https://www.ed.ac.uk/informatics), supervised by Profs [Tim 
 Hospedales](https://homepages.inf.ed.ac.uk/thospeda/) and [Iain Murray](https://homepages.inf.ed.ac.uk/imurray2/bio.html).
 
-My **main Research Interest** is in developing a mathematical understanding of how successful machine learning methods work (e.g. neural networks), with the aim of: 
+My **main research interest** is in developing a mathematical understanding of how successful machine learning methods work (e.g. neural networks), with the aim of: 
 (i) developing better performing, more interpretable and more reliable machine leraning algorithms; and perhaps
 (ii) deepening our understanding of the underlying data, such as language, images, speech or DNA, in term of its latent structure and the mechanisms by which it can be learned; 
 While my PhD focused on representing discrete objects, e.g. words, knowledge graph entities/relations and network/graph nodes, my current work considers more general latent variable/representation models.
 
-My PhD ("[_Towards a Theoretical Understanding of Word and Relation Representation_](https://arxiv.org/pdf/2202.00486.pdf)" focused on developing a theoretical understanding of how words are _represented_, whether as word embeddings learned from huge text corpora (e.g. by word2vec or GloVe); or as entity 
+My PhD ([_Towards a Theoretical Understanding of Word and Relation Representation_](https://arxiv.org/pdf/2202.00486.pdf)) focused on developing a theoretical understanding of how words are _represented_, whether as word embeddings learned from huge text corpora (e.g. by word2vec or GloVe); or as entity 
 embeddings learned from the facts (_subject, relation, object_) in a knowledge graph. 
 
 During my PhD I spent 6 months on internship at [Samsung AI Centre, Cambridge](https://research.samsung.com/aicenter_cambridge) working at the interestection of representation learning and logical reasoning.
@@ -24,7 +24,7 @@ I hold a BSc in Mathematics and Chemistry from the <a href="https://www.southamp
 an MSc Mathematics and the Foundations of Computer Science (MFoCS) from the <a href="https://www.ox.ac.uk/">University of Oxford</a> and
 MScs in Artificial Intelligence and Data Science from the <a href="https://www.ed.ac.uk/">University of Edinburgh</a>.
 
-**Awards**: "Analogies Explained: Towards Understanding Word Embeddings" received Best Paper, Honourable Mention
+**Awards & Invited Talks**: "Analogies Explained: Towards Understanding Word Embeddings" received Best Paper, Honourable Mention at ICML, 2019. I have been awarded grant funding from the [Hasler Foundation](https://haslerstiftung.ch/). I have given several invted talks, including at Harvard Center of Mathematical Sciences & Applications and Astra-Zeneca.
 
 ## Publications
 
@@ -83,7 +83,7 @@ MScs in Artificial Intelligence and Data Science from the <a href="https://www.e
     <a href="https://carl-allen.github.io/nlp/2019/07/01/explaining-analogies-explained.html">[blog post]</a>
     <a href="/assets/Analogies_Explained_slides_ICML.pdf">[slides]</a><br />
   <u>C Allen</u>, T Hospedales;
-  <em> ICML</em>, 2019 <strong>(honorable mention)</strong><br />
+  <em> ICML</em>, 2019 <strong>(Best Paper, honorable mention)</strong><br />
   </p>
 
   <p><strong>TuckER: Tensor Factorization for Knowledge Graph Completion</strong>
