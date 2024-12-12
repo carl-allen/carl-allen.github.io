@@ -70,7 +70,7 @@ to predict *context words* $$c_j$$ (i.e. words that fall within a context window
 
 To reduce the computational cost of computing $$p(c_j\!\mid\! w_i)$$ over all $$c_j$$ in a dictionary $$\mathcal{E}$$ using a softmax function, sigmoid functions were trained to classify truly occurring context words from words chosen at random (*negative samples*).
 
-[Levy & Goldberg (2014)][levy-goldberg] showed that under this regime, weight matrices $$\mathbf{W}, \mathbf{C}$$ (columns of which are the word embeddings $$\mathbf{w}_i, \mathbf{c}_j$$) 
+[Levy & Goldberg (2014)][levy-goldberg] showed that under this regime, matrices $$\mathbf{W}, \mathbf{C}$$ (whose columns are word embeddings $$\mathbf{w}_i, \mathbf{c}_j$$) 
 approximately factorise a matrix of *shifted Pointwise Mutual Information* (PMI):
 
 $$
@@ -86,11 +86,11 @@ $$
 \end{equation}\,.
 $$
 
-Since the *shift* $\log k$ is an arbitary artifact (considered in the [paper], Sec 5.5, 6.8), we drop it here. The resulting relationship
+The *shift* $\log k$ is an arbitary artifact of the algorithm, which we address in the [paper] (Sec 5.5, 6.8) but drop here to simplify. The resulting relationship
 $$
 \mathbf{W}^\top\!\mathbf{C} \!\approx\! \textbf{PMI}
 $$
-implies that an embedding $$\mathbf{w}_i$$ can be viewed as a *low-dimensional projection* of row $i$ of the PMI matrix, $$\text{PMI}_i$$ (a *PMI vector*).
+implies that an embedding $$\mathbf{w}_i$$ can be seen as a *low-dimensional projection* of $$\text{PMI}_i$$, the $i^{th}$ row of the PMI matrix, or *PMI vector*.
 
 ---
 ---
@@ -98,8 +98,7 @@ implies that an embedding $$\mathbf{w}_i$$ can be viewed as a *low-dimensional p
 {: #proof}
 ## Proving the embedding relationship of analogies
 
-From above, it can be seen that the additive relationship between word embeddings of analogies \eqref{eq:one} follows if
-(a) an equivalent relationship exists between PMI vectors, i.e.
+This suggests observed additive relationships between word embeddings \eqref{eq:one} follow if the projection from PMI vectors to word embeddings induced by the loss function is sufficiently linear and if equivalent relationships exists between PMI vectors, i.e.
 
 $$
 \begin{equation}
@@ -108,10 +107,9 @@ $$
 \end{equation}
 $$
 
-and (b) vector addition is sufficiently preserved under the low-rank projection induced by the loss function, as readily achieved by a least squares loss function and as approximated by W2V and 
-Glove.
+A least squares loss gives precisely such a linear projection and we conjecture that W2V and Glove are sufficiently linear to preserve the relative spatial arrangement of vectors.
 
-|To prove that relationship \eqref{eq:two} arises between PMI vectors of an analogy, we show that \eqref{eq:two} follows from a particular **paraphrase** relationship, which is, in turn, shown to be equivalent to an analogy.|
+|To now prove that relationship \eqref{eq:two} arises between PMI vectors of an analogy, we translte it into a relationship based on **paraphrases** that equate to an analogy.|
 {:.mbtablestyle}
 
 [comment]: # (  style="text-align: center")
@@ -119,17 +117,15 @@ Glove.
 
 ### Paraphrases
 
-When we say a word $$w_*$$ *paraphrases* a set of words $$\mathcal{W}$$, we mean, intuitively, that they are *semantically interchangeable* in the text. For example, where $$king$$ appears, we might 
-instead see  $$man$$ <u>and</u>  $$royal$$ close together.
-Mathematically, a best choice paraphrase word $$w_*$$ can be defined as that which maximises the likelihood of the context words observed around $$\mathcal{W}$$.
-In other words, the distribution of words observed around $w_*$ defined over the dictionary $$p(\mathcal{E}\!\mid\!w_*)$$, should be similar to that around $$\mathcal{W}$$ 
-$$p(\mathcal{E}\!\mid\!\mathcal{W})$$, as measured by Kullback-Leibler (KL) divergence. Whilst these distributions are discrete and unordered, we can picture this as:
+Inuitively, when we say a word $$w_*$$ *paraphrases* a set of words $$\mathcal{W}$$, we mean that they are *semantically interchangeable* in the text. For example, wherever $$king$$ appears, we might 
+instead see both $$man$$ <u>and</u>  $$royal$$.
+Mathematically, we define the best paraphrase $w^*$ as the word that maximises the likelihood of the context words found around $$\mathcal{W}$$, such that the context word distribution around $w_*$ (denoted $$p(\mathcal{E}\!\mid\!w_*)$$) is most similar to that around $$\mathcal{W}$$ ($$p(\mathcal{E}\!\mid\!\mathcal{W})$$), measured by Kullback-Leibler (KL) divergence. Although these distributions are discrete and unordered, we can picture this intuitively as:
 
 ![Paraphrase distributions](/assets/analogy/distributions.png){:height="120px"}
 {: style="text-align: center"}
 
 > Formally, we say $$w_*$$ **paraphrases** $\mathcal{W}$ if the **paraphrase error** $${\rho}^{\mathcal{W}, w_*}\!\in\! \mathbb{R}^{n}$$
- is (element-wise) small, where:
+ is (element-wise) small:
 >
 $$
 \begin{equation}
@@ -139,8 +135,7 @@ $$
 
 [comment]: # (\tag{3}\label{eq:three})
 
-To see the relevance of paraphrases, we compare the sum of PMI vectors of two words $$w_1, w_2$$ to that of **<u>any word</u>** $$w_*$$ by considering each ($$j^{th}$$) component of the difference 
-vector $$\text{PMI}_* - (\text{PMI}_1 + \text{PMI}_2)$$:
+Paraphase error quantifies the similarity of word distributions around any two words $$w_1, w_2$$ to that around **<u>any other word</u>** $$w_*$$ in terms of components of their PMI vectors $$\text{PMI}_* - (\text{PMI}_1 + \text{PMI}_2)$$:
 
 ![PMI relationship](/assets/analogy/equation_PMI.png){:height="230px"}
 {: style="text-align: center"}
