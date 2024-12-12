@@ -17,13 +17,13 @@
 title: "Carl Allen: Homepage"
 
 name: Carl Allen
-status: Postdoc, ETH Zurich \\
-email: carl.allen@ai.ethz.ch
+status: Postdoc, ENS Paris \\
+email: carl.allen@ens.fr
 
 description: > # this means to ignore newlines until "baseurl:"
-  Machine Learning Postdoc, ETH Zurich
-baseurl: "" #/carl-allen"            ### the subpath of your site, e.g. /blog
-url: "https://carl-allen.github.io"              ### "http://homepages.inf.ed.ac.uk/s1577741"          # url: "http://example.com" # the base hostname & protocol for your site
+  ML Postdoc, ENS Paris
+baseurl: "" #/carl-allen"                        ### the subpath of your site, e.g. /blog
+url: "https://carl-allen.github.io"              # url: "http://example.com" # the base hostname & protocol for your site
 
 
 twitter_username: carl_s_allen
