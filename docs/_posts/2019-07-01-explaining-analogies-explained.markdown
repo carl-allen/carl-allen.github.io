@@ -10,11 +10,10 @@ categories: NLP
 ---
 {% include_relative _includes/head.html %}
 
-> This post aims to present a `less math, more intuition' overview of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper, hon mention), following the [conference presentation][presentation]. Target audience: ML, NLP, CL. 
+> This post aims to present a `less math, more intuition' overview of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper, hon mention), following the [conference presentation][presentation]. Target audience: ML, NLP, CL.&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[[Skip to result]](#proving–the-embedding-relationship-of-analogies)
 
 
-
-## Background &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[[Skip to result]](#proving–the-embedding-relationship-of-analogies)
+## Background 
 
 ### Word Embeddings 
 
