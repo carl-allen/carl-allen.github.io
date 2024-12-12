@@ -8,6 +8,7 @@ link-text:  "[arXiv]"
 categories: NLP
 
 ---
+{% include_relative _includes/head.html %}
 
 > The aim of this post is to give a `less math, more intuition' overview of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper, hon mention), following the [conference presentation][presentation]. Target audience: general ML, NLP, CL.
 
