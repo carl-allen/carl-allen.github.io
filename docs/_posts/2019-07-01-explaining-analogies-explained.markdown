@@ -124,7 +124,7 @@ Mathematically, we define the best paraphrase $w^*$ as the word that maximises t
 ![Paraphrase distributions](/assets/analogy/distributions.png){:height="120px"}
 {: style="text-align: center"}
 
-> Formally, we say $$w_*$$ **paraphrases** $\mathcal{W}$ if the **paraphrase error** $${\rho}^{\mathcal{W}, w_*}\!\in\! \mathbb{R}^{n}$$
+> Definition: $$w_*$$ **paraphrases** $\mathcal{W}$ if the **paraphrase error** $${\rho}^{\mathcal{W}, w_*}\!\in\! \mathbb{R}^{n}$$
  is (element-wise) small:
 >
 $$
@@ -159,7 +159,7 @@ $$
 
 [comment]: # (![Paraphrase distributions](/assets/analogy/lemma1-1.png){:height="100px"} {: style="text-align: left; margin-left: 30px"})
 
-This connects paraphrasing to PMI vector *addition*, as appears in \eqref{eq:two}. Paraphrasing is readily generalised to quantify the relationship between *word sets*: we say $$\mathcal{W}$$ and $$\mathcal{W}_*$$ paraphrase one another if the distributions of context words around them are similar (this reduces to the original definition if $$\mathcal{W}_*$$ contains a single word). Lemma 1 naturally extends to:
+This connects paraphrasing to PMI vector *addition*, as appears in \eqref{eq:two}, and is readily generalised to quantify the relationship between *word sets*. We say $$\mathcal{W}$$ and $$\mathcal{W}_*$$ paraphrase one another if the distributions of context words around them are similar (this reduces to the original definition if $$\mathcal{W}_*$$ contains a single word). Lemma 1 naturally extends to:
 
 > Lemma 2:
 For any word sets $$\mathcal{W}, \mathcal{W}_*\!\subseteq\!\mathcal{E}$$; $$|\mathcal{W}|, |\mathcal{W}_*|\!<\!l$$:
@@ -177,7 +177,7 @@ $$
 
 [comment]: # (![Paraphrase distributions](/assets/analogy/lemma2-1.png){:height="115px"} {: style="text-align: left; margin-left: 30px"})
 
-This can be related to paraphrases by choosing $$\mathcal{W} \!=\! \{woman, king\}$$ and $$\mathcal{W}_* \!=\!  \{man, queen\}$$, whereby
+To see how this relates to paraphrases, let $$\mathcal{W} \!=\! \{woman, king\}$$ and $$\mathcal{W}_* \!=\!  \{man, queen\}$$, whereby
 
 $$
 \begin{equation}
@@ -185,90 +185,74 @@ $$
 \end{equation}
 $$
 
-[comment]: # ($$\underbrace{\sigma^{\mathcal{W}} -  \sigma^{\mathcal{W_*}} - ( \tau^{\mathcal{W}} -  \tau^{\mathcal{W_*}})\mathbf{1}}_{\text{net dependence error}}$$ ![Paraphrase 
-distributions](/assets/analogy/eqn_paraphrase.png){:height="115px"} {: style="text-align: left; margin-left: 30px"})
+if (a) $$\mathcal{W}$$ paraphrases $$\mathcal{W}_*$$ (i.e. $$\rho^{\mathcal{W}, \mathcal{W}_*}$$ is small) and (b) *net* statistical dependencies are small for words in $$\mathcal{W}$$ and 
+$$\mathcal{W}_*$$ (i.e. $$\sigma^{\mathcal{W}} - \sigma^{\mathcal{W}_*}$$ and $$\tau^\mathcal{W} - \tau^{\mathcal{W}_*}$$).
 
-if $$\mathcal{W}$$ paraphrases $$\mathcal{W}_*$$ (meaning $$\rho^{\mathcal{W}, \mathcal{W}_*}$$ is small), subject to *net* statistical dependencies of words within $$\mathcal{W}$$ and 
-$$\mathcal{W}_*$$, i.e. $$\sigma^{\mathcal{W}} - \sigma^{\mathcal{W}_*}$$ and $$\tau^\mathcal{W} - \tau^{\mathcal{W}_*}$$.
-
-|Thus, \eqref{eq:two} holds, subject to dependence error, if $$\{woman, king\}$$ paraphrases $$\{man, queen\}$$.|
+|Thus, subject to dependence errors, \eqref{eq:two} holds if $$\{woman, king\}$$ paraphrases $$\{man, queen\}$$.|
 {:.mbtablestyle}
 
-This establishes a semantic relationship as a sufficient condition for the geometric relationship we aim to explain -- but that semantic relationship is not an analogy.
-What remains then, is to explain why a general analogy "$$w_a\text{ is to }w_{a^*}\text{ as }w_b\text{ is to }w_{b^*}$$" implies that $$\{w_b, w_{a^*}\!\}$$ paraphrases $$\{w_a, w_{b^*}\!\}$$.
-We show that these conditions are in fact equivalent by reinterpreting paraphrases as *word transformations*.
+This establishes that two *paraphrases* are a sufficient condition for the geometric relationship between word embeddings observed for an *analogy*.
+What remains then, is to show that an analogy "$$w_a\text{ is to }w_{a^*}\text{ as }w_b\text{ is to }w_{b^*}$$" implies that $$\{w_b, w_{a^*}\!\}$$ paraphrases $$\{w_a, w_{b^*}\!\}$$.
+In fact, we show an equivalence by reinterpreting paraphrases as *word transformations*.
 
 ### Word Transformation
 
-From [above](#paraphrases), the paraphrase of a word set $$\mathcal{W}$$ by a word $$w_*$$ can be thought of as drawing a semantic equivalence between $$\mathcal{W}$$ and $$w_*$$. Alternatively, we 
-can choose a particular word $w$ in $\mathcal{W}$ and view the paraphrase as indicating words (i.e. all others in $$\mathcal{W}$$, denoted $$\mathcal{W}^+$$) that, when added to $$w$$, make it "more 
-like" -- or *transform* it to -- $$w_*$$. For example, the paraphrase of $$\{man, royal\}$$  by $$king$$ can be interpreted as a *word transformation* from $$man$$ to $$king$$ by adding $$royal$$. 
-In effect, the added words *narrow the context*. More precisely, they alter the distribution of context words found around $$w$$ to more closely align with that of $$w_*$$. Denoting a paraphrase by 
-$$\approx_p$$, we can represent this as:
+The [paraphrasing](#paraphrases) of a word set $$\mathcal{W}$$ by a word $$w_*$$ can be interpreted as a semantic equivalence between $$\mathcal{W}$$ and $$w_*$$, denoted $$\approx_p$$. Alternatively, for a particular word $w$ in $\mathcal{W}$, a paraphrase indicates which words (the remainder of $$\mathcal{W}$$, denoted $$\mathcal{W}^+$$) that, when combined with $$w$$, make it "more like" -- or *transform* it to -- $$w_*$$. For example, the paraphrase of $$\{man, royal\}$$  by $$king$$ can be viewed as a *word transformation* from $$man$$ to $$king$$ by adding $$royal$$.
+The added words have the effect of *narrowing the context* or, more precisely, alter the distribution of context words around $$w$$ to more closely align with that of $$w_*$$. We can illustrate this as:
 
 ![word transformation](/assets/analogy/word_trans_1.png){:width="300px"}
 {: style="text-align: center"}
 
-in which the paraphrase can be seen as the "glue" in a relationship between, or rather, *from* $$w$$ *to* $$w_*$$.
-Thus, if $$w\!\in\!\mathcal{W}$$ and $$\mathcal{W}^+ \!=\! \mathcal{W}\!\setminus\!\!\{w\}$$, to say "$$w_*$$ paraphrases $$\mathcal{W}$$" is equivalent to saying "there exists a word transformation 
-from $$w$$ to $$w_*$$ by adding $$\mathcal{W}^+$$".
-To be clear, nothing changes other than perspective.
+where the paraphrase acts as the "glue" in a relationship *from* $$w$$ *to* $$w_*$$.
+Thus, for $$w\!\in\!\mathcal{W}$$ and $$\mathcal{W}^+ \!=\! \mathcal{W}\!\setminus\!\!\{w\}$$, saying "$$w_*$$ paraphrases $$\mathcal{W}$$" is equivalent to saying "there exists a word transformation 
+from $$w$$ to $$w_*$$ by adding $$\mathcal{W}^+$$". Nothing changes other than the perspective.
 
-Extending the concept to paraphrases between word sets $$\mathcal{W}$$, $$\mathcal{W}_*\!$$, we can choose any $$w \!\in\! \mathcal{W}$$, $$w_* \!\in\! \mathcal{W}_*$$ and view the paraphrase as 
-defining a relationship between $$w$$ and $$w_*$$ in which $$\mathcal{W}^+ \!=\! \mathcal{W}\!\setminus\!\!\{w\}$$ is added to $$w$$ and $$\mathcal{W}^- \!=\! \mathcal{W_*}\!\!\setminus\!\!\{w_*\}$$ 
+Extending this to paraphrases between word sets $$\mathcal{W}$$, $$\mathcal{W}_*\!$$, we can choose $$w \!\in\! \mathcal{W}$$, $$w_* \!\in\! \mathcal{W}_*$$ and view the paraphrase as 
+defining a relationship between $$w$$ and $$w_*$$ where $$\mathcal{W}^+ \!=\! \mathcal{W}\!\setminus\!\!\{w\}$$ is added to $$w$$ and $$\mathcal{W}^- \!=\! \mathcal{W_*}\!\!\setminus\!\!\{w_*\}$$ 
 to $$w_*$$:
 
 ![word transformation](/assets/analogy/word_trans_2.png){:width="300px"}
 {: style="text-align: center"}
 
-This is not a word transformation as above, since it lacks the same notion of direction *from* $$w$$ *to* $$w_*$$. To remedy this, rather than considering the words in $$\mathcal{W}^-$$ as being 
-added to $$w_*$$, we consider them *subtracted* from $$w$$ (hence the naming convention):
+This is not (yet) a word transformation, as it lacks the notion of direction *from* $$w$$ *to* $$w_*$$. But, rather than viewing words in $$\mathcal{W}^-$$ as *added* to $$w_*$$, we consider them *subtracted* from $$w$$ (hence our naming convention):
 
 ![word transformation](/assets/analogy/word_trans_3.png){:width="300px"}
 {: style="text-align: center"}
 
-Where added words narrow context, subtracted words can be thought of as *broadening* the context.
+Just as adding words narrows the context, subtracted words can be viewed as *broadening* the context.
 
-> We say there exists a ***word transformation*** from word $$w$$ to word $$w_*$$, with ***transformation parameters*** $$\mathcal{W}^+$$, $$\mathcal{W}^-\subseteq\mathcal{E}$$    *iff*   $$\ \{w\}\!\cup\!\mathcal{W}^+ \approx_\text{P} \{w_*\}\!\cup\!\mathcal{W}^-$$.
+> Definition: there exists a ***word transformation*** from $$w$$ to $$w_*$$, with ***transformation parameters*** $$\mathcal{W}^+$$, $$\mathcal{W}^-\subseteq\mathcal{E}$$    *iff*   $$\ \{w\}\!\cup\!\mathcal{W}^+ \approx_\text{P} \{w_*\}\!\cup\!\mathcal{W}^-$$.
 
 #### Intuition
 
-The intuition behind word transformations mirrors simple algebra, e.g. 8 is made *equivalent* to 5 by adding 3 to the right, or subtracting 3 from the left. Analogously, with paraphrasing as a 
-measure of *equivalence*, we can identify words ($$\mathcal{W}^+, \mathcal{W}^-$$) that when added to/subtracted from $$w$$, make it equivalent to $$w_*$$.
-In doing so, just as 3 describes the difference between 8 and 5 in the numeric example, we find words that *describe the difference* between $$w$$ and $$w_*$$, or rather, how "$$w$$ is to $$w_*$$".
+The intuition behind word transformations mirrors simple algebra: e.g. 5 is *transformed* to 8 by adding 3, but if 3 were somehow unavailable, then we could add 4 and subtract 1. With paraphrases alone, words can only be *added* to $$w$$ to transform it to $$w_*$$, and perhaps no word exists to describe such "semantic difference". With word transformations, *differences between words* can also be used offering a far richer toolkit, e.g. the difference between $$man$$ and $$king$$ might be described crudely by, say, $$royal$$ or $crown$, but is perhaps better described by the difference between $woman$ and $queen$. More generally, transformation parameters ($$\mathcal{W}^+, \mathcal{W}^-$$) *describe the difference* between $$w$$ and $$w_*$$ or, one might say, how "$$w$$ is to $$w_*$$".
 
-With our initial paraphrases, words could only be *added* to $$w$$ to describe its semantic difference to $$w_*$$, limiting the tools available to discrete words in $$\mathcal{E}$$. Now, 
-*differences between other words* can also be used offering a far richer toolkit, e.g. the difference between $$man$$ and $$king$$ can crudely be explained by, say, $$royal$$ or $crown$, but can 
-more closely be described by the difference between $woman$ and $queen$.
 
 ### Interpreting Analogies
 
 We can now mathematically interpret the language of an analogy:
 
-> We say *"$$w_a$$ is to $$w_{a^*}$$ as $$w_b$$ is to $$w_{b^*}\!$$"* *iff* there exist $$\mathcal{W}^+\!, \mathcal{W}^-\!\subseteq\!\mathcal{E}$$ that serve as transformation parameters to 
+> Definition (analogy): *"$$w_a$$ is to $$w_{a^*}$$ as $$w_b$$ is to $$w_{b^*}\!$$"* *iff* there exist transformation parameters $$\mathcal{W}^+\!, \mathcal{W}^-\!\subseteq\!\mathcal{E}$$ that simultaneously
 transform both $$w_a$$ to $$w_{a^*}$$ and $$w_b$$ to $$w_{b^*}$$.
 
-That is, within the analogy wording, each instance of "is to" refers to the parameters of a word transformation and "as" implies their equality. Thus the semantic differences  within each word pair, 
-as captured by the transformation parameters, are the same -- fitting intuition and now defined explicitly.
+Each occurrence of "is to" in the analogy defintion is synonymous to a set of word transformation parameters and "as" implies their equality. Intuitively, this means that the semantic difference within each word pair, as now quantified, must be the same.
 
 So, an analogy is a pair of word transformations with common parameters $$\mathcal{W}^+, \mathcal{W}^-$$, but what are those parameters? Fortunately, we need not search or guess. We show in the 
-[paper] (Sec 6.4) that if an analogy holds, then *any* parameters that transform one word pair, e.g. $$w_a$$ to $$w_{a^*}$$, *must also transform the other pair*.
-As such, we can chose $$\mathcal{W}^+\!=\!\{w_{a^*}\!\}$$, $$\mathcal{W}^-\!=\!\{w_{a}\}$$, which perfectly transform $$w_a$$ to $$w_{a^*}$$ since $$\{w_a, w_{a^*}\!\}$$ paraphrases $$\{w_{a^*\!}, 
-w_a\}$$ exactly (note that ordering is irrelevant in paraphrases, e.g. $$\{man$$, $$royal\}$$ paraphrases  $$\{royal$$, $$man\}$$). But, if the analogy holds, those same parameters must also 
-transform $$w_b$$ to $$w_{b^*}$$, meaning that $$\{w_b, w_{a^*}\}$$ paraphrases $$\{w_{b^*}, w_a\}$$.
+[paper] (Sec 6.4) that if an analogy holds, then *any* parameters that transform one of the word pairs, e.g. $$w_a$$ to $$w_{a^*}$$, *must also transform the other pair*.
+We can therefore choose $$\mathcal{W}^+\!=\!\{w_{a^*}\!\}$$, $$\mathcal{W}^-\!=\!\{w_{a}\}$$. These trivially transform $$w_a$$ to $$w_{a^*}$$ since $$\{w_a, w_{a^*}\!\}$$ exactly paraphrases $$\{w_{a^*\!}, 
+w_a\}$$ (word order is irrelevant). For the analogy to hold, those parameters must then also transform $$w_b$$ to $$w_{b^*}$$, i.e. $$\{w_b, w_{a^*}\}$$ paraphrases $$\{w_{b^*}, w_a\}$$, that is:
 
-|Thus, *$$`\!`w_a$$ is to $$w_{a^*}$$ as $$w_b$$ is to $$w_{b^*}\!\!"$$*  if and only if  $$\{w_b, w_{a^*}\}$$ paraphrases $$\{w_{b^*}, w_a\}$$.|
+|*$$`\!`w_a$$ is to $$w_{a^*}$$ as $$w_b$$ is to $$w_{b^*}\!\!"$$*  $$\quad\iff\quad$$  $$\{w_b, w_{a^*}\} \approx_\text{P} \{w_{b^*}, w_a\}$$.|
 {:.mbtablestyle}
 
 This completes the chain:
- - analogies are equivalent to word transformations with common transformation parameters that describe the common semantic difference;
- - those word transformations are equivalent to paraphrases, the first of which is rendered trivial under a particular choice of transformation parameters;
- - the second paraphrase leads to a geometric relationship between PMI vectors \eqref{eq:two}, subject to the accuracy of the paraphrase ($$\rho$$) and dependence error terms ($$\sigma, \tau$$); and
- - under low-dimensional projection (induced by the loss function), the same geometric relationship manifests in word embeddings of analogies \eqref{eq:one}, as seen in word embeddings of W2V and 
-Glove.
+ - analogies are equivalent to word transformations with common transformation parameters describing the common "semantic difference";
+ - those word transformations can be described in terms of a readily identifiable paraphrase;
+ - that paraphrase implies the geometric relationship between PMI vectors \eqref{eq:two}, subject to accuracy of the paraphrase ($$\rho$$) and dependence error terms ($$\sigma, \tau$$); and
+ - under a low-dimensional projection induced by the loss function, that geometric relationship manifests, as observed, in the word embeddings of analogies \eqref{eq:one}.
 
-Returning to an earlier plot, we can now explain the "gap" in terms of paraphrase ($$\rho$$) and dependence $$(\sigma, \tau$$) error terms, and understand why it is small, often smallest, for the 
-word completing the analogy.
+Returning to an initial plot, we can now explain the "gap" in terms of paraphrase ($$\rho$$) and dependence $$(\sigma, \tau$$) error terms, and understand why it is variable but often smallest for 
+words that complete the analogy. This concludes an end-to-end explanation for the geometric relationship between word embeddings observed for word analogies.
 
 ![embedding gap explained](/assets/analogy/solution.png){:height="250px"}
 {: style="text-align: center"}
@@ -278,35 +262,28 @@ word completing the analogy.
 ---
 <br>
 
+---
+
 ## Related Work
 Several other works aim to theoretically explain the analogy phenomenon, in particular:
  - [Arora et al. (2016)][arora] propose a latent variable model for text generation that is claimed *inter alia* to explain analogies, however strong *a priori* assumptions are made about the 
-arrangement of word vectors that we do not require. More recently, [we have shown][whatthevec] that certain results of this work contradict the relationship between W2V embeddings and PMI ([Levy & 
-Goldberg][levy-goldberg]).
- - [Gittens et al. (2017)][gittens] introduce the idea of paraphrasing to explain analogies, from which we draw inspiration, but they include several assumptions that fail in practice, in particular 
-that word frequencies follow a uniform distribution rather than their actual, highly non-uniform Zipf distribution.
- - [Ethayarajh et al. (2019)][ethayarajh] look to show that word embeddings of analogies form parallelograms by considering the latter's geometric properties. However, there are several issues:
- (i) that all points must be co-planar is assumed without explanation;
- (ii) that opposite sides must have similar direction is omitted (as such, a "bow-tie" shape satisfies their Lemma 1); and
- (iii) that opposite sides must have similar Euclidean distance is translated to a statistical relationship termed "csPMI" -- unfortunately that translation is erroneous since it relies on embedding 
-matrix $$\mathbf{W}$$ being a scalar multiple ($$\lambda$$) of $$\mathbf{C}$$, which is false and, further, csPMI bears no connection to analogies or semantics.
+arrangement of word vectors that we do not require.
+ - [Gittens et al. (2017)][gittens] introduce the idea of paraphrasing to explain analogies, from which we drew much inspiration, but they include several assumptions that fail in practice, in particular 
+that word frequencies follow a uniform distribution rather than their true, highly non-uniform, Zipf distribution.
+ - [Ethayarajh et al. (2019)][ethayarajh] aim to show that word embeddings of analogies form parallelograms by considering the latter's geometric properties. However, several strong assumptions are made that we do not require (e.g.  all embedding must already be co-planar and embedding matrix $$\mathbf{W}$$ must be a scalar multiple of $$\mathbf{C}$$) and they ultimately depend on a statistical relationship "csPMI" that has no obvious semantic meaning.
 
-Our work therefore provides the first end-to-end explanation for the geometric relationship between word embeddings observed for analogies.
 
  ---
  ---
  <br>
 
-## Further Work
+## Extensions
 
-Two recent works build on this paper:
- - ["What the Vec? Towards Probabilistically Grounded Embeddings"][whatthevec] extends the principles of this work to show how W2V and Glove (approximately) capture other relationships such as 
-*relatedness* and *similarity*, what certain embedding interactions correspond to and, in doing so, how the semantic relationships of *relatedness*, *similarity*, *paraphrasing* and *analogies* 
+ - ["What the Vec? Towards Probabilistically Grounded Embeddings"][whatthevec] extends the principles of this work to show: how W2V and Glove (approximately) capture other relationships such as 
+*relatedness* and *similarity*; what certain embedding interactions correspond to; and, in doing so, how the semantic relationships of *relatedness*, *similarity*, *paraphrasing* and *analogies* 
 mathematically inter-relate.
  - ["Multi-relational Poincaré Graph Embeddings"][murp] [[code]][murp-code] draws a comparison between analogies and *relations* in Knowledge Graphs to develop state-of-the-art representation models 
 in both Euclidean and Hyperbolic space.
-
- [comment]: # (, Allen et al. (2019), Balažević et al. (2019))
 
 [paper]: https://arxiv.org/abs/1901.09813
 [presentation]: https://icml.cc/media/Slides/icml/2019/104(13-11-00)-13-11-00-4883-analogies_expla.pdf
