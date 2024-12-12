@@ -21,7 +21,7 @@ categories: NLP
 
 *Word embeddings* $\mathbf{w}=[w^{(1)}, w^{(2)}, ... , w^{(d)}]$ are numerical vector representations of words (e.g. $\mathbf{w}_{\text{cat}}=[0.02, 0.29, ..., -0.34])$, where each component $w^{(i)}$ can be thought of as capturing a semantic or syntactic feature of the word, and the full vector $\mathbf{w}$ acts as co-ordinates for the word in a high-dimensional "semantic space". 
 
-Word embeddings can be created as a list of word co-occurrence statistics (or their low-rank factorisation); or learned by a *neural network*, such as *[Word2Vec]* (W2V), *[GloVe]* or a large language model. We shall see that these are closely related, and that the latter *neural word embeddings* learn statistics for a task implied by the training algorithm, rather than being them being explicitly defined.
+Word embeddings can be created as a list of word co-occurrence statistics (or their low-rank factorisation); or learned by a *neural network*, such as *[Word2Vec]* (W2V), *[GloVe]* or a large language model. We shall see that these are closely related, and that the latter *neural word embeddings* learn statistics implied by the training algorithm, rather than them being explicitly defined.
 
 Neural word embeddings (or simply _embeddings_) are useful across a wide variety of tasks involving natural language, from identifying word similarity or grammatical role, to assessing the sentiment in a customer review. Here, we focus specifically on word embeddings learned by Word2Vec and GloVe as the relative simplicity of their training algorithm and model architevture allows rigorous analysis.
 
