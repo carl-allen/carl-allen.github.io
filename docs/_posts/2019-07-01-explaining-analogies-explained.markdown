@@ -244,14 +244,15 @@ w_a\}$$ (word order is irrelevant). For the analogy to hold, those parameters mu
 $$
 \begin{equation}
   w_a \text{ is to } w_{a^*} \text{ as } w_b \text{ is to }  w_{b^*}\!\!" \quad\iff\quad  \{w_b, w_{a^*}\} \approx_\text{P} \{w_{b^*}, w_a\}.
+  \tag{3}\label{eq:three}
 \end{equation}
 $$
 
 This completes the chain:
- - analogies are equivalent to word transformations with common transformation parameters describing the common "semantic difference";
- - those word transformations can be described in terms of a readily identifiable paraphrase;
- - that paraphrase implies the geometric relationship between PMI vectors \eqref{eq:two}, subject to accuracy of the paraphrase ($$\rho$$) and dependence error terms ($$\sigma, \tau$$); and
- - under a low-dimensional projection induced by the loss function, that geometric relationship manifests, as observed, in the word embeddings of analogies \eqref{eq:one}.
+ - analogies are equivalent to word transformations with common transformation parameters describing a common "semantic difference" \eqref{eq:three};
+ - those word transformations define a readily identifiable paraphrase;
+ - that paraphrase implies a geometric relationship between PMI vectors \eqref{eq:two} that depends on the paraphrase accuracy ($$\rho$$) and dependence error terms ($$\sigma, \tau$$); and
+ - under a low-dimensional projection induced by the loss function, that geometric relationship is reflected between the word embeddings of an analogy \eqref{eq:one}.
 
 Returning to an initial plot, we can now explain the "gap" in terms of paraphrase ($$\rho$$) and dependence $$(\sigma, \tau$$) error terms, and understand why it is variable but often smallest for 
 words that complete the analogy. This concludes an end-to-end explanation for the geometric relationship between word embeddings observed for word analogies.
@@ -262,9 +263,6 @@ words that complete the analogy. This concludes an end-to-end explanation for th
 
 ---
 ---
-<br>
-
----
 
 ## Related Work
 Several other works aim to theoretically explain the analogy phenomenon, in particular:
@@ -274,10 +272,8 @@ arrangement of word vectors that we do not require.
 that word frequencies follow a uniform distribution rather than their true, highly non-uniform, Zipf distribution.
  - [Ethayarajh et al. (2019)][ethayarajh] aim to show that word embeddings of analogies form parallelograms by considering the latter's geometric properties. However, several strong assumptions are made that we do not require (e.g.  all embedding must already be co-planar and embedding matrix $$\mathbf{W}$$ must be a scalar multiple of $$\mathbf{C}$$) and analogies are ultimately related to a statistical relationship "csPMI" that lacks semantic meaning.
 
-
  ---
  ---
- <br>
 
 ## Extensions
 
