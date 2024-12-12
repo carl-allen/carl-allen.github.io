@@ -10,7 +10,7 @@ categories: NLP
 ---
 {% include_relative _includes/head.html %}
 
-> This post aims to present a `less math, more intuition' overview of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper, hon mention), following the [conference presentation][presentation]. Target audience: ML, NLP, CL.&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[[Skip to result]](#proving–the-embedding-relationship-of-analogies)
+> This post aims to present a `less math, more intuition' overview of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper, hon mention), following the [conference presentation][presentation]. Target audience: ML, NLP, CL.&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[[Skip to result]](#proving–the-embedding-relationship-of-analogies)
 
 
 ## Background 
@@ -241,8 +241,7 @@ So, an analogy is a pair of word transformations with common parameters $$\mathc
 We can therefore choose $$\mathcal{W}^+\!=\!\{w_{a^*}\!\}$$, $$\mathcal{W}^-\!=\!\{w_{a}\}$$. These trivially transform $$w_a$$ to $$w_{a^*}$$ since $$\{w_a, w_{a^*}\!\}$$ exactly paraphrases $$\{w_{a^*\!}, 
 w_a\}$$ (word order is irrelevant). For the analogy to hold, those parameters must then also transform $$w_b$$ to $$w_{b^*}$$, i.e. $$\{w_b, w_{a^*}\}$$ paraphrases $$\{w_{b^*}, w_a\}$$, that is:
 
-|$$`\!`w_a \text{ is to } w_{a^*} \text{ as } w_b \text{ is to }  w_{b^*}\!\!" \quad\iff\quad  \{w_b, w_{a^*}\} \approx_\text{P} \{w_{b^*}, w_a\}.$$.|
-{:.mbtablestyle}
+$$`\!`w_a \text{ is to } w_{a^*} \text{ as } w_b \text{ is to }  w_{b^*}\!\!" \quad\iff\quad  \{w_b, w_{a^*}\} \approx_\text{P} \{w_{b^*}, w_a\}.$$.
 
 This completes the chain:
  - analogies are equivalent to word transformations with common transformation parameters describing the common "semantic difference";
