@@ -12,9 +12,9 @@ categories: NLP
 
 > The aim of this post is to give a `less math, more intuition' overview of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper, hon mention), following the [conference presentation][presentation]. Target audience: general ML, NLP, CL.
 
-[Skip to main result](#proving–the-embedding-relationship-of-analogies)
 
-## Background 
+
+## Background \hfill [[Skip to main result](#proving–the-embedding-relationship-of-analogies)]{style="float:right"}
 
 ### Word Embeddings 
 
