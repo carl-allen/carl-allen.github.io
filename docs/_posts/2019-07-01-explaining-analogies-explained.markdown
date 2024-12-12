@@ -29,8 +29,8 @@ An intriguing property observed in trained word embeddings is that *analogies* a
 "***man*** is to ***king*** as ***woman*** is to ***queen***"
 {: style="text-align: center"}
 
-can be *solved* using word embeddings by finding that closest to $$\mathbf{w}_{king}-\mathbf{w}_{man}+\mathbf{w}_{woman}$$, which often turns out to be $$\mathbf{w}_{queen}$$. Note that words in the question, i.e. $$man$$, $$woman$$ and $$king$$, are typically omitted from the search.
-This suggests the relationship:
+can be *solved* using word embeddings by finding that closest to $$\mathbf{w}_{king}-\mathbf{w}_{man}+\mathbf{w}_{woman}$$ (omitting $man$, $woman$ and $king$ themselves), which often turns out to be $$\mathbf{w}_{queen}$$.
+This suggests that embeddings fit the relationship:
 
 $$
 \begin{equation}
@@ -44,19 +44,19 @@ or, in geometric terms, that ***word embeddings of analogies approximately form 
 ![word embeddings of analogies approximately form a paralellogram](/assets/analogy/parallelogram2.svg){:height="170px"}.
 {: style="text-align: center"}
 
-Whilst this fits our intuition, the phenomenon is intriguing since word embeddings are not trained to achieve it!
-In practice, word embeddings of analogies do not *perfectly* form parallelograms:
+While this somehow feels intuitive, the fact that *semantic* relationships between words are encodd as *geometric* relationships between word embeddings is an intriguing phenomenon since word embeddings are not trained to achieve it!
+In practice, we can see that word embeddings of analogies do not *perfectly* form parallelograms:
 
 ![word embeddings of analogies not quite a paralellogram](/assets/analogy/analogy_embeddings.png){:height="250px"}
 {: style="text-align: center"}
-This shows the (exact) parallelogram formed by $$\mathbf{w}_{king}, \mathbf{w}_{man}$$, $$\mathbf{w}_{woman}$$ and  $$\mathbf{w}_{king} {\small-} \mathbf{w}_{man} {\small+} \mathbf{w}_{woman}$$ 
-fixed in the $$xy$$-plane and a selection of word embeddings shown relative to it. We see that the embedding of $$queen$$ does not sit at its corner, but is the closest to it. Word embeddings of 
-related words, e.g. $$prince$$ and $$lord$$, lie relatively close by and random unrelated words are further away.
+The exact parallelogram formed by $$\mathbf{w}_{king}, \mathbf{w}_{man}$$, $$\mathbf{w}_{woman}$$ and the fourth vertex ($$\mathbf{w}_{king} {\small-} \mathbf{w}_{man} {\small+} \mathbf{w}_{woman}$$) is shown
+in the $$xy$$-plane with several word embeddings shown relative to it. We see that (i) the embedding of $$queen$$ is not at the fourth vertex, but is the closest embedding to it; and (ii) that embeddings of 
+related words, e.g. $$prince$$ and $$lord$$, are close relatively relative to random unrelated words.
 
-|We explain the relationship between word embeddings of analogies \eqref{eq:one}, by explaining the gap (indicated) between $$\mathbf{w}_{queen}$$ and $$\mathbf{w}_{king} {\small-} \mathbf{w}_{man} {\small+} \mathbf{w}_{woman}$$; and why it is small, often smallest, for the word that completes the analogy.|
+|To explain the relationship between word embeddings of analogies \eqref{eq:one}, we describe the gap (marked '?') between $$\mathbf{w}_{queen}$$ and $$\mathbf{w}_{king} {\small-} \mathbf{w}_{man} {\small+} \mathbf{w}_{woman}$$; and show that it is small, often smallest, for the word that we expect to complete the analogy.|
 {:.mbtablestyle}
 
-To understand why *semantic* relationships between words give rise to *geometric* relationships between word embeddings, we first consider what W2V embeddings learn.
+We begin by considering what W2V embeddings learn.
 
 ### Word2Vec
 
