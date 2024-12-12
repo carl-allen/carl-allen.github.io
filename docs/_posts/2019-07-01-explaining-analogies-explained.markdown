@@ -108,7 +108,7 @@ $$
 
 A least squares loss gives precisely such a linear projection and we conjecture that W2V and Glove are sufficiently linear to preserve the relative spatial arrangement of vectors.
 
-|To now prove that relationship \eqref{eq:two} arises between PMI vectors of an analogy, we translte it into a relationship based on **paraphrases** that equate to an analogy.|
+|To now prove that relationship \eqref{eq:two} arises between PMI vectors of an analogy, we translate it into a relationship based on **paraphrases** that equate to an analogy.|
 {:.mbtablestyle}
 
 [comment]: # (  style="text-align: center")
@@ -118,7 +118,7 @@ A least squares loss gives precisely such a linear projection and we conjecture 
 
 Inuitively, when we say a word $$w_*$$ *paraphrases* a set of words $$\mathcal{W}$$, we mean that they are *semantically interchangeable* in the text. For example, wherever $$king$$ appears, we might 
 instead see both $$man$$ <u>and</u>  $$royal$$.
-Mathematically, we define the best paraphrase $w^*$ as the word that maximises the likelihood of the context words found around $$\mathcal{W}$$, such that the context word distribution around $w_*$ (denoted $$p(\mathcal{E}\!\mid\!w_*)$$) is most similar to that around $$\mathcal{W}$$ ($$p(\mathcal{E}\!\mid\!\mathcal{W})$$), measured by Kullback-Leibler (KL) divergence. Although these distributions are discrete and unordered, we can picture this intuitively as:
+Mathematically, we define the best paraphrase $$w^*$$ as the word that maximises the likelihood of the context words found around $$\mathcal{W}$$, such that the context word distribution around $$w_*$$ (denoted $$p(\mathcal{E}\!\mid\!w_*)$$) is most similar to that around $$\mathcal{W}$$ ($$p(\mathcal{E}\!\mid\!\mathcal{W})$$), measured by Kullback-Leibler (KL) divergence. Although these distributions are discrete and unordered, we can picture this intuitively as:
 
 ![Paraphrase distributions](/assets/analogy/distributions.png){:height="120px"}
 {: style="text-align: center"}
@@ -220,7 +220,7 @@ This is not (yet) a word transformation, as it lacks the notion of direction *fr
 
 Just as adding words narrows the context, subtracted words can be viewed as *broadening* the context.
 
-> Definition: there exists a ***word transformation*** from $$w$$ to $$w_*$$, with ***transformation parameters*** $$\mathcal{W}^+$$, $$\mathcal{W}^-\subseteq\mathcal{E}$$    *iff*   $$\ \{w\}\!\cup\!\mathcal{W}^+ \approx_\text{P} \{w_*\}\!\cup\!\mathcal{W}^-$$.
+> Definition: there exists a ***word transformation*** from $$w$$ to $$w_*$$ with ***transformation parameters*** $$\mathcal{W}^+$$, $$\mathcal{W}^-\subseteq\mathcal{E}$$    *iff*   $$\ \{w\}\!\cup\!\mathcal{W}^+ \approx_\text{P} \{w_*\}\!\cup\!\mathcal{W}^-$$.
 
 #### Intuition
 
@@ -241,7 +241,7 @@ So, an analogy is a pair of word transformations with common parameters $$\mathc
 We can therefore choose $$\mathcal{W}^+\!=\!\{w_{a^*}\!\}$$, $$\mathcal{W}^-\!=\!\{w_{a}\}$$. These trivially transform $$w_a$$ to $$w_{a^*}$$ since $$\{w_a, w_{a^*}\!\}$$ exactly paraphrases $$\{w_{a^*\!}, 
 w_a\}$$ (word order is irrelevant). For the analogy to hold, those parameters must then also transform $$w_b$$ to $$w_{b^*}$$, i.e. $$\{w_b, w_{a^*}\}$$ paraphrases $$\{w_{b^*}, w_a\}$$, that is:
 
-|*$$`\!`w_a$$ is to $$w_{a^*}$$ as $$w_b$$ is to $$w_{b^*}\!\!"$$*  $$\quad\iff\quad$$  $$\{w_b, w_{a^*}\} \approx_\text{P} \{w_{b^*}, w_a\}$$.|
+|$$`\!`w_a \text{ is to } w_{a^*} \text{ as } w_b \text{ is to }  w_{b^*}\!\!" \quad\iff\quad  \{w_b, w_{a^*}\} \approx_\text{P} \{w_{b^*}, w_a\}.$$.|
 {:.mbtablestyle}
 
 This completes the chain:
