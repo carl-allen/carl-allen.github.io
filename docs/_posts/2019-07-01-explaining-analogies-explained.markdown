@@ -10,9 +10,11 @@ categories: NLP
 ---
 {% include_relative _includes/head.html %}
 
-> This post aims to present a `less math, more intuition' overview of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper, hon mention), following the [conference presentation][presentation]. Target audience: ML, NLP, CL. &emsp;&emsp;&emsp; [[Skip to result](#proving–the-embedding-relationship-of-analogies)]{: style="text-align: right"}
+> This post aims to present a `less math, more intuition' overview of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper, hon mention), following the [conference presentation][presentation]. Target audience: ML, NLP, CL. 
 
-## Background 
+
+
+## Background &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[[Skip to result]](#proving–the-embedding-relationship-of-analogies)
 
 ### Word Embeddings 
 
@@ -52,7 +54,7 @@ In practice, the parallelograms formed by word embeddings of analogies are not _
 
 This shows the (exact) parallelogram formed by $$\mathbf{w}_{king}, \mathbf{w}_{man}, \mathbf{w}_{woman}$$ and a fourth vertex ($$\mathbf{w}_{king} {\small-} \mathbf{w}_{man} {\small+} \mathbf{w}_{woman}$$)
 in the $xy$-plane with several word embeddings plotted relative to it. We see that (i) the embedding of $queen$ is not at the fourth vertex, but is the closest embedding to it; and (ii) that embeddings of 
-related words, e.g. $$prince$$ and $$lord$$, are close relatively relative to random unrelated words.
+related words, e.g. $$prince$$ and $$lord$$, are close relative to random words.
 
 |To explain the relationship between word embeddings of analogies \eqref{eq:one}, we describe the gap (marked '?') between $$\mathbf{w}_{queen}$$ and $$\mathbf{w}_{king} {\small-} \mathbf{w}_{man} {\small+} \mathbf{w}_{woman}$$; and show that it is small, often smallest, for the word that we expect to complete the analogy.|
 {:.mbtablestyle}
@@ -63,14 +65,13 @@ We begin by considering what W2V embeddings learn.
 
 ![W2V architecture](/assets/analogy/neural_network.png){:style="float: right; margin-right: 0px; margin-top: -10px;" height="250px"}
 
-W2V (SkipGram with negative sampling) is an algorithm that generates word embeddings by training the weights of a 2-layer "neural network"
-to predict *context words* $$c_j$$ (i.e. words that fall within a context window of fixed size $$l$$) around each word  $$w_i$$ (referred to as a *target word*) across a text corpus.
+W2V (SkipGram with negative sampling) generates word embeddings by training the weights of a 2-layer "neural network"
+to predict *context words* $$c_j$$ (i.e. words that fall within a context window of fixed size $$l$$) around each word  $$w_i$$ (the *target word*) over a text corpus.
 
-Predicting $$p(c_j\!\mid\! w_i)$$, for all $$c_j$$ in a dictionary of all unique words $\mathcal{E}$, was initially considered with a softmax function, but instead a sigmoid function and negative 
-sampling were used to reduce computational cost.
+To reduce the computational cost of computing $$p(c_j\!\mid\! w_i)$$ over all $$c_j$$ in a dictionary $$\mathcal{E}$$ using a softmax function, sigmoid functions were trained to classify truly occurring context words from words chosen at random (*negative samples*).
 
-[Levy & Goldberg (2014)][levy-goldberg] showed that, as a result, the weight matrices $$\mathbf{W}, \mathbf{C}$$ (columns of which are the word embeddings $$\mathbf{w}_i, \mathbf{c}_j$$) 
-approximately factorise a matrix of *shifted* Pointwise Mutual Information (PMI):
+[Levy & Goldberg (2014)][levy-goldberg] showed that under this regime, weight matrices $$\mathbf{W}, \mathbf{C}$$ (columns of which are the word embeddings $$\mathbf{w}_i, \mathbf{c}_j$$) 
+approximately factorise a matrix of *shifted Pointwise Mutual Information* (PMI):
 
 $$
 \begin{equation}
@@ -85,13 +86,11 @@ $$
 \end{equation}\,.
 $$
 
-Dropping the *shift* term "$$\log k$$", an artefact of the W2V algorithm (that we reconsider in the [paper], Sec 5.5, 6.8), the relationship
+Since the *shift* $\log k$ is an arbitary artifact (considered in the [paper], Sec 5.5, 6.8), we drop it here. The resulting relationship
 $$
-\begin{equation}
 \mathbf{W}^\top\!\mathbf{C} \!\approx\! \textbf{PMI}
-\end{equation}
 $$
-shows that an embedding $$\mathbf{w}_i$$ can be considered a *low-dimensional projection* of a row of the PMI matrix, $$\text{PMI}_i$$ (a *PMI vector*).
+implies that an embedding $$\mathbf{w}_i$$ can be viewed as a *low-dimensional projection* of row $i$ of the PMI matrix, $$\text{PMI}_i$$ (a *PMI vector*).
 
 ---
 ---
