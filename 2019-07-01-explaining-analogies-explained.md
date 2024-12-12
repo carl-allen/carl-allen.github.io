@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "''Analogies Explained'' ... Explained"
+title:      "``Analogies Explained'' ... Explained"
 date:       2019-07-01 15:44:00 +0100
 author:     Carl Allen
 paper-link: https://arxiv.org/abs/1901.09813
@@ -9,9 +9,7 @@ categories: NLP
 
 ---
 
-> This post provides a `less maths, more intuition' overview of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper Honourable Mention). The outline follows that of the [conference presentation][presentation]. Target audience: general machine learning, NLP, computational linguistics.
-
-[comment]: # (`)
+> This post gives a `less maths, more intuition' overview of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper Honourable Mention), following the outline of the [conference presentation][presentation]. Target audience: ML, NLP, CL.
 
 ## Background
 [comment]: # ([<font size="3">[Skip to main result]</font>](#proof))
