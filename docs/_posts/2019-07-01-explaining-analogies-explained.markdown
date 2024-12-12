@@ -10,13 +10,13 @@ categories: NLP
 ---
 {% include_relative _includes/head.html %}
 
-> This post aims to present a `less math, more intuition' overview of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper, hon mention), following the [conference presentation][presentation]. Target audience: ML, NLP, CL. &emsp;&emsp;&emsp; [[Skip to result](#proving–the-embedding-relationship-of-analogies)]
+> This post aims to present a `less math, more intuition' overview of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper, hon mention), following the [conference presentation][presentation]. Target audience: ML, NLP, CL. &emsp;&emsp;&emsp; [[Skip to result](#proving–the-embedding-relationship-of-analogies)]{: style="text-align: right"}
 
 ## Background 
 
 ### Word Embeddings 
 
-*Word embeddings* $w=[w^{(1)}, w^{(2)}, ... , w^{(d)}]$ are numerical vector representations of words (e.g. $w_{cat}=[0.02, 0.29, ..., -0.34])$, where each component $w^{(i)}$ can be thought of as capturing a semantic or syntactic feature of the word, and the full vector $w$ acts as co-ordinates for the word in a high-dimensional "semantic space". 
+*Word embeddings* $\mathbf{w}=[w^{(1)}, w^{(2)}, ... , w^{(d)}]$ are numerical vector representations of words (e.g. $\mathbf{w}_{\text{cat}}=[0.02, 0.29, ..., -0.34])$, where each component $w^{(i)}$ can be thought of as capturing a semantic or syntactic feature of the word, and the full vector $\mathbf{w}$ acts as co-ordinates for the word in a high-dimensional "semantic space". 
 
 Word embeddings can be created as a list of word co-occurrence statistics (or their low-rank factorisation); or learned by a *neural network*, such as *[Word2Vec]* (W2V), *[GloVe]* or a large language model. We shall see that these are closely related, and that the latter *neural word embeddings* learn statistics for a task implied by the training algorithm, rather than being them being explicitly defined.
 
@@ -29,8 +29,7 @@ An intriguing property observed in trained word embeddings is that *analogies* a
 "***man*** is to ***king*** as ***woman*** is to ***queen***"
 {: style="text-align: center"}
 
-can be *solved* using word embeddings by finding that closest to $$\mathbf{w}_{king}-\mathbf{w}_{man}+\mathbf{w}_{woman}$$, which turns out to be $$\mathbf{w}_{queen}$$
-($$\mathbf{w}_{x}$$ denotes the embedding of word $$x$$). Note that words in the question (e.g. $$man$$, $$woman$$ and $$king$$) are typically omitted from the search.
+can be *solved* using word embeddings by finding that closest to $$\mathbf{w}_{king}-\mathbf{w}_{man}+\mathbf{w}_{woman}$$, which often turns out to be $$\mathbf{w}_{queen}$$. Note that words in the question, i.e. $$man$$, $$woman$$ and $$king$$, are typically omitted from the search.
 This suggests the relationship:
 
 $$
