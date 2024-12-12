@@ -10,10 +10,8 @@ categories: NLP
 ---
 {% include_relative _includes/head.html %}
 
-> This post provides a `less maths, more intuition' overview of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper Honourable Mention). The outline follows 
-that of the [conference presentation][presentation]. Target audience: general machine learning, NLP, computational linguistics.
+> This post aims to provide a `less maths, more intuition' overview of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper, hon mention), following the outline of the [conference presentation][presentation]. Target audience: general ML, NLP, CL.
 
-[comment]: # (`)
 
 ## Background
 [comment]: # ([<font size="3">[Skip to main result]</font>](#proof))
