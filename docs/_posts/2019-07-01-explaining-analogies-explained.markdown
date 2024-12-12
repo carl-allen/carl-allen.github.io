@@ -269,7 +269,7 @@ Several other works aim to theoretically explain the analogy phenomenon, in part
 arrangement of word vectors that we do not require.
  - [Gittens et al. (2017)][gittens] introduce the idea of paraphrasing to explain analogies, from which we drew much inspiration, but they include several assumptions that fail in practice, in particular 
 that word frequencies follow a uniform distribution rather than their true, highly non-uniform, Zipf distribution.
- - [Ethayarajh et al. (2019)][ethayarajh] aim to show that word embeddings of analogies form parallelograms by considering the latter's geometric properties. However, several strong assumptions are made that we do not require (e.g.  all embedding must already be co-planar and embedding matrix $$\mathbf{W}$$ must be a scalar multiple of $$\mathbf{C}$$) and they ultimately depend on a statistical relationship "csPMI" that has no obvious semantic meaning.
+ - [Ethayarajh et al. (2019)][ethayarajh] aim to show that word embeddings of analogies form parallelograms by considering the latter's geometric properties. However, several strong assumptions are made that we do not require (e.g.  all embedding must already be co-planar and embedding matrix $$\mathbf{W}$$ must be a scalar multiple of $$\mathbf{C}$$) and analogies are ultimately related to a statistical relationship "csPMI" that lacks semantic meaning.
 
 
  ---
