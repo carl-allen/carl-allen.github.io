@@ -50,8 +50,8 @@ In practice, the parallelograms formed by word embeddings of analogies are not _
 ![word embeddings of analogies not quite a paralellogram](/assets/analogy/analogy_embeddings.png){:height="250px"}
 {: style="text-align: center"}
 
-The (exact) parallelogram formed by $\mathbf{w}_{king}, \mathbf{w}_{man}, \mathbf{w}_{woman}$ and a fourth vertex ($\mathbf{w}_{king} {\small-} \mathbf{w}_{man} {\small+} \mathbf{w}_{woman}$)
-is plotted in the $xy$-plane with several word embeddings shown relative to it. We see that (i) the embedding of $$queen$$ is not at the fourth vertex, but is the closest embedding to it; and (ii) that embeddings of 
+This shows the (exact) parallelogram formed by $\mathbf{w}_{king}, \mathbf{w}_{man}, \mathbf{w}_{woman}$ and a fourth vertex ($\mathbf{w}_{king} {\small-} \mathbf{w}_{man} {\small+} \mathbf{w}_{woman}$)
+in the $xy$-plane with several word embeddings plotted relative to it. We see that (i) the embedding of $queen$ is not at the fourth vertex, but is the closest embedding to it; and (ii) that embeddings of 
 related words, e.g. $$prince$$ and $$lord$$, are close relatively relative to random unrelated words.
 
 |To explain the relationship between word embeddings of analogies \eqref{eq:one}, we describe the gap (marked '?') between $$\mathbf{w}_{queen}$$ and $$\mathbf{w}_{king} {\small-} \mathbf{w}_{man} {\small+} \mathbf{w}_{woman}$$; and show that it is small, often smallest, for the word that we expect to complete the analogy.|
