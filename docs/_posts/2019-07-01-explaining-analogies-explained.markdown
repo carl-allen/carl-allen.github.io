@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "``Analogies Explained'' ... Explained"
+title:      "'Analogies Explained' ... Explained"
 date:       2019-07-01 15:44:00 +0100
 author:     Carl Allen
 paper-link: https://arxiv.org/abs/1901.09813
@@ -9,17 +9,18 @@ categories: NLP
 
 ---
 
-> This post aims to provide a `less maths, more intuition' overview of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper, hon mention), following the outline of the [conference presentation][presentation]. Target audience: general ML, NLP, CL.
+> The aim of this post is to give a `less math, more intuition' overview of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper, hon mention), following the [conference presentation][presentation]. Target audience: general ML, NLP, CL.
 
+[Skip to main result](#proving–the-embedding-relationship-of-analogies)
 
-## Background
-[comment]: # ([<font size="3">[Skip to main result]</font>](#proof))
+## Background 
 
-### Word Embeddings
+### Word Embeddings 
 
-*Word embeddings* are numerical vector representations of words. Each entry, or dimension, of a word embedding can be thought of as capturing some semantic or syntactic feature of the word, and the 
-full vector can be considered as co-ordinates of the word in a high-dimensional space. Word embeddings can be generated explicitly, e.g. from rows of word co-occurrence statistics (or low-rank 
-approximations of such statistics); or by *neural network* methods such as *[Word2Vec]* (W2V) or *[Glove]*.
+A *word embedding* $z=(z_1, z_2, ... , z_d)$ are numerical vector representations of words, are used in all modern machine learning systems. Loosely speaking, each component of a word embedding ($z_i$) can be thought of as capturing 
+a semantic or syntactic feature of the word, and the 
+full embedding $z$ as the co-ordinates of a point in a high-dimensional "semantic" space. Word embeddings can be created explicitly, e.g. as a list of word co-occurrence statistics (or low-rank 
+factorisations of such statistics); or "learned" by a *neural network*, as in *[Word2Vec]* (W2V) or *[Glove]*. As we shall see, these are actually closely related and the latter *neural embeddings* learn statistics of the data implied by the training algorithm rather than explicitly chosen.
 
 [comment]: # ( [[Mikolov et al., 2013]][Word2Vec] `[[Pennington et al.,2014]][glove]`)
 
@@ -327,7 +328,7 @@ in both Euclidean and Hyperbolic space.
 [paper]: https://arxiv.org/abs/1901.09813
 [presentation]: https://icml.cc/media/Slides/icml/2019/104(13-11-00)-13-11-00-4883-analogies_expla.pdf
 [Word2Vec]: https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf
-[Glove]: https://www.aclweb.org/anthology/D14-1162
+[Glove]: https://aclanthology.org/D14-1162.pdf
 [levy-goldberg]: https://papers.nips.cc/paper/5477-neural-word-embedding-as-implicit-matrix-factorization.pdf
 [arora]: https://aclweb.org/anthology/Q16-1028
 [gittens]: https://www.aclweb.org/anthology/P17-1007
