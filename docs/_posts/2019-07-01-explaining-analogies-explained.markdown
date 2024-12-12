@@ -10,15 +10,14 @@ categories: NLP
 ---
 {% include_relative _includes/head.html %}
 
-> The aim of this post is to give a `less math, more intuition' overview of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper, hon mention), following the [conference presentation][presentation]. Target audience: general ML, NLP, CL.
+> This post aims to present a `less math, more intuition' overview of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper, hon mention), following the [conference presentation][presentation]. Target audience: general ML, NLP, CL.
+\hfill [[Skip to main result](#proving–the-embedding-relationship-of-analogies)]{style="float:right"}
 
-
-
-## Background \hfill [[Skip to main result](#proving–the-embedding-relationship-of-analogies)]{style="float:right"}
+## Background 
 
 ### Word Embeddings 
 
-A *word embedding* $z=(z_1, z_2, ... , z_d)$ are numerical vector representations of words, are used in all modern machine learning systems. Loosely speaking, each component of a word embedding ($z_i$) can be thought of as capturing 
+A *word embedding* $w_{cat}=(w^{(1)}, w^{(2)}, ... , w^{(d)})$ is a numerical vector representations of a word and such embeddings are used in all modern machine learning systems. Loosely speaking, each component of a word embedding ($z_i$) can be thought of as capturing 
 a semantic or syntactic feature of the word, and the 
 full embedding $z$ as the co-ordinates of a point in a high-dimensional "semantic" space. Word embeddings can be created explicitly, e.g. as a list of word co-occurrence statistics (or low-rank 
 factorisations of such statistics); or "learned" by a *neural network*, as in *[Word2Vec]* (W2V) or *[Glove]*. As we shall see, these are actually closely related and the latter *neural embeddings* learn statistics of the data implied by the training algorithm rather than explicitly chosen.
