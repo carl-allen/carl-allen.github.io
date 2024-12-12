@@ -135,14 +135,13 @@ $$
 
 [comment]: # (\tag{3}\label{eq:three})
 
-Paraphase error quantifies the similarity of word distributions around any two words $$w_1, w_2$$ to that around **<u>any other word</u>** $$w_*$$ in terms of components of their PMI vectors $$\text{PMI}_* - (\text{PMI}_1 + \text{PMI}_2)$$:
+Paraphase error quantifies the similarity of the context distribution around any two words $$w_1, w_2$$ to that of **<u>any other word</u>** $$w_*$$ in terms of their PMI vectors:
 
 ![PMI relationship](/assets/analogy/equation_PMI.png){:height="230px"}
 {: style="text-align: center"}
 
-We see that the difference can be written as a *paraphrase error*, small only if $$w_*$$ paraphrases $$\{w_1, w_2\}$$, and *dependence error* terms inherent to $$w_1$$ and $$w_2$$ that **<u>do not 
-depend on $w_*$</u>**.
-Formally, we have:
+The difference comprises the *paraphrase error*, which is small only when $$w_*$$ paraphrases $$\{w_1, w_2\}$$, and *dependence error* terms that **<u>do not depend on $w_*$</u>**.
+We formalise this as:
 
 > Lemma 1:
 For any word $$w_*\!\in\!\mathcal{E}$$ and word set $$\mathcal{W}\!\subseteq\!\mathcal{E}$$, $$|\mathcal{W}|\!<\!l$$, where $$l$$ is the context window size:
@@ -160,10 +159,7 @@ $$
 
 [comment]: # (![Paraphrase distributions](/assets/analogy/lemma1-1.png){:height="100px"} {: style="text-align: left; margin-left: 30px"})
 
-This connects paraphrasing to PMI vector *addition*, as appears in \eqref{eq:two}. To develop this further, paraphrasing is generalised, replacing $$w_*$$ by $$\mathcal{W}_*$$, to a relationship 
-between any *two word sets*.
-The underlying principle remains the same: word sets paraphrase one another if the distributions of context words around them are similar (indeed, the original paraphrase definition is recovered if 
-$$\mathcal{W}_*$$ contains a single word). Analogously to above, we find:
+This connects paraphrasing to PMI vector *addition*, as appears in \eqref{eq:two}. Paraphrasing is readily generalised to quantify the relationship between *word sets*: we say $$\mathcal{W}$$ and $$\mathcal{W}_*$$ paraphrase one another if the distributions of context words around them are similar (this reduces to the original definition if $$\mathcal{W}_*$$ contains a single word). Lemma 1 naturally extends to:
 
 > Lemma 2:
 For any word sets $$\mathcal{W}, \mathcal{W}_*\!\subseteq\!\mathcal{E}$$; $$|\mathcal{W}|, |\mathcal{W}_*|\!<\!l$$:
@@ -181,7 +177,7 @@ $$
 
 [comment]: # (![Paraphrase distributions](/assets/analogy/lemma2-1.png){:height="115px"} {: style="text-align: left; margin-left: 30px"})
 
-We can apply this to our example by setting $$\mathcal{W} \!=\! \{woman, king\}$$ and $$\mathcal{W}_* \!=\!  \{man, queen\}$$, whereby
+This can be related to paraphrases by choosing $$\mathcal{W} \!=\! \{woman, king\}$$ and $$\mathcal{W}_* \!=\!  \{man, queen\}$$, whereby
 
 $$
 \begin{equation}
