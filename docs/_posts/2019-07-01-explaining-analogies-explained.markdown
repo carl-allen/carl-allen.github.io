@@ -263,6 +263,17 @@ words that complete the analogy. This concludes an end-to-end explanation for th
 {: style="text-align: center"}
 
 
+ ---
+ ---
+
+## Extensions
+
+ - ["What the Vec? Towards Probabilistically Grounded Embeddings"][whatthevec] extends the principles of this work to show: how W2V and Glove (approximately) capture other relationships such as 
+*relatedness* and *similarity*; what certain embedding interactions correspond to; and, in doing so, how the semantic relationships of *relatedness*, *similarity*, *paraphrasing* and *analogies* 
+mathematically inter-relate.
+ - ["Multi-relational Poincaré Graph Embeddings"][murp] [[code]][murp-code] draws a comparison between analogies and *relations* in Knowledge Graphs to develop state-of-the-art representation models 
+in both Euclidean and Hyperbolic space.
+
 ---
 ---
 
@@ -274,16 +285,6 @@ arrangement of word vectors that we do not require.
 that word frequencies follow a uniform distribution rather than their true, highly non-uniform, Zipf distribution.
  - [Ethayarajh et al. (2019)][ethayarajh] aim to show that word embeddings of analogies form parallelograms by considering the latter's geometric properties. However, several strong assumptions are made that we do not require (e.g.  all embedding must already be co-planar and embedding matrix $$\mathbf{W}$$ must be a scalar multiple of $$\mathbf{C}$$) and analogies are ultimately related to a statistical relationship "csPMI" that lacks semantic meaning.
 
- ---
- ---
-
-## Extensions
-
- - ["What the Vec? Towards Probabilistically Grounded Embeddings"][whatthevec] extends the principles of this work to show: how W2V and Glove (approximately) capture other relationships such as 
-*relatedness* and *similarity*; what certain embedding interactions correspond to; and, in doing so, how the semantic relationships of *relatedness*, *similarity*, *paraphrasing* and *analogies* 
-mathematically inter-relate.
- - ["Multi-relational Poincaré Graph Embeddings"][murp] [[code]][murp-code] draws a comparison between analogies and *relations* in Knowledge Graphs to develop state-of-the-art representation models 
-in both Euclidean and Hyperbolic space.
 
 [paper]: https://arxiv.org/abs/1901.09813
 [presentation]: https://icml.cc/media/Slides/icml/2019/104(13-11-00)-13-11-00-4883-analogies_expla.pdf
