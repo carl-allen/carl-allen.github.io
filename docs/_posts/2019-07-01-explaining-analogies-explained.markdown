@@ -30,7 +30,7 @@ An intriguing property observed in trained word embeddings is that *analogies* a
 {: style="text-align: center"}
 
 can be *solved* using word embeddings by finding that closest to $$\mathbf{w}_{king}-\mathbf{w}_{man}+\mathbf{w}_{woman}$$ (omitting $man$, $woman$ and $king$ themselves), which often turns out to be $$\mathbf{w}_{queen}$$.
-This suggests that embeddings fit the relationship:
+This suggests that:
 
 $$
 \begin{equation}
@@ -44,13 +44,14 @@ or, in geometric terms, that ***word embeddings of analogies approximately form 
 ![word embeddings of analogies approximately form a paralellogram](/assets/analogy/parallelogram2.svg){:height="170px"}.
 {: style="text-align: center"}
 
-While this somehow feels intuitive, the fact that *semantic* relationships between words are encodd as *geometric* relationships between word embeddings is an intriguing phenomenon since word embeddings are not trained to achieve it!
-In practice, we can see that word embeddings of analogies do not *perfectly* form parallelograms:
+While this seems intuitive, the fact that *semantic* relationships between words appear as *geometric* relationships between word embeddings is intriguing since word embeddings are not trained to achieve it!
+In practice, the parallelograms formed by word embeddings of analogies are not _perfect_:
 
 ![word embeddings of analogies not quite a paralellogram](/assets/analogy/analogy_embeddings.png){:height="250px"}
 {: style="text-align: center"}
-The exact parallelogram formed by $$\mathbf{w}_{king}, \mathbf{w}_{man}$$, $$\mathbf{w}_{woman}$$ and the fourth vertex ($$\mathbf{w}_{king} {\small-} \mathbf{w}_{man} {\small+} \mathbf{w}_{woman}$$) is shown
-in the $$xy$$-plane with several word embeddings shown relative to it. We see that (i) the embedding of $$queen$$ is not at the fourth vertex, but is the closest embedding to it; and (ii) that embeddings of 
+
+By plotting the (exact) parallelogram formed by $\mathbf{w}_{king}$, $\mathbf{w}_{man}$, $\mathbf{w}_{woman}$ and a fourth vertex ($\mathbf{w}_{king} {\small-} \mathbf{w}_{man} {\small+} \mathbf{w}_{woman}$)
+in the $xy$-plane with several word embeddings shown relative to it, we can see that (i) the embedding of $$queen$$ is not at the fourth vertex, but is the closest embedding to it; and (ii) that embeddings of 
 related words, e.g. $$prince$$ and $$lord$$, are close relatively relative to random unrelated words.
 
 |To explain the relationship between word embeddings of analogies \eqref{eq:one}, we describe the gap (marked '?') between $$\mathbf{w}_{queen}$$ and $$\mathbf{w}_{king} {\small-} \mathbf{w}_{man} {\small+} \mathbf{w}_{woman}$$; and show that it is small, often smallest, for the word that we expect to complete the analogy.|
@@ -65,7 +66,7 @@ We begin by considering what W2V embeddings learn.
 W2V (SkipGram with negative sampling) is an algorithm that generates word embeddings by training the weights of a 2-layer "neural network"
 to predict *context words* $$c_j$$ (i.e. words that fall within a context window of fixed size $$l$$) around each word  $$w_i$$ (referred to as a *target word*) across a text corpus.
 
-Predicting $$p(c_j\!\mid\! w_i)$$, for all $$c_j$$ in a dictionary of all unique words $$\mathcal{E}$$, was initially considered with a softmax function, but instead a sigmoid function and negative 
+Predicting $$p(c_j\!\mid\! w_i)$$, for all $$c_j$$ in a dictionary of all unique words $\mathcal{E}$, was initially considered with a softmax function, but instead a sigmoid function and negative 
 sampling were used to reduce computational cost.
 
 [Levy & Goldberg (2014)][levy-goldberg] showed that, as a result, the weight matrices $$\mathbf{W}, \mathbf{C}$$ (columns of which are the word embeddings $$\mathbf{w}_i, \mathbf{c}_j$$) 
