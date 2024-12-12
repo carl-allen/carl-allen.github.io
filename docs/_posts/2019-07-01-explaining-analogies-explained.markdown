@@ -10,31 +10,24 @@ categories: NLP
 ---
 {% include_relative _includes/head.html %}
 
-> This post aims to present a `less math, more intuition' overview of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper, hon mention), following the [conference presentation][presentation]. Target audience: general ML, NLP, CL.
-\hfill [[Skip to main result](#proving–the-embedding-relationship-of-analogies)]{style="float:right"}
+> This post aims to present a `less math, more intuition' overview of [Analogies Explained: Towards Understanding Word Embeddings][paper] (ICML, 2019, Best Paper, hon mention), following the [conference presentation][presentation]. Target audience: ML, NLP, CL. &emsp;&emsp;&emsp; [[Skip to result](#proving–the-embedding-relationship-of-analogies)]
 
 ## Background 
 
 ### Word Embeddings 
 
-A *word embedding* $w_{cat}=(w^{(1)}, w^{(2)}, ... , w^{(d)})$ is a numerical vector representations of a word and such embeddings are used in all modern machine learning systems. Loosely speaking, each component of a word embedding ($z_i$) can be thought of as capturing 
-a semantic or syntactic feature of the word, and the 
-full embedding $z$ as the co-ordinates of a point in a high-dimensional "semantic" space. Word embeddings can be created explicitly, e.g. as a list of word co-occurrence statistics (or low-rank 
-factorisations of such statistics); or "learned" by a *neural network*, as in *[Word2Vec]* (W2V) or *[Glove]*. As we shall see, these are actually closely related and the latter *neural embeddings* learn statistics of the data implied by the training algorithm rather than explicitly chosen.
+*Word embeddings* $w=[w^{(1)}, w^{(2)}, ... , w^{(d)}]$ are numerical vector representations of words (e.g. $w_{cat}=[0.02, 0.29, ..., -0.34])$, where each component $w^{(i)}$ can be thought of as capturing a semantic or syntactic feature of the word, and the full vector $w$ acts as co-ordinates for the word in a high-dimensional "semantic space". 
 
-[comment]: # ( [[Mikolov et al., 2013]][Word2Vec] `[[Pennington et al.,2014]][glove]`)
+Word embeddings can be created as a list of word co-occurrence statistics (or their low-rank factorisation); or learned by a *neural network*, such as *[Word2Vec]* (W2V), *[GloVe]* or a large language model. We shall see that these are closely related, and that the latter *neural word embeddings* learn statistics for a task implied by the training algorithm, rather than being them being explicitly defined.
 
-The latter, *neural word embeddings*, are found to be highly useful in natural language processing (NLP) tasks, such as evaluating word similarity, identifying named entities and assessing positive 
-or negative sentiment in a passage of text (e.g. a customer review).
+Neural word embeddings (or simply _embeddings_) are useful across a wide variety of tasks involving natural language, from identifying word similarity or grammatical role, to assessing the sentiment in a customer review. Here, we focus specifically on word embeddings learned by Word2Vec and GloVe as the relative simplicity of their training algorithm and model architevture allows rigorous analysis.
 
 ### Analogies
 
-An intriguing property of neural word embeddings is that *analogies* can often be solved simply by adding/subtracting word embeddings. For example, the classic analogy:
+An intriguing property observed in trained word embeddings is that *analogies* are often solved simply by adding/subtracting them, e.g.:
 
 "***man*** is to ***king*** as ***woman*** is to ***queen***"
 {: style="text-align: center"}
-
-[comment]: # (``)
 
 can be *solved* using word embeddings by finding that closest to $$\mathbf{w}_{king}-\mathbf{w}_{man}+\mathbf{w}_{woman}$$, which turns out to be $$\mathbf{w}_{queen}$$
 ($$\mathbf{w}_{x}$$ denotes the embedding of word $$x$$). Note that words in the question (e.g. $$man$$, $$woman$$ and $$king$$) are typically omitted from the search.
