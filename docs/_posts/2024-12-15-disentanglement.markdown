@@ -13,12 +13,14 @@ categories: Theory
 
 **Disentanglement** is an intriguing phenomenon in  machine learning observed in generative models, particularly Variational Autoencoders (VAEs). Disentanglement is not a rigorously defined term but refers to when semantically meaningful factors of the data map to distinct dimensions in the latent space. This allows, for example, face images to be generated that vary only in orientation or hair colour by changing a *single latent dimension*.
 
-<img src="/assets/disentanglement/faces.png" 
-        alt="Faces" 
-        width="420" 
-        height="130" 
-        style="display: block; margin: 0 auto" />
-
+<figure>
+        <img src="/assets/disentanglement/faces.png" 
+                alt="Faces" 
+                width="420" 
+                height="130" 
+                style="display: block; margin: 0 auto" />
+        <figcaption>Figs from $\beta$-VAE (Higgins et al, 2017)</figcaption>
+</figure>
 
 **Motivation**: Disentanglement is particularly intriguing because VAEs were not designed to achieve it, thus its understanding may provide new insight into how and what VAEs learn. More generally, the ability to separate independent aspects of the data could be useful in many machine learning domains and, by teasing apart their generative factors, potentially offer fundamental insights into the underlying data itself. Understanding disentanglement is of further interest since it occurs in settings (e.g. spherically symmetric prior) in which disentanglement has been considered impossible.
 
@@ -27,7 +29,7 @@ categories: Theory
         style="display: block; margin: 0 auto" />
 
 
-Several recent works suggest that disentanglement in VAEs may stem from commonly used *diagonal posterior covariance matrices* promoting *column-orthgonality in the decoder's Jacobian matrix*. In this post, we summarise [Allen (2024)](https://arxiv.org/pdf/2410.22559), which (A) clarifies this connection, and (B) explains how it leads to disentanglement, showing that disentanglement equates to factorising the data distribution into *statistically independent components*. 
+Several recent works suggest that disentanglement in VAEs may stem from commonly used *diagonal posterior covariance matrices* promoting *column-orthgonality in the decoder's Jacobian matrix*. In this post, we summarise [Allen (2024)][paper], which (A) clarifies this connection, and (B) explains how it leads to disentanglement, showing that disentanglement equates to factorising the data distribution into *statistically independent components*. 
 $$
 \begin{equation}
 \text{diag. posterior covariance} 
@@ -37,6 +39,7 @@ $$
 $$
 
 ---
+
 **Notation**: $$\quad$$ data $$x\in\mathcal{X} \subseteq\mathbb{R}^n,\quad \text{ latent variables }z\in\mathcal{Z} =\mathbb{R}^m.$$
 
 **High-level Summary**: 
@@ -45,6 +48,7 @@ $$
 * Since the VAE's objective is maximised when the model distribution matches that of the data, if the data distribution has statistically independent factors, then statistically independent curves of the decoder-defined manifold align with those of the data.
 
 ---
+
 **A: From Diagonal Covariance to Jacobian Orthogonality**
 
 The VAE fits a latent variable model $$p_\theta(x) =\int_z p_\theta(x\|z)p(z)$$ to  the data distribution $$p(x)$$ by maximising the Evidence Lower Bound (ELBO),
@@ -59,7 +63,7 @@ where the standard ELBO has $$\beta=1$$ ($$\beta>1$$ has been  found to improve 
 A Guassian VAE makes the following assumptons:
 * $$p_\theta(x\|z) =\mathcal{N}(x;\,d(x),\sigma^2)\quad$$ with *decoder*  $$d$$ and fixed variance $$\sigma^2$$;
 * $$q_\phi(z\|x)=\mathcal{N}(z;\,e(x),\Sigma_x)\quad$$ with *encoder* $$e$$ and learned variance $$\Sigma_x$$; and
-* $$p(z)\quad\ =\mathcal{N}(z;\,0,I)\quad$$ where $$z_i$$ are *independent* with $$p(z_i)=\mathcal{N}(z_i;0,1)$$
+* $$p(z)\quad\ \ \ =\mathcal{N}(z;\,0,I)\quad$$ where $$z_i$$ are *independent* with $$p(z_i)=\mathcal{N}(z_i;0,1)$$
 
 Note that the VAE decoder $$d$$ maps latent variables $$z\in\mathcal{Z}$$ to  means $$\mu_z=\mathbb{E}[x\|z]\in \mathcal{X}$$, and if $$J_z$$ denotes $$d$$'s Jacobian (evaluated at $$z$$), $$J_{i,j} = \tfrac{\partial d(z)_i}{\partial z_j}$$ defines how a perturbation in the latent space (in direction $$z_j$$) translates to variation in the data space (in direction $$x_i$$).
 
@@ -82,6 +86,7 @@ The ELBO is maximised if this relationship is achieved and so, if $$\Sigma_x$$ a
 <!-- (hinting towards learning independent factors). -->
 
 ---
+
 **B: From Orthogonality to Statistical Independence**
 
 Having seen that diagonal covariances promote column-orthogonality in the decoder Jacobian, the question is how this geometric proprety leads to the statistical property of disentanglement. To understand it, we consider the *push-forward* distribution defined by the decoder, which is supported over a manifold $$\mathcal{M}_d\subseteq\mathcal{X}$$. 
@@ -101,7 +106,7 @@ For intuition, we  consider the linear case $$x=d(z)=Dz$$,  $$D\in\mathbb{R}^{n\
 
 $$
 \begin{equation}
-  p_\theta(z\|x) = \mathcal{N}(z;\, \tfrac{1}{\sigma^2}M D^\top x,\, M) \quad\quad\quad M = (I + \tfrac{1}{\sigma^2}D^\topD)^{-1}
+  p_\theta(z\|x) = \mathcal{N}(z;\, \tfrac{1}{\sigma^2}M D^\top x,\, M) \quad\quad\quad M = (I + \tfrac{1}{\sigma^2}D^\top D)^{-1}
   \tag{2}\label{eq:two}
 \end{equation}
 $$
@@ -174,12 +179,5 @@ The sources provide a compelling theoretical argument for the link between diago
 ---
 ### Notes
 
-[^betaVAE]: ref to Higgins / and follow up
-
-[^PPCA]: PPCA
-
-[Opper]: Opper & Achambeau
-
-[^test]:d sdfsd
-
-[paper]: my paper
+[paper]: https://arxiv.org/pdf/2410.22559
+[betaVAE]: https://openreview.net/forum?id=Sy2fzU9gl
