@@ -9,7 +9,14 @@ categories: Theory
 
 ---
 {% include_relative _includes/head.html %}
+.image1 {
+  display: block;
+  margin: 0 auto
+}
 
+figcaption {
+  text-align: center;
+}
 
 **Disentanglement** is an intriguing phenomenon in  machine learning observed in generative models, particularly Variational Autoencoders (VAEs). Disentanglement is not a rigorously defined term but refers to when semantically meaningful factors of the data map to distinct dimensions in the latent space. This allows, for example, face images to be generated that vary only in orientation or hair colour by changing a *single latent dimension*.
 
@@ -18,7 +25,7 @@ categories: Theory
                 alt="Faces" 
                 width="420" 
                 height="130" 
-                style="display: block; margin: 0 auto" />
+                class="image1" />
         <figcaption>Figs from $\beta$-VAE (Higgins et al, 2017)</figcaption>
 </figure>
 
@@ -26,7 +33,7 @@ categories: Theory
 
 <img src="/assets/disentanglement/chairs.png" 
         alt="Chairs" 
-        style="display: block; margin: 0 auto" />
+        class="image1" />
 
 
 Several recent works suggest that disentanglement in VAEs may stem from commonly used *diagonal posterior covariance matrices* promoting *column-orthgonality in the decoder's Jacobian matrix*. In this post, we summarise [Allen (2024)][paper], which (A) clarifies this connection, and (B) explains how it leads to disentanglement, showing that disentanglement equates to factorising the data distribution into *statistically independent components*. 
@@ -38,18 +45,19 @@ $$
 \end{equation}
 $$
 
----
-
 **Notation**: $$\quad$$ data $$x\in\mathcal{X} \subseteq\mathbb{R}^n,\quad \text{ latent variables }z\in\mathcal{Z} =\mathbb{R}^m.$$
 
-**High-level Summary**: 
-* The linear case $$x=Dz\ \ (D\in\mathbb{R}^{n\times m\,})$$ corresponds to probabilistic PCA with known analystic solutions, but a VAE with diagonal posterior covariance finds a specific subset of those solutions where latent dimensions $$z_i$$ *map to independent factors* of variation in the Gaussian data distribution.
+---
+
+
+## High-level Summary: 
+* The linear case $$x=Dz\ \ (D\in\mathbb{R}^{n\times m})$$ corresponds to probabilistic PCA with known analystic solutions, but a VAE with diagonal posterior covariance finds a specific subset of those solutions where latent dimensions $$z_i$$ *map to independent factors* of variation in the Gaussian data distribution.
 * Surprisingly, this extends analogously to non-linear VAEs where diagonal posterior covariances encourage columns of the decoder's Jacobian to be orthogonal, causing independent latent variables to pass through the decoder separably and emerge in $$\mathcal{X}$$ over statistically independent sub-manifolds on the decoder-defined manifold. 
 * Since the VAE's objective is maximised when the model distribution matches that of the data, if the data distribution has statistically independent factors, then statistically independent curves of the decoder-defined manifold align with those of the data.
 
 ---
 
-**A: From Diagonal Covariance to Jacobian Orthogonality**
+## A: From Diagonal Covariance to Jacobian Orthogonality
 
 The VAE fits a latent variable model $$p_\theta(x) =\int_z p_\theta(x\|z)p(z)$$ to  the data distribution $$p(x)$$ by maximising the Evidence Lower Bound (ELBO),
 
@@ -87,19 +95,19 @@ The ELBO is maximised if this relationship is achieved and so, if $$\Sigma_x$$ a
 
 ---
 
-**B: From Orthogonality to Statistical Independence**
+## B: From Orthogonality to Statistical Independence
 
 Having seen that diagonal covariances promote column-orthogonality in the decoder Jacobian, the question is how this geometric proprety leads to the statistical property of disentanglement. To understand it, we consider the *push-forward* distribution defined by the decoder, which is supported over a manifold $$\mathcal{M}_d\subseteq\mathcal{X}$$. 
 
 > A **push-forward distribution** describes the probability distribution of the output of a deterministic function given an input distribution. A VAE decoder latent samples of the prior $$p(z)$$ to the data space, defining a push-forward distribution  over $$\mathcal{M}_d$$. 
 
-**Linear Case**
+### Linear Case
 
 <img src="/assets/disentanglement/linear.png" 
         alt="linear2" 
         width="440" 
         height="190" 
-        style="display: block; margin: 0 auto" />
+        class="image1" />
 
 
 For intuition, we  consider the linear case $$x=d(z)=Dz$$,  $$D\in\mathbb{R}^{n\times m}$$, the model considered in [Probabilistic PCA (PPCA)](https://academic.oup.com/jrsssb/article-abstract/61/3/611/7083217), which has a tractible MLE solution and known optimal posterior
@@ -131,16 +139,16 @@ This is not so surprising in the linear case, since we know from the outset that
  -->
 
 
-**Non-linear Case with Diagonal Jacobian**
+### Non-linear Case with Diagonal Jacobian
 <img src="/assets/disentanglement/non_linear.png" 
         alt="non_linear2" 
         width="420" 
         height="200" 
-        style="display: block; margin: 0 auto" />
+        class="image1" />
 
 
 
-We now take an analogous approach for the general VAE ($$x=d(z)$$, $$d\in\mathcal{C}^2$$) with column-orthogonal decoder Jacobian. Notably, the Jacobian and its factors, $$J_z=U_zS_zV_z'$$, now depend on $$z$$, although column-orthgonality implies $$V_z=I,\ \forall z\in \mathcal{Z}$$ and $$U_z$$, $$S_z$$ are continuous w.r.t. $$z$$ since $$d\in\mathcal{C}^2$$. 
+We now take an analogous approach for the general VAE ($$x=d(z)$$, $$d\in\mathcal{C}^2$$) with column-orthogonal decoder Jacobian. Notably, the Jacobian and its factors, $$J_z=U_zS_zV_z^\top$$, now depend on $$z$$, although column-orthgonality implies $$V_z=I,\ \forall z\in \mathcal{Z}$$ and $$U_z$$, $$S_z$$ are continuous w.r.t. $$z$$ since $$d\in\mathcal{C}^2$$. 
 
 As previously, for a given point $$z^*\in \mathcal{Z}$$, we define lines $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ passing through $$z^*$$ parallel to the standard basis (axis-aligned), and their images under $$d$$, $$\mathcal{M}_d^{(i)}\subset\mathcal{M_d}$$, which are potentially curved sub-manifolds, following (local) left singular vectors of $$D$$.
 
@@ -151,28 +159,27 @@ As previously, we claim that independent dimensions $$z_i\in\mathcal{Z}$$ flow u
 2. the push-forward of $$d$$ restricted to $$\mathcal{Z^{(i)}}$$ has density $$p(u_i) = s_i^{-1}p(z_i)$$ over $$\mathcal{M}_d^{(i)}$$;
 3. the full push-forward satisfies $$p(d(z)) = \|J_z\|^{-1}p(z) = \prod_i s_i^{-1}p(z_i) = \prod _ip(u_i)$$.
 
-Thus, following the same argument as in the linear case, the distribution over the decoder manifold factorises as a product of independent univariate push-foward distributions ($$p(u_i)$$), each corresponding to a distinct latent dimension ($$z_i$$). Again, if the true data distribution follows this generative process and so factorises and those factors are unique, then the ELBO is maximised when components of the model fit to those of the data and p(x) is **disentangled** as a product of *independent components* aligned with each latent dimension.
+Thus, following the same argument as in the linear case, the distribution over the decoder manifold factorises as a product of independent univariate push-foward distributions ($$p(u_i)$$), each corresponding to a distinct latent dimension ($$z_i$$). Again, if the true data distribution follows this generative process and so factorises and those factors are unique, then the ELBO is maximised when components of the model fit to those of the data and p(x) is **disentangled** as a product of *independent components* aligned with each latent dimension. Each component is supported on a sub-manifold orthogonal to the others, capturing the variations along a single latent dimension.
 
+We recommend reading [the full paper][the paper] for further details, such as:
+* consideration of whether orthogonality is strictly _necessary_ for disentanglement (the argument above shows it is _sufficient_)
+* _identifiability_ of the model, i.e. up to what symmetries can the VAE identify the ground truth generative factors
+* the role of parameter $\beta$ in a [$\beta$-VAE][betVAE]
+  * spoiler: $$\beta$$ is proportional to Var$$_\theta[x|z]$$ where $$p_\theta(x|z)$$ is of exponential family form (generalising $\sigma^2$ of a Gaussian-VAE).
+  * $\beta$ determines how close data points need to be (in Euclidean norm) to be deemed similar and their representations merge.
 
-
-
-
-
-For non-linear decoders with orthogonal Jacobians, the sources demonstrate that the push-forward distribution similarly factorizes into independent components. Each component is supported on a sub-manifold orthogonal to the others, capturing the variations along a single latent dimension. This implies that distinct latent variables correspond to statistically independent factors of variation in the data.
-
-The sources further argue that Jacobian orthogonality is not strictly necessary for disentanglement. When the Jacobian's columns are not orthogonal, disentanglement occurs if the sub-manifolds in the latent space, traced by the right singular vectors of the Jacobian, are statistically independent. This case, however, leads to unidentifiable sub-manifolds in the latent space, akin to the rotational ambiguity in PCA.
-
+<!-- 
 **Interpreting β in β-VAEs**
 
 β-VAEs introduce a hyperparameter β that scales the KL divergence term in the ELBO. Empirical studies have shown that increasing β enhances disentanglement, often at the cost of reconstruction quality. The sources offer a novel interpretation of β, viewing it as a factor scaling the variance of the likelihood distribution.
 
 Increasing β corresponds to increasing the variance of the likelihood, essentially making the model more uncertain about its reconstructions. This increased uncertainty leads to greater overlap between the posterior distributions of nearby data points. As the ELBO encourages Jacobian orthogonality in expectation over the posterior distributions, larger overlap implies that orthogonality constraints apply over a broader region in the latent space, promoting stronger disentanglement.
 
-Conversely, decreasing β reduces the likelihood variance, mitigating the issue of "posterior collapse". This phenomenon occurs when the likelihood becomes overly expressive, directly modeling the data distribution and rendering the latent variables redundant. By reducing the likelihood variance, β < 1 constrains the model's flexibility, preventing it from learning a trivial solution.
+Conversely, decreasing β reduces the likelihood variance, mitigating the issue of "posterior collapse". This phenomenon occurs when the likelihood becomes overly expressive, directly modeling the data distribution and rendering the latent variables redundant. By reducing the likelihood variance, β < 1 constrains the model's flexibility, preventing it from learning a trivial solution. -->
 
 **Conclusion**
 
-The sources provide a compelling theoretical argument for the link between diagonal posterior covariance, Jacobian orthogonality, and disentanglement in VAEs. The analysis clarifies how a simple design choice, motivated by computational efficiency, leads to the learning of statistically independent data components.  Understanding this connection is crucial for developing more robust and interpretable generative models.
+[Allen (2024)][paper] provides a compelling theoretical argument for the link between diagonal posterior covariance, Jacobian orthogonality, and disentanglement in VAEs. The analysis clarifies how a simple design choice, motivated by computational efficiency, leads to the learning of statistically independent data components. We hope that understanding this connection gives new insight into how VAEs work, how understanding of linear models may extend surprisingly well to non-linear models and may lead to new training algorithms that can more reliably achieve disentangelement.
 
 
 
