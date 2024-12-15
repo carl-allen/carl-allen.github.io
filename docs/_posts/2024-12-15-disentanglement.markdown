@@ -59,28 +59,28 @@ $$
 
 ## A: From Diagonal Covariance to Jacobian Orthogonality
 
-The VAE fits a latent variable model $$p_\theta(x) =\int_z p_\theta(x|z)p(z)$$ to  the data distribution $$p(x)$$ by maximising the Evidence Lower Bound (ELBO),
+The VAE fits a latent variable model $$p_\theta(x) =\int_z p_\theta(x\midz)p(z)$$ to  the data distribution $$p(x)$$ by maximising the Evidence Lower Bound (ELBO),
 
-$$\ell(\theta, \phi) \quad =\quad \int p(x) \int q_\phi(z|x) 
-\ \{\ \log p_\theta(x|z) \,-\, \beta \log \tfrac{q_\phi(z|x)}{p(z)} \ \}\ dz dx\ ,$$
+$$\ell(\theta, \phi) \quad =\quad \int p(x) \int q_\phi(z\midx) 
+\ \{\ \log p_\theta(x\midz) \,-\, \beta \log \tfrac{q_\phi(z\midx)}{p(z)} \ \}\ dz dx\ ,$$
 
 where the standard ELBO has $$\beta=1$$ ($$\beta>1$$ has been  found to improve disentanglement).[^betaVAE] 
 
-> Note on ELBO: Maximising the ELBO can be viewed as ***maximum-likelihood$$^{++}$$***: maximising the likelihood $$\int p(x)\log p_\theta(x)$$ minimises the KL divergence between the data and model distributions, but this is often intractible for a latent variable model. Maximising the ELBO minimises the KL divergence between $$p(x)q_\phi(z|x)$$ and $$p_\theta(x)p_\theta(z|x)\doteq p_\theta(x|z)p(z)$$, fitting two approximations of the joint distribution.
+> Note on ELBO: Maximising the ELBO can be viewed as ***maximum-likelihood$$^{++}$$***: maximising the likelihood $$\int p(x)\log p_\theta(x)$$ minimises the KL divergence between the data and model distributions, but this is often intractible for a latent variable model. Maximising the ELBO minimises the KL divergence between $$p(x)q_\phi(z\midx)$$ and $$p_\theta(x)p_\theta(z\midx)\doteq p_\theta(x\midz)p(z)$$, fitting two approximations of the joint distribution.
 
 A Guassian VAE makes the following assumptons:
-* $$p_\theta(x|z) =\mathcal{N}(x;\,d(x),\sigma^2)\quad$$ with *decoder*  $$d$$ and fixed variance $$\sigma^2$$;
-* $$q_\phi(z|x)=\mathcal{N}(z;\,e(x),\Sigma_x)\quad$$ with *encoder* $$e$$ and learned variance $$\Sigma_x$$; and
+* $$p_\theta(x\midz) =\mathcal{N}(x;\,d(x),\sigma^2)\quad$$ with *decoder*  $$d$$ and fixed variance $$\sigma^2$$;
+* $$q_\phi(z\midx)=\mathcal{N}(z;\,e(x),\Sigma_x)\quad$$ with *encoder* $$e$$ and learned variance $$\Sigma_x$$; and
 * $$p(z)\quad\ \ \ =\mathcal{N}(z;\,0,I)\quad$$ where $$z_i$$ are *independent* with $$p(z_i)=\mathcal{N}(z_i;0,1)$$
 
-Note that the VAE decoder $$d$$ maps latent variables $$z\in\mathcal{Z}$$ to  means $$\mu_z=\mathbb{E}[x|z]\in \mathcal{X}$$, and if $$J_z$$ denotes $$d$$'s Jacobian (evaluated at $$z$$), $$J_{i,j} = \tfrac{\partial d(z)_i}{\partial z_j}$$ defines how a perturbation in the latent space (in direction $$z_j$$) translates to variation in the data space (in direction $$x_i$$).
+Note that the VAE decoder $$d$$ maps latent variables $$z\in\mathcal{Z}$$ to  means $$\mu_z=\mathbb{E}[x\midz]\in \mathcal{X}$$, and if $$J_z$$ denotes $$d$$'s Jacobian (evaluated at $$z$$), $$J_{i,j} = \tfrac{\partial d(z)_i}{\partial z_j}$$ defines how a perturbation in the latent space (in direction $$z_j$$) translates to variation in the data space (in direction $$x_i$$).
 
-Recent works show that diagonal posterior covariances ($$\Sigma_x$$) cause the Hessian of $$\log p_\theta(x|z)$$ to be *approximately* diagonal, causing column orthgonality in $$J_z$$, which can be made more precise [(Opper & Achambeau, 2009)](http://www0.cs.ucl.ac.uk/staff/c.archambeau/publ/neco_mo09_web.pdf):
+Recent works show that diagonal posterior covariances ($$\Sigma_x$$) cause the Hessian of $$\log p_\theta(x\midz)$$ to be *approximately* diagonal, causing column orthgonality in $$J_z$$, which can be made more precise [(Opper & Achambeau, 2009)](http://www0.cs.ucl.ac.uk/staff/c.archambeau/publ/neco_mo09_web.pdf):
 
 $$
 \begin{equation}
   \Sigma_x 
-    \ \ \overset{O\&A}{=}\ \ I - \mathbb{E}_{q(z|x)}[\tfrac{\partial^2\log p_\theta(x|z)}{\partial z_i\partial z_j}]
+    \ \ \overset{O\&A}{=}\ \ I - \mathbb{E}_{q(z\midx)}[\tfrac{\partial^2\log p_\theta(x\midz)}{\partial z_i\partial z_j}]
     \ \ \overset{\dagger}{\approx}\ \ I \,+ \tfrac{1}{\beta\sigma^2}J_z^\top J_z
   \tag{1}\label{eq:one}
 \end{equation}
@@ -90,7 +90,7 @@ Step $$\dagger$$ makes the assumption that the decoder's second derivative is sm
 
 The ELBO is maximised if this relationship is achieved and so, if $$\Sigma_x$$ are diagnal, when **columns of $$J_z$$ are orthogonal**. Equivalently, the SVD $$J_z=U_zS_zV_z^\top$$ must have $$V_z=I$$, i.e. standard basis vectors $$e_i\in\mathcal{Z}$$ are right singular vectors of $$J_z$$ ($$\forall z$$).  Importantly, this means that variation in latent component $$z_i$$ corresponds to a variation in data space in direction $$u_i$$, the $$i^{th}$$ left singular vector of $$J_z$$ (i.e. column $$i$$ of $$U_z$$) with no affect in any other $$u_{j\ne i}$$.
 
-**Take-away**: the ELBO is maximised if approximate posterior covariances match true posterior covariances, which can be expressed in terms of derivatives of $$p_\theta(x|z)$$. This does not mean the Hessian is necessarily orthogonal, but if such solutions exists then the VAE tries to find them.
+**Take-away**: the ELBO is maximised if approximate posterior covariances match true posterior covariances, which can be expressed in terms of derivatives of $$p_\theta(x\midz)$$. This does not mean the Hessian is necessarily orthogonal, but if such solutions exists then the VAE tries to find them.
 <!-- (hinting towards learning independent factors). -->
 
 ---
@@ -114,7 +114,7 @@ For intuition, we  consider the linear case $$x=d(z)=Dz$$,  $$D\in\mathbb{R}^{n\
 
 $$
 \begin{equation}
-  p_\theta(z|x) = \mathcal{N}(z;\, \tfrac{1}{\sigma^2}M D^\top x,\, M) \quad\quad\quad M = (I + \tfrac{1}{\sigma^2}D^\top D)^{-1}
+  p_\theta(z\midx) = \mathcal{N}(z;\, \tfrac{1}{\sigma^2}M D^\top x,\, M) \quad\quad\quad M = (I + \tfrac{1}{\sigma^2}D^\top D)^{-1}
   \tag{2}\label{eq:two}
 \end{equation}
 $$
@@ -128,7 +128,7 @@ For a given point $$z^*\in \mathcal{Z}$$:
 The point here is to identify how independent dimensions $$z_i\in\mathcal{Z}$$ "flow" under the decoder. Indeed, by considering $$x$$ in the "$$U$$-basis", independent $$z_i$$ become independent components $$u_i$$, since it can be shown that:
 1. $$\{u_i\}_i$$ are observations of *independent* random variables;
 2. the push-forward of $$d$$ restricted to $$\mathcal{Z^{(i)}}$$ has density $$p(u_i) = s_i^{-1}p(z_i)$$ over $$\mathcal{M}_D^{(i)}$$;
-3. the full push-forward satisfies $$p(Dz) = |D|^{-1}p(z) = \prod_i s_i^{-1}p(z_i) = \prod _ip(u_i)$$.
+3. the full push-forward satisfies $$p(Dz) = \midD\mid^{-1}p(z) = \prod_i s_i^{-1}p(z_i) = \prod _ip(u_i)$$.
 
 Altogether, this shows that the push-forward distribution generated by the decoder factorises as a product of independent univariate distributions ($$p(u_i)$$), each corresponding to a distinct latent dimension ($$z_i$$). Thus, if the data follows the assumed generateive process and itself factorises with unique factors (determined by ground truth $$s_i$$), then the ELBO is maximised when the independent components of the data and model distributions align and p(x) is **disentangled** as a product of *independent components* aligned with each latent dimension.
 
@@ -157,7 +157,7 @@ We again consider $$x$$ in the (local) basis defined by columns of $$U$$ as $$u=
 As previously, we claim that independent dimensions $$z_i\in\mathcal{Z}$$ flow under the decoder to become independent components $$u_i$$ since:
 1. $$\{u_i\}_i$$ are observations of *independent* random variables;
 2. the push-forward of $$d$$ restricted to $$\mathcal{Z^{(i)}}$$ has density $$p(u_i) = s_i^{-1}p(z_i)$$ over $$\mathcal{M}_d^{(i)}$$;
-3. the full push-forward satisfies $$p(d(z)) = |J_z|^{-1}p(z) = \prod_i s_i^{-1}p(z_i) = \prod _ip(u_i)$$.
+3. the full push-forward satisfies $$p(d(z)) = \midJ_z\mid^{-1}p(z) = \prod_i s_i^{-1}p(z_i) = \prod _ip(u_i)$$.
 
 Thus, following the same argument as in the linear case, the distribution over the decoder manifold factorises as a product of independent univariate push-foward distributions ($$p(u_i)$$), each corresponding to a distinct latent dimension ($$z_i$$). Again, if the true data distribution follows this generative process and so factorises and those factors are unique, then the ELBO is maximised when components of the model fit to those of the data and $$p(x)$$ is **disentangled** as a product of *independent components* aligned with each latent dimension. Each component is supported on a sub-manifold orthogonal to the others, capturing the variations along a single latent dimension.
 
@@ -165,7 +165,7 @@ We recommend reading [the full paper][the paper] for further details, such as:
 * consideration of whether orthogonality is strictly _necessary_ for disentanglement (the argument above shows it is _sufficient_)
 * _identifiability_ of the model, i.e. up to what symmetries can the VAE identify the ground truth generative factors
 * the role of parameter $\beta$ in a [$\beta$-VAE][betaVAE]
-  * spoiler: $$\beta$$ is proportional to Var$$_\theta[x|z]$$ where $$p_\theta(x|z)$$ is of exponential family form (generalising $\sigma^2$ of a Gaussian-VAE).
+  * spoiler: $$\beta$$ is proportional to Var$$_\theta[x\midz]$$ where $$p_\theta(x\midz)$$ is of exponential family form (generalising $\sigma^2$ of a Gaussian-VAE).
   * $\beta$ determines how close data points need to be (in Euclidean norm) to be deemed similar and their representations merge.
 
 <!-- 
