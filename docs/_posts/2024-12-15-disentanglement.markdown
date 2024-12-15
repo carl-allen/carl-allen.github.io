@@ -159,13 +159,13 @@ As previously, we claim that independent dimensions $$z_i\in\mathcal{Z}$$ flow u
 2. the push-forward of $$d$$ restricted to $$\mathcal{Z^{(i)}}$$ has density $$p(u_i) = s_i^{-1}p(z_i)$$ over $$\mathcal{M}_d^{(i)}$$;
 3. the full push-forward satisfies $$p(d(z)) = \|J_z\|^{-1}p(z) = \prod_i s_i^{-1}p(z_i) = \prod _ip(u_i)$$.
 
-Thus, following the same argument as in the linear case, the distribution over the decoder manifold factorises as a product of independent univariate push-foward distributions ($$p(u_i)$$), each corresponding to a distinct latent dimension ($$z_i$$). Again, if the true data distribution follows this generative process and so factorises and those factors are unique, then the ELBO is maximised when components of the model fit to those of the data and p(x) is **disentangled** as a product of *independent components* aligned with each latent dimension. Each component is supported on a sub-manifold orthogonal to the others, capturing the variations along a single latent dimension.
+Thus, following the same argument as in the linear case, the distribution over the decoder manifold factorises as a product of independent univariate push-foward distributions ($$p(u_i)$$), each corresponding to a distinct latent dimension ($$z_i$$). Again, if the true data distribution follows this generative process and so factorises and those factors are unique, then the ELBO is maximised when components of the model fit to those of the data and $$p(x)$$ is **disentangled** as a product of *independent components* aligned with each latent dimension. Each component is supported on a sub-manifold orthogonal to the others, capturing the variations along a single latent dimension.
 
 We recommend reading [the full paper][the paper] for further details, such as:
 * consideration of whether orthogonality is strictly _necessary_ for disentanglement (the argument above shows it is _sufficient_)
 * _identifiability_ of the model, i.e. up to what symmetries can the VAE identify the ground truth generative factors
 * the role of parameter $\beta$ in a [$\beta$-VAE][betVAE]
-  * spoiler: $$\beta$$ is proportional to Var$$_\theta[x|z]$$ where $$p_\theta(x|z)$$ is of exponential family form (generalising $\sigma^2$ of a Gaussian-VAE).
+  * spoiler: $$\beta$$ is proportional to Var$$_\theta[x\|z]$$ where $$p_\theta(x\|z)$$ is of exponential family form (generalising $\sigma^2$ of a Gaussian-VAE).
   * $\beta$ determines how close data points need to be (in Euclidean norm) to be deemed similar and their representations merge.
 
 <!-- 
