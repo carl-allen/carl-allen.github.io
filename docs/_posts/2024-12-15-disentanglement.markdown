@@ -13,7 +13,7 @@ categories: Theory
 
 **Disentanglement** is an intriguing phenomenon in  machine learning observed in generative models, particularly Variational Autoencoders (VAEs). Disentanglement is not a rigorously defined term but refers to when semantically meaningful factors of the data map to distinct dimensions in the latent space. This allows, for example, face images to be generated that vary only in orientation or hair colour by changing a *single latent dimension*.
 
-<img src="assets/disentanglement/faces.png" 
+<img src="/assets/disentanglement/faces.png" 
         alt="Faces" 
         width="420" 
         height="130" 
@@ -22,7 +22,7 @@ categories: Theory
 
 **Motivation**: Disentanglement is particularly intriguing because VAEs were not designed to achieve it, thus its understanding may provide new insight into how and what VAEs learn. More generally, the ability to separate independent aspects of the data could be useful in many machine learning domains and, by teasing apart their generative factors, potentially offer fundamental insights into the underlying data itself. Understanding disentanglement is of further interest since it occurs in settings (e.g. spherically symmetric prior) in which disentanglement has been considered impossible.
 
-<img src="assets/disentanglement/chairs.png" 
+<img src="/assets/disentanglement/chairs.png" 
         alt="Chairs" 
         style="display: block; margin: 0 auto" />
 
@@ -86,7 +86,7 @@ Having seen that diagonal covariances promote column-orthogonality in the decode
 
 **Linear Case**
 
-<img src="assets/disentanglement/linear.png" 
+<img src="/assets/disentanglement/linear.png" 
         alt="linear2" 
         width="440" 
         height="190" 
@@ -119,7 +119,7 @@ This is not so surprising in the linear case, since we know from the outset that
 
 
 **Non-linear Case with Diagonal Jacobian**
-<img src="assets/disentanglement/non_linear.png" 
+<img src="/assets/disentanglement/non_linear.png" 
         alt="non_linear2" 
         width="420" 
         height="200" 
