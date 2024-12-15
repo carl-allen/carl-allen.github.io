@@ -9,10 +9,7 @@ categories: Theory
 
 ---
 {% include_relative _includes/head.html %}
-.image1 {
-  display: block;
-  margin: 0 auto
-}
+
 
 figcaption {
   text-align: center;
@@ -25,7 +22,7 @@ figcaption {
                 alt="Faces" 
                 width="420" 
                 height="130" 
-                class="image1" />
+                style="display: block; margin: 0 auto"  />
         <figcaption>Figs from $\beta$-VAE (Higgins et al, 2017)</figcaption>
 </figure>
 
@@ -33,7 +30,7 @@ figcaption {
 
 <img src="/assets/disentanglement/chairs.png" 
         alt="Chairs" 
-        class="image1" />
+        style="display: block; margin: 0 auto"  />
 
 
 Several recent works suggest that disentanglement in VAEs may stem from commonly used *diagonal posterior covariance matrices* promoting *column-orthgonality in the decoder's Jacobian matrix*. In this post, we summarise [Allen (2024)][paper], which (A) clarifies this connection, and (B) explains how it leads to disentanglement, showing that disentanglement equates to factorising the data distribution into *statistically independent components*. 
@@ -107,7 +104,7 @@ Having seen that diagonal covariances promote column-orthogonality in the decode
         alt="linear2" 
         width="440" 
         height="190" 
-        class="image1" />
+        style="display: block; margin: 0 auto"  />
 
 
 For intuition, we  consider the linear case $$x=d(z)=Dz$$,  $$D\in\mathbb{R}^{n\times m}$$, the model considered in [Probabilistic PCA (PPCA)](https://academic.oup.com/jrsssb/article-abstract/61/3/611/7083217), which has a tractible MLE solution and known optimal posterior
@@ -144,7 +141,7 @@ This is not so surprising in the linear case, since we know from the outset that
         alt="non_linear2" 
         width="420" 
         height="200" 
-        class="image1" />
+        style="display: block; margin: 0 auto"  />
 
 
 
