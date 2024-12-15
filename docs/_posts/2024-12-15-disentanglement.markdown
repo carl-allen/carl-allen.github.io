@@ -164,7 +164,7 @@ Thus, following the same argument as in the linear case, the distribution over t
 We recommend reading [the full paper][the paper] for further details, such as:
 * consideration of whether orthogonality is strictly _necessary_ for disentanglement (the argument above shows it is _sufficient_)
 * _identifiability_ of the model, i.e. up to what symmetries can the VAE identify the ground truth generative factors
-* the role of parameter $\beta$ in a [$\beta$-VAE][betVAE]
+* the role of parameter $\beta$ in a [$\beta$-VAE][betaVAE]
   * spoiler: $$\beta$$ is proportional to Var$$_\theta[x\|z]$$ where $$p_\theta(x\|z)$$ is of exponential family form (generalising $\sigma^2$ of a Gaussian-VAE).
   * $\beta$ determines how close data points need to be (in Euclidean norm) to be deemed similar and their representations merge.
 
