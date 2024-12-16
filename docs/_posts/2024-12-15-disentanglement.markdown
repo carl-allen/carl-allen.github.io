@@ -76,7 +76,7 @@ $$
 \begin{equation}
 \text{diag. posterior covariance} 
     \quad  \overset{A}{\Rightarrow}\quad   \text{column-orthog. Jacobian} 
-    \textcolor{lightgray}{\quad \overset{B}{\Rightarrow}\quad    \text{disentanglement}}
+    \color{lightgray}{\quad \overset{B}{\Rightarrow}\quad    \text{disentanglement}}
 \end{equation}
 $$
 ### A: From Diagonal Covariance to Jacobian Orthogonality
@@ -116,6 +116,14 @@ The ELBO is maximised if this relationship is achieved and so, if $$\Sigma_x$$ a
 <!-- (hinting towards learning independent factors). -->
 
 ---
+
+$$
+\begin{equation}
+{\color{lightgray}{\text{diag. posterior covariance} 
+    \quad  \overset{A}{\Rightarrow}}}\quad   \text{column-orthog. Jacobian}
+    \quad \overset{B}{\Rightarrow}\quad    \text{disentanglement}
+\end{equation}
+$$
 
 ### B: From Orthogonality to Statistical Independence
 
