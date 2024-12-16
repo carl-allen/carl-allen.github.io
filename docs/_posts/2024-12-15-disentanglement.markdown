@@ -41,9 +41,9 @@ Illustrating disentangelement: each row of images varies by a single semantic fa
 
 While disentanglement is often associated with certain models whose popularity may ebb and flow, e.g. VAE, $\beta$-VAE, GANs, we show that the phenomenon itself **relates to the latent structure of the data** and is more fundamental than any particular model that may expose it.
 
-**Motivation**: Disentanglement is particularly intriguing because models are not intentially designed to achieve it and is even observed in setting where it is deemed impossible,[^locatello][^khemakem] thus by understanding it, we may gain new insights into how and what those models learn and revise current theoretical understanding. More broadly, the ability to separate independent aspects of the data is pertinent across many areas of machine learning and, by enabling their underlying generative factors to be teased apart, may offer fundamental insights into the data itself. 
+**Motivation**: Disentanglement is particularly intriguing because models are not intentially designed to achieve it, and it is observed even in settings where it is deemed impossible.[^locatello][^khemakem] Thus understanding disentanglement we offer new insights into how and what models learn and revise current thinking on identifiability. More broadly, the ability to separate independent aspects of the data is relevant to many areas of machine learning and, by enabling generative factors to be teased apart, may offer fundamental insights into the data itself. 
 
-Recent works[^rolinek][^kumarpoole] suggest that disentanglement in VAEs may result from commonly used *diagonal posterior covariance matrices* promoting *column-orthgonality in the decoder's Jacobian matrix*. Building on this idea, [Allen (2024)][paper] (A) clarifies this connection, and (B) explains how it leads to disentanglement. 
+**Approach**: Recent works[^rolinek][^kumarpoole] suggest that disentanglement in VAEs may result from commonly used *diagonal posterior covariance matrices* promoting *column-orthgonality in the decoder's Jacobian matrix*. [Allen (2024)][paper] builds on this by: (A) clarifying the connection between diagonal covariance and column-orthogonality; and (B) explaining how that leads to disentanglement. 
 
 $$
 \begin{equation}
