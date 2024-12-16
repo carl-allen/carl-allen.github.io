@@ -59,11 +59,15 @@ $$
 
 **Notation**: un-subscripted probability distributions denote the ground truth and subscripts denote a model of that distribution.
 
-> TL;DR: 
-> * Disentanglement provably occurs in the _linear_ case ($$p_\theta(x\mid z) = \mathcal{N}(x; Dz,\sigma^2I),\ D\in\mathbb{R}^{n\times m})$$ where analytic solutions are given by [probabilistic PCA (PPCA)][PPCA]. However, a VAE with diagonal posterior covariance finds a subset of PPCA's solutions in which latent dimensions $$z_i$$ *map to independent factors of variation* in the data distribution (disentanglement).
-> * Surprisingly, the same rationale behind the linear case (described below) extends to non-linear VAEs where diagonal posterior covariances encourage columns of the decoder's Jacobian to be orthogonal, meaning that independent latent variables pass through the decoder separably and emerge in $$\mathcal{X}$$ over statistically independent sub-manifolds of the decoder-defined manifold.
-> * That is, independent latent variables over which $p(z)$ factorises are mapped by the decoder to independent components over which the manifold distribution factorises.
-> * Since a VAE's objective is maximised if the model distribution matches that of the data, if data are generated under that model - and the ground truth distribution therefore factorises into statistically independent factors - then independent components of the model corresponding to distinct latent variables align with independent components of the data (disentanglement).
+---
+
+**TL;DR**: 
+* Disentanglement provably occurs in the _linear_ case ($$p_\theta(x\mid z) = \mathcal{N}(x; Dz,\sigma^2I),\ D\in\mathbb{R}^{n\times m})$$ where analytic solutions are given by [probabilistic PCA (PPCA)][PPCA]. However, a VAE with diagonal posterior covariance finds a subset of PPCA's solutions in which latent dimensions $$z_i$$ *map to independent factors of variation* in the data distribution (disentanglement).
+* Surprisingly, the same rationale behind the linear case (described below) extends to non-linear VAEs where diagonal posterior covariances encourage columns of the decoder's Jacobian to be orthogonal, meaning that independent latent variables pass through the decoder separably and emerge in $$\mathcal{X}$$ over statistically independent sub-manifolds of the decoder-defined manifold.
+* That is, independent latent variables over which $p(z)$ factorises are mapped by the decoder to independent components over which the manifold distribution factorises.
+* Since a VAE's objective is maximised if the model distribution matches that of the data, if data are generated under that model - and the ground truth distribution therefore factorises into statistically independent factors - then independent components of the model corresponding to distinct latent variables align with independent components of the data (disentanglement).
+
+---
 
 $$
 \begin{equation}
@@ -86,6 +90,7 @@ where the standard ELBO has $$\beta=1$$ and [$$\beta>1$$ is found to improve dis
   Maximising the likelihood $\int p(x)\log p_\theta(x)$ minimises the KL divergence between the data and model distributions, but this is often intractible for a latent variable model. Maximising the ELBO minimises the KL divergences between $p(x)q_\phi(z\mid x)$ *and* $p_\theta(x)p_\theta(z\mid x)\doteq p_\theta(x\mid z)p(z)$, aligning two models of the joint distribution.
 </details>
 
+<br>
 
 A Guassian VAE makes the following assumptons:
 * $$p_\theta(x\mid z) =\mathcal{N}(x;\,d(x),\sigma^2)\quad$$ with *decoder*  $$d$$ and fixed variance $$\sigma^2$$;
