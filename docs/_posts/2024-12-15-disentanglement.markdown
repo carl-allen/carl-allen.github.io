@@ -85,14 +85,16 @@ $$\ell(\theta, \phi) \quad =\quad \int p(x) \int q_\phi(z\mid x)
 
 where the standard ELBO has $$\beta=1$$ and [$$\beta>1$$ is found to improve disentanglement][betaVAE].
 
-A standard Guassian VAE assumes the following:
+VAE assumptions:
 * $$p_\theta(x\mid z) =\mathcal{N}(x;\,d(x),\sigma^2)\quad$$ with *decoder*  $$d$$ and fixed variance $$\sigma^2$$;
 * $$q_\phi(z\mid x)=\mathcal{N}(z;\,e(x),\Sigma_x)\quad$$ with *encoder* $$e$$ and learned variance $$\Sigma_x$$; and
 * $$p(z)\quad\ \ \ =\mathcal{N}(z;\,0,I)\quad$$ where $$z_i$$ are *independent* with $$p(z_i)=\mathcal{N}(z_i;0,1)$$.
 
-Note that the VAE decoder $$d$$ maps latent variables $$z\in\mathcal{Z}$$ to  means $$\mu_z=\mathbb{E}[x\mid z]\in \mathcal{X}$$, and if $$J_z$$ denotes $$d$$'s Jacobian evaluated at $$z$$ then $$J_{i,j} = \tfrac{\partial d(z)_i}{\partial z_j}$$ defines how a perturbation in the latent space (in direction $$z_j$$) translates to variation in the data space (in direction $$x_i$$).
+Note:
+* the VAE decoder $$d$$ maps latent variables $$z\in\mathcal{Z}$$ to means $$\mu_z=\mathbb{E}[x\mid z]\in \mathcal{X}$$
+* if $$J_z$$ denotes $$d$$'s Jacobian evaluated at $$z$$, then $$J_{i,j} = \tfrac{\partial d(z)_i}{\partial z_j}$$ defines how a perturbation in the latent space (in direction $$z_j$$) translates to variation in the data space (in direction $$x_i$$).
 
-An approximate relationship has been shown between posterior covariances ($$\Sigma_x$$) and the Hessian of $$\log p_\theta(x\mid z)$$[^rolinek][^kumarpoole] and so to column orthgonality in $$J_z$$. This can be stated more precisely by:
+The optimal $$\Sigma_x$$ is defined by the Hessian of $$\log p_\theta(x\mid z)$$ ([Opper & Archambeau](http://www0.cs.ucl.ac.uk/staff/c.archambeau/publ/neco_mo09_web.pdf)), meaning that if the decoder's second derivatives are small almost everywhere, e.g. as in a Relu network [(see Abhishek & Kumar, 2020)](https://arxiv.org/pdf/2002.00041), we have:
 
 $$
 \begin{equation}
@@ -103,9 +105,7 @@ $$
 \end{equation}
 $$
 
-from a known identify ([O&A](http://www0.cs.ucl.ac.uk/staff/c.archambeau/publ/neco_mo09_web.pdf)) and assuming that the decoder's second derivative is small almost everywhere ($$\dagger$$), e.g. as in a Relu network [(Abhishek & Kumar, 2020)](https://arxiv.org/pdf/2002.00041).
-
-The ELBO is maximised if \eqref{eq:one} is achieved and so, for diagonal $$\Sigma_x$$, when **columns of $$J_z$$ are orthogonal**. Equivalently, the SVD $$J_z=U_zS_zV_z^\top$$ must have $$V_z=I$$, i.e. standard basis vectors $$e_i\in\mathcal{Z}$$ are right singular vectors of $$J_z$$ ($$\forall z$$).  Importantly, this means that variation in latent component $$z_i$$ corresponds to a variation in data space in direction $$u_i$$, the $$i^{th}$$ left singular vector of $$J_z$$ (i.e. column $$i$$ of $$U_z$$) with no affect in any other $$u_{j\ne i}$$.
+and the ELBO is maximised if \eqref{eq:one} is achieved and so, for diagonal $$\Sigma_x$$, when **columns of $$J_z$$ are orthogonal** (a looser approximation was shown previously[^rolinek][^kumarpoole]). Equivalently, the SVD $$J_z=U_zS_zV_z^\top$$ must have $$V_z=I$$, i.e. standard basis vectors $$e_i\in\mathcal{Z}$$ are right singular vectors of $$J_z$$ ($$\forall z$$).  Importantly, this means that variation in latent component $$z_i$$ corresponds to a variation in data space in direction $$u_i$$, the $$i^{th}$$ left singular vector of $$J_z$$ (i.e. column $$i$$ of $$U_z$$) with no affect in any other $$u_{j\ne i}$$.
 
 **Take-away**: the ELBO is maximised if approximate posterior covariances match true posterior covariances, which can be expressed in terms of derivatives of $$p_\theta(x\mid z)$$. This does not mean the Hessian is necessarily orthogonal, but if such solutions exists then the VAE tries to find them.
 <!-- (hinting towards learning independent factors). -->
