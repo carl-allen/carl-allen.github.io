@@ -30,8 +30,8 @@ twitter_username: carl_s_allen
 github_username: carl-allen
 
 # Build settings
-markdown: GFM
-# markdown: kramdown
+# markdown: GFM
+markdown: kramdown
 
 ###kramdown:
 ###  math_engine: math-jax
@@ -39,15 +39,15 @@ markdown: GFM
 ###### theme: minimal-mistakes-jekyll 
 theme: minima
 
-###kramdown:
-###  math_engine: mathjax
+kramdown:
+  math_engine: mathjax
 
-format:
-  gfm:
-    html-math-method: webtex
+###format:
+###  gfm:
+###    html-math-method: webtex
 
-gfm:
-  html-math-method: webtex    
+###gfm:
+###  html-math-method: webtex    
   
 # plugins:
 #   - jekyll-include-cache
