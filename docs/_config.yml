@@ -47,7 +47,7 @@ theme: minima
 ###    html-math-method: mathjax
 
 gfm:
-  html-math-method: mathjax    
+  html-math-method: webtex    
   
 # plugins:
 #   - jekyll-include-cache
