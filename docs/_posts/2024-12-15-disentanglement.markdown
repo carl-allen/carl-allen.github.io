@@ -13,8 +13,9 @@ categories: Theory
 
 
 
+|---
 | This post aims to summarise [Unpicking Data at the Seams: VAEs, Disentanglement and Independent Components (Allen, 2024)][paper], which explains **why disentangelement arises in generative latent variable models**. Although disentanglement is often associated with particular model families (e.g. VAE, $\beta$-VAE, GANs) whose popularity may ebb and flow, we show that the phenomenon **relates to the latent structure of the data** and is more fundamental than any particular model class that exposes it. |
-|---|
+|---
 
 **Disentanglement** is an intriguing phenomenon observed in generative latent variable models, particularly [_Variational Autoencoders_ (VAEs)][VAE] (our focus) and [Generative Adversarial Networks (GANs)](https://www.youtube.com/watch?v=DbQNKdtoqUw). Disentanglement is not a rigorously defined term but refers to when semantically meaningful factors of the data map to distinct dimensions in the latent space. This allows, for example, images to be generated that vary in a specific feature (e.g. smile, orientation) by changing a *single latent dimension*.
 
