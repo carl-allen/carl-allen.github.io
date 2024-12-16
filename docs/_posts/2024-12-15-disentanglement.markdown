@@ -146,6 +146,8 @@ Understanding that diagonal posterior covariance promotes column-orthogonality i
 
 > A **push-forward distribution** describes the probability distribution of the output of a deterministic function given an input distribution. A VAE decoder maps samples of the latent prior $$p(z)$$ to the data space, where it defines a manifold $$\mathcal{M}_d$$ and push-forward distribution over it. 
 
+---
+
 #### Linear Case
 
 For intuition, we first consider the linear case $$x=d(z)=Dz$$,  $$D\in\mathbb{R}^{n\times m}$$, the model considered in [Probabilistic PCA (PPCA)][PPCA], which has a tractible MLE solution and known optimal posterior
@@ -180,12 +182,13 @@ By considering $$x$$ in the "$$U$$-basis" we see that independent $$z_i$$ map to
 
 This shows that the push-forward distribution defined by the decoder factorises as a product of independent univariate distributions ($$p(x^{(U)}_i)$$), each corresponding to a distinct latent dimension $$z_i$$. Thus, if the data follows that generateive process and itself factorises with unique factors (as determined by ground truth singular values of $$D$$, $$s_i$$), then the ELBO is maximised when independent components of the model distributions align with those of the data and so p(x) is **disentangled** as a product of *independent components* aligned with each latent dimension.
 
-This is not necessarily surprising in the linear case, since we know from the outset that the push-forward distribution is Gaussian and so factorises as a product of univariate Gaussians. However, we did not use that knowledge or rely on the linearity of $$d$$ at any step.
+This is not necessarily surprising in the linear case, since we know from the outset that the push-forward distribution is Gaussian and so factorises as a product of univariate Gaussians. However, we did not use that knowledge or rely on the linearity of $$d$$ at any stage.
 
 <!-- From $$J_z =\tfrac{d x}{d z}=US, \tfrac{d x}{d u} = U$$, we have $$\tfrac{d u}{d z} =S$$, so $$\tfrac{\partial u_i}{\partial z_j} = \{s_i$$ if $$i= j$$, otherwise $$0\}$$ and each $$u_i$$ depends on a distinct independent r.v. so are *independent*.
 2. restricting $$D$$ to $$z_i\in \mathcal{Z}^{(i)}$$ and so $$u_i\in\mathcal{M_D^{(i)}}$$, $$p(u_i)= s_i^{-1}p(z_i)$$ (defined over $$\mathcal{M_D^{(i)}}$$)
  -->
 
+---
 
 #### Non-linear Case with Diagonal Jacobian
 <img src="/assets/disentanglement/non_linear.png" 
