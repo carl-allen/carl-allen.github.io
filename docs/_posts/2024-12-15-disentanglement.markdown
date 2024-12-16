@@ -97,7 +97,7 @@ $$\ell(\theta, \phi) \quad =\quad \int p(x) \int q_\phi(z\mid x)
 \ \{\ \log p_\theta(x\mid z) \,-\, \beta \log \tfrac{q_\phi(z\mid x)}{p(z)} \ \}\ dz dx\ ,$$
 
 where the ELBO has $$\beta=1$$ but [$$\beta>1$$ is found to improve disentanglement][betaVAE]. We assume common VAE assumptions:
-* $$p_\theta(x\mid z) =\mathcal{N}(x;\,d(x),\sigma^2)\quad$$ with *decoder*  $$d$$ and fixed variance $$\sigma^2$$;
+* $$p_\theta(x\mid z) =\mathcal{N}(x;\,d(x),\sigma^2)\quad$$ with *decoder* $$d\in\mathcal{C}^2$$ (injective) and fixed variance $$\sigma^2$$;
 * $$q_\phi(z\mid x)=\mathcal{N}(z;\,e(x),\Sigma_x)\quad$$ with *encoder* $$e$$ and learned variance $$\Sigma_x$$; and
 * $$p(z)\quad\ \ \ =\mathcal{N}(z;\,0,I)\quad$$ where $$z_i$$ are *independent* with $$p(z_i)=\mathcal{N}(z_i;0,1)$$.
 
@@ -171,11 +171,11 @@ This can be seen as a special case of \eqref{eq:one}, thus the ELBO is maximised
 </p>
 
 
-We aim to understand how independent dimensions $$z_i\in\mathcal{Z}$$, and the probability density over them, pass through the decoder. For a given point $$z^*\in \mathcal{Z}$$: 
-* we define lines $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ passing through $$z^*$$ parallel to each standard basis vector $$e_i$$ (blue dashed lines), and their images under $$d$$, $$\mathcal{M}_D^{(i)}\subset\mathcal{M_d}$$ (red dashed lines that follow $$D$$'s left singular vectors $$\mathbf{u}_i$$); and
-* consider $$x^{(U)}=U^\top x$$  ($$x$$ in the basis defined by columns of $$U$$), noting that: $$\tfrac{\partial x^{(U)}_i}{\partial z_j} =\{s_i \text{ if }i=j; 0 \text{ o/w}\}$$ (since $$\tfrac{dx}{dz} = \tfrac{dx}{dx^{(U)}}\tfrac{dx^{(U)}}{dz} = US$$ and $$\tfrac{dx}{dx^{(U)}} = U$$).
+We aim to understand how independent dimensions $$z_i\in\mathcal{Z}$$, and the probability density over them, pass through the decoder. For a given point $$z^*\in \mathcal{Z}$$, we: 
+* define lines $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ passing through $$z^*$$ parallel to each standard basis vector $$e_i$$ (blue dashed lines), and their images under $$d$$, $$\mathcal{M}_D^{(i)}\subset\mathcal{M_d}$$ (red dashed lines that follow $$D$$'s left singular vectors $$\mathbf{u}_i$$); and
+* consider $$x^{(U)}=U^\top x=U^\top Dz^*$$  (i.e. $x$ in the basis defined by columns of $$U$$), noting that: $$\tfrac{\partial x^{(U)}_i}{\partial z_j} =\{s_i \text{ if }i=j; 0 \text{ o/w}\}$$ (since $$\tfrac{dx}{dz} = \tfrac{dx}{dx^{(U)}}\tfrac{dx^{(U)}}{dz} = US$$ and $$\tfrac{dx}{dx^{(U)}} = U$$).
 
-By considering $$x$$ in the "$$U$$-basis" we see that independent $$z_i$$ map to independent components $$x^{(U)}_i$$ since:
+By considering $$x$$ from this perspective (the "$$U$$-basis") we see that independent $$z_i$$ map to independent components $$x^{(U)}_i$$ since:
 1. each $$x^{(U)}_i$$ varies only with a distinct $z_i$ (from $$\tfrac{\partial x^{(U)}_i}{\partial z_j}$$ above) and so are *independent*;
 2. the push-forward of $$d$$ restricted to $$\mathcal{Z^{(i)}}$$ has density $$p(x^{(U)}_i) = s_i^{-1}p(z_i)$$ over $$\mathcal{M}_D^{(i)}$$; and
 3. the full push-forward satisfies $$p(Dz) = \mid\!D\!\mid ^{-1}p(z) = \prod_i s_i^{-1}p(z_i) = \prod _ip(x^{(U)}_i)$$.
@@ -199,25 +199,29 @@ This is not necessarily surprising in the linear case, since we know from the ou
 
 
 
-We now take an analogous approach for the general VAE ($$x=d(z)$$, $$d\in\mathcal{C}^2$$) with column-orthogonal decoder Jacobian. Notably, the Jacobian and its factors, $$J_z=U_zS_zV_z^\top$$, now depend on $$z$$, although column-orthgonality implies $$V_z=I,\ \forall z\in \mathcal{Z}$$ and $$U_z$$, $$S_z$$ are continuous w.r.t. $$z$$ since $$d\in\mathcal{C}^2$$. 
+We now take an analogous approach for a general VAE ($$x=d(z)$$, $$d\in\mathcal{C}^2$$) with column-orthogonal decoder Jacobian. Note that the Jacobian and its factors, $$J_z=U_zS_zV_z^\top$$, may vary with $$z$$, however column-orthgonality implies $$V_z=I,\ \forall z\in \mathcal{Z}$$ and $$U_z$$, $$S_z$$ are continuous w.r.t. $$z$$ (since $$d\in\mathcal{C}^2$$). 
 
-As previously, for a given point $$z^*\in \mathcal{Z}$$, we define lines $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ passing through $$z^*$$ parallel to the standard basis (axis-aligned), and their images under $$d$$, $$\mathcal{M}_d^{(i)}\subset\mathcal{M_d}$$, which are potentially curved sub-manifolds, following (local) left singular vectors of $$D$$.
+As in the linear case, for a point $$z^*\in \mathcal{Z}$$, we define lines $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ passing through $$z^*$$ parallel to the standard basis (blue-dashed, axis-aligned), and their images under $$d$$, $$\mathcal{M}_d^{(i)}\subset\mathcal{M_d}$$, which are potentially curved sub-manifolds following (local) left singular vectors of $$J_{z^*}$$ (red-dashed lines).
 
-We again consider $$x$$ in the (local) basis defined by columns of $$U$$ as $$u=U^\top x$$ and still have $$\tfrac{\partial u_i}{\partial z_j} =\{s_i \text{ if }i=j; 0 \text{ o/w}\}$$.
+We again consider $$x=d(z)$$ in the local $$U$$-basis (defined by columns of $$U_z$$) as $$x^{(U)}=U_z^\top x$$ and again have $$\tfrac{\partial x^{(U)}_i}{\partial z_j} =\{s_i \text{ if }i=j; 0 \text{ o/w}\}$$.
 
-As previously, we claim that independent dimensions $$z_i\in\mathcal{Z}$$ flow under the decoder to become independent components $$u_i$$ since:
-1. $$\{u_i\}_i$$ are observations of *independent* random variables;
-2. the push-forward of $$d$$ restricted to $$\mathcal{Z^{(i)}}$$ has density $$p(u_i) = s_i^{-1}p(z_i)$$ over $$\mathcal{M}_d^{(i)}$$;
-3. the full push-forward satisfies $$p(d(z)) = \mid J_z\mid ^{-1}p(z) = \prod_i s_i^{-1}p(z_i) = \prod _ip(u_i)$$.
+We claim that, as before, independent dimensions $$z_i\in\mathcal{Z}$$ flow through the decoder to become independent components $$x^{(U)}_i$$ since:
+1. $$\{x^{(U)}_i\}_i$$ are *independent* (by consideration of partial derivatives $$\tfrac{\partial x^{(U)}_i}{\partial z_j}$$);
+2. the push-forward of $$d$$ restricted to $$\mathcal{Z^{(i)}}$$ has density $$p(x^{(U)}_i) = s_i^{-1}p(z_i)$$ over $$\mathcal{M}_d^{(i)}$$; and
+3. the full push-forward satisfies $$p(d(z)) = \mid J_z\mid ^{-1}p(z) = \prod_i s_i^{-1}p(z_i) = \prod _ip(x^{(U)}_i)$$.
 
-Thus, following the same argument as in the linear case, the distribution over the decoder manifold factorises as a product of independent univariate push-foward distributions ($$p(u_i)$$), each corresponding to a distinct latent dimension ($$z_i$$). Again, if the true data distribution follows this generative process and so factorises and those factors are unique, then the ELBO is maximised when components of the model fit to those of the data and $$p(x)$$ is **disentangled** as a product of *independent components* aligned with each latent dimension. Each component is supported on a sub-manifold orthogonal to the others, capturing the variations along a single latent dimension.
+Thus, following the same argument as in the linear case, we see that the distribution over the decoder manifold factorises as a product of independent univariate push-foward distributions ($$p(x^{(U)}_i)$$), each corresponding to a distinct latent dimension $$z_i$$. If the true data distribution follows this generative process and so factorises, then the ELBO is maximised when independent components under the model fit to those of the data, i.e. when **$$p(x)$$ is **disentangled** as a product of *independent components* aligned with each latent dimension**. (Identifiability is subject to uniqueness of independent factor distributions, analogous to the linear case).
 
-We recommend reading [the full paper][paper] for further details, such as:
-* consideration of whether orthogonality is strictly _necessary_ for disentanglement (the argument above shows it is _sufficient_)
-* _identifiability_ of the model, i.e. up to what symmetries can the VAE identify the ground truth generative factors
-* the role of parameter $\beta$ in a [$\beta$-VAE][betaVAE]
-  * spoiler: $$\beta$$ is proportional to Var$$_\theta[x\mid z]$$ where $$p_\theta(x\mid z)$$ is of exponential family form (generalising $\sigma^2$ of a Gaussian-VAE).
-  * $\beta$ determines how close data points need to be (in Euclidean norm) to be deemed similar and their representations merge.
+> **Key insight**: the above results hinge on the SVD of the Jacobian $$J_z = U_zS_zV_z^\top$$. By differentiability of $$d$$, the bases defined by columns of $$U_z$$ and $$V_z$$ (in $$\mathcal{X}$$ and $$\mathcal{Z}$$ resp.) are continuous and basis vectors form continuous sub-manifolds in each domain. Traversing a submanifolds in one domain corresponds to traversing a corresponding submanifold in the other. The diagonal matrix $$S_z$$ defines the Jacobian of the mapping between them (i.e. between $$x$$ considered in the $$U$$-basis and $$z$$ considered in the $$V$$ basis) and so separably maps probability density from each submanifold in $$\mathcal{Z}$$ to its counterpart in $$\mathcal{X}$$. Hence independent components in $$\mathcal{Z}$$ map to independent components in $$\mathcal{X}$$.
+
+**Notes**:
+* While we assumed $$d\in\mathcal{C^2}$$ above, the result holds for continuous $d$ that are differentiable almost everywhere, e.g. ReLU networks.
+* We highly recommend reading [the full paper][paper] for further details, such as:
+  * consideration of whether orthogonality is strictly _necessary_ for disentanglement (the argument above shows it is _sufficient_)
+  * conisderation of model _identifiability_, i.e. up to what symmetries a VAE can identify ground truth generative factors
+  * the role of $\beta$ in a [$\beta$-VAE][betaVAE]. In particular, we show that
+     * $$\beta$$ corresponds to Var$$_\theta[x\mid z]$$ when $$p_\theta(x\mid z)$$ is of exponential family form (generalising $\sigma^2$ of a Gaussian-VAE).
+     * $\beta$ acts a "glue" determining how close data points need to be (in Euclidean norm) for the model to treat them as "similar", i.e. for their representations to merge.
 
 <!-- 
 **Interpreting β in β-VAEs**
@@ -228,9 +232,20 @@ Increasing β corresponds to increasing the variance of the likelihood, essentia
 
 Conversely, decreasing β reduces the likelihood variance, mitigating the issue of "posterior collapse". This phenomenon occurs when the likelihood becomes overly expressive, directly modeling the data distribution and rendering the latent variables redundant. By reducing the likelihood variance, β < 1 constrains the model's flexibility, preventing it from learning a trivial solution. -->
 
-### Conclusion
+### Final remarks
 
-[Allen (2024)][paper] provides a compelling theoretical argument for the link between diagonal posterior covariance, Jacobian orthogonality, and disentanglement in VAEs. The analysis clarifies how a simple design choice, motivated by computational efficiency, leads to the learning of statistically independent data components. We hope that understanding this connection gives new insight into how VAEs work, how understanding of linear models may extend surprisingly well to non-linear models and may lead to new training algorithms that can more reliably achieve disentangelement.
+We hope this post provides intuitive insight into how a seemingly innocuous design choice, motivated by computational efficiency, leads to disentanglement; how understanding from linear models may transfer surprisingly well to the non-linear case; and, perhaps most fundamentally, how statistically independent components of the data form "seams" running through the data manifold that a VAE tries to "unpick".
+
+This work throw up many questions, e.g.:
+* if the VAE objective aims to disentangle, why is disentanglement not observed more reliably (e.g. as observed by [Locatello et al. (ICML, 2019)](https://arxiv.org/pdf/1811.12359)?
+* how does this finding fit with extensions of the VAE that appear to further promote entanglement, such as [FactorVAE](https://arxiv.org/abs/1802.05983) and closely related [TC-VAE](https://arxiv.org/abs/1802.04942)?
+* can this be used to automatically identify independent factors in the latent space of other models, e.g. GANs?
+* how does this insight translate to other modelling paradigms, such as supervised, semi-supervised and self-supervised learning?
+* given this result is for Gaussian $$p(x|z)$$, how does this result translate to discrete data, e.g. text?
+* ...
+
+We are interested in all of these kinds of questions. If any of these are of interest and you would like to collaborate, please free to get in touch (by email, twitter, blue-sky).
+
 
 
 
