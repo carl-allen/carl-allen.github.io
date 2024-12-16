@@ -191,12 +191,15 @@ This is not necessarily surprising in the linear case, since we know from the ou
 ---
 
 #### Non-linear Case with Diagonal Jacobian
-<img src="/assets/disentanglement/non_linear.png" 
+
+<p align="center">
+  <img src="/assets/disentanglement/non_linear.png" 
         alt="non_linear2" 
         width="420" 
         height="200" 
         style="display: block; margin: 0 auto"  />
-
+  <small>Illustration of non-linear decoder $d:\mathcal{X}\to\mathcal{Z}$. The latent Gaussian prior is mapped to a push-forward distribution in the data space over a non-linear manifold. </small>
+</p>
 
 
 We now take an analogous approach for a general VAE ($$x=d(z)$$, $$d\in\mathcal{C}^2$$) with column-orthogonal decoder Jacobian. Note that the Jacobian and its factors, $$J_z=U_zS_zV_z^\top$$, may vary with $$z$$, however column-orthgonality implies $$V_z=I,\ \forall z\in \mathcal{Z}$$ and $$U_z$$, $$S_z$$ are continuous w.r.t. $$z$$ (since $$d\in\mathcal{C}^2$$). 
