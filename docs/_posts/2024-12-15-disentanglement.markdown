@@ -79,9 +79,9 @@ The VAE fits a latent variable model $$p_\theta(x) =\int_z p_\theta(x\mid z)p(z)
 $$\ell(\theta, \phi) \quad =\quad \int p(x) \int q_\phi(z\mid x) 
 \ \{\ \log p_\theta(x\mid z) \,-\, \beta \log \tfrac{q_\phi(z\mid x)}{p(z)} \ \}\ dz dx\ ,$$
 
-where the standard ELBO has $$\beta=1$$ and [$$\beta>1$$ is found to improve disentanglement][betaVAE] .
+where the standard ELBO has $$\beta=1$$ and [$$\beta>1$$ is found to improve disentanglement][betaVAE].
 
-> Note: Maximising the ELBO can be viewed as ***maximum-likelihood$$^{++}$$***: maximising the likelihood $$\int p(x)\log p_\theta(x)$$ minimises the KL divergence between the data and model distributions, but this is often intractible for a latent variable model. Maximising the ELBO minimises the KL divergence between $$p(x)q_\phi(z\mid x)$$ and $$p_\theta(x)p_\theta(z\mid x)\doteq p_\theta(x\mid z)p(z)$$, fitting two approximations of the joint distribution.
+> **Maximising the ELBO = *maximum-likelihood$$^{++}$$***: maximising the likelihood $$\int p(x)\log p_\theta(x)$$ minimises the KL divergence between the data and model distributions, but this is often intractible for a latent variable model. Maximising the ELBO minimises the KL divergence between $$p(x)q_\phi(z\mid x)$$ and $$p_\theta(x)p_\theta(z\mid x)\doteq p_\theta(x\mid z)p(z)$$, fitting two approximations of the joint distribution.
 
 A Guassian VAE makes the following assumptons:
 * $$p_\theta(x\mid z) =\mathcal{N}(x;\,d(x),\sigma^2)\quad$$ with *decoder*  $$d$$ and fixed variance $$\sigma^2$$;
