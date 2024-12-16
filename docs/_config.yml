@@ -30,7 +30,8 @@ twitter_username: carl_s_allen
 github_username: carl-allen
 
 # Build settings
-markdown: kramdown
+markdown: GFM
+# markdown: kramdown
 
 kramdown:
   math_engine: math-jax
