@@ -21,10 +21,13 @@ categories: Theory
 **Disentanglement** is an intriguing phenomenon observed in generative latent variable models, particularly [_Variational Autoencoders_ (VAEs)][VAE] (our focus) and [Generative Adversarial Networks (GANs)](https://www.youtube.com/watch?v=DbQNKdtoqUw). Disentanglement is not a rigorously defined term but refers to when semantically meaningful factors of the data map to distinct dimensions in the latent space. This allows, for example, images to be generated that vary in a specific feature (e.g. smile, orientation) by changing a *single latent dimension*.
 
 <p align="center">
-        <img src="/assets/disentanglement/chairs.png" 
+        <img src="/assets/disentanglement/faces2.png" 
                 alt="Chairs" 
                 style="display: block; margin: 0 auto"  />
-        <img src="/assets/disentanglement/faces.png" 
+        <img src="/assets/disentanglement/numbers.png" 
+                alt="Chairs" 
+                style="display: block; margin: 0 auto"  />
+        <img src="/assets/disentanglement/frogs.png" 
                 alt="Faces" 
                 width="420" 
                 height="130" 
