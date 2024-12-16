@@ -45,13 +45,19 @@ While disentanglement is often associated with certain models whose popularity m
 
 **Approach**: Recent works[^rolinek][^kumarpoole] suggest that disentanglement in VAEs results from commonly used *diagonal posterior covariance matrices* promoting *column-orthgonality in the decoder's Jacobian matrix*. Building on this, [Allen (2024)][paper]: (A) clarifies the connection between diagonal covariance and column-orthogonality and (B) explains how that leads to disentanglement; ultimately showing that **disentanglement equates to factorising the data distribution into *statistically independent components***.
 
-$$
-\begin{equation}
-\text{diag. posterior covariance} 
-    \quad  \overset{A}{\Rightarrow}\quad   \text{column-orthog. Jacobian} 
-    \quad \overset{B}{\Rightarrow}\quad    \text{disentanglement}
-\end{equation}
-$$
+<table>
+  <tr>
+    <th>$$
+        \begin{equation}
+        \text{diag. posterior covariance} 
+            \quad  \overset{A}{\Rightarrow}\quad   \text{column-orthog. Jacobian} 
+            \quad \overset{B}{\Rightarrow}\quad    \text{disentanglement}
+        \end{equation}
+        $$
+ </th>
+  </tr>
+</table>
+
 
 ---
 
@@ -60,6 +66,7 @@ $$
 **Notation**: un-subscripted probability distributions denote the ground truth and subscripts denote a model of that distribution.
 
 ---
+---
 
 **TL;DR**: 
 * Disentanglement provably occurs in the _linear_ case ($$p_\theta(x\mid z) = \mathcal{N}(x; Dz,\sigma^2I),\ D\in\mathbb{R}^{n\times m})$$ where analytic solutions are given by [probabilistic PCA (PPCA)][PPCA]. However, a VAE with diagonal posterior covariance finds a subset of PPCA's solutions in which latent dimensions $$z_i$$ *map to independent factors of variation* in the data distribution (disentanglement).
@@ -67,6 +74,7 @@ $$
 * That is, independent latent variables over which $p(z)$ factorises are mapped by the decoder to independent components over which the manifold distribution factorises.
 * Since a VAE's objective is maximised if the model distribution matches that of the data, if data are generated under that model - and the ground truth distribution therefore factorises into statistically independent factors - then independent components of the model corresponding to distinct latent variables align with independent components of the data (disentanglement).
 
+---
 ---
 
 $$
@@ -108,6 +116,7 @@ and the ELBO is maximised for diagonal $$\Sigma_x$$ when **columns of $$J_z$$ ar
 > **Take-away**: the ELBO is maximised if approximate posterior covariances match true posterior covariances, which can be expressed in terms of derivatives of $$p_\theta(x\mid z)$$. This does not mean the Hessian is necessarily orthogonal, but if such solutions exists then the VAE tries to find them.
 <!-- (hinting towards learning independent factors). -->
 
+---
 ---
 
 $$
