@@ -165,13 +165,13 @@ This can be seen as a special case of \eqref{eq:one}, thus the ELBO is maximised
           width="440" 
           height="190" 
           style="display: block; margin: 0 auto"  />
-  <p><span class="small">Illustration of linear decoder $$D:\mathcal{X}\to\mathcal{Z}$$. The latent Gaussian prior is mapped to a Gaussian distribution in the data space over a linear manifold. </span></p>
+  <small>Illustration of linear decoder $$D:\mathcal{X}\to\mathcal{Z}$$. The latent Gaussian prior is mapped to a Gaussian distribution in the data space over a linear manifold. </small>
 </p>
 
 
 For a given point $$z^*\in \mathcal{Z}$$: 
-* we define lines $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ passing through $$z^*$$ parallel to each standard basis vector $$e_i$$, and their images under $$D$$, $$\mathcal{M}_D^{(i)}\subset\mathcal{M_d}$$ (lines following $$D$$'s left singular vectors); and
-* consider $$u=U^\top x$$  ($$x$$ in the basis defined by columns of $$U$$), noting that: $$\tfrac{\partial u_i}{\partial z_j} =\{s_i \text{ if }i=j; 0 \text{ o/w}\}$$ (since $$\tfrac{dx}{dz} = \tfrac{dx}{du}\tfrac{du}{dz} = US$$ and $$\tfrac{dx}{du} = U$$).
+* we define lines $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ passing through $$z^*$$ parallel to each standard basis vector $$e_i$$ (blue dashed lines), and their images under $$D$$, $$\mathcal{M}_D^{(i)}\subset\mathcal{M_d}$$ (red dashed lines that follow $$D$$'s left singular vectors $$\mathbf{u}_i$$); and
+* consider $$x^{(U)}=U^\top x$$  ($$x$$ in the basis defined by columns of $$U$$), noting that: $$\tfrac{\partial x^{(U)}_i}{\partial z_j} =\{s_i \text{ if }i=j; 0 \text{ o/w}\}$$ (since $$\tfrac{dx}{dz} = \tfrac{dx}{dx^{(U)}}\tfrac{dx^{(U)}}{dz} = US$$ and $$\tfrac{dx}{dx^{(U)}} = U$$).
 
 The point here is to identify how independent dimensions $$z_i\in\mathcal{Z}$$ "flow" under the decoder. Indeed, by considering $$x$$ in the "$$U$$-basis", independent $$z_i$$ become independent components $$u_i$$, since it can be shown that:
 1. $$\{u_i\}_i$$ are observations of *independent* random variables;
