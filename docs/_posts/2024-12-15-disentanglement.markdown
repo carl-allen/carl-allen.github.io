@@ -105,7 +105,7 @@ $$
 \end{equation}
 $$
 
-and the ELBO is maximised if \eqref{eq:one} is achieved and so, for diagonal $$\Sigma_x$$, when **columns of $$J_z$$ are orthogonal** (a looser approximation was shown previously[^rolinek][^kumarpoole]). Equivalently, the SVD $$J_z=U_zS_zV_z^\top$$ must have $$V_z=I$$, i.e. standard basis vectors $$e_i\in\mathcal{Z}$$ are right singular vectors of $$J_z$$ ($$\forall z$$).  Importantly, this means that variation in latent component $$z_i$$ corresponds to a variation in data space in direction $$u_i$$, the $$i^{th}$$ left singular vector of $$J_z$$ (i.e. column $$i$$ of $$U_z$$) with no affect in any other $$u_{j\ne i}$$.
+and the ELBO is maximised if \eqref{eq:one} is achieved and so, for diagonal $$\Sigma_x$$, when **columns of $$J_z$$ are orthogonal** (a looser approximation was shown previously[^rolinek][^kumarpoole]). By implication, if $$J_z=U_zS_zV_z^\top$$ is the singular value decomposition (SVD), then $$V_z=I$$, i.e. right singular vectors of $$J_z$$ are standard basis vectors $\{$e_i\in\mathcal{Z}\}$$ ($$\forall z$$).  As such, variation in a latent component $$z_i$$ corresponds to a variation in data space in direction $$u_i$$, the $$i^{th}$$ left singular vector of $$J_z$$ (i.e. column $$i$$ of $$U_z$$) and has no affect in any orthogonal direction $$u_{j\ne i}$$.
 
 **Take-away**: the ELBO is maximised if approximate posterior covariances match true posterior covariances, which can be expressed in terms of derivatives of $$p_\theta(x\mid z)$$. This does not mean the Hessian is necessarily orthogonal, but if such solutions exists then the VAE tries to find them.
 <!-- (hinting towards learning independent factors). -->
