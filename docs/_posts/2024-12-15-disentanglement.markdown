@@ -91,7 +91,7 @@ While disentanglement is often associated with certain models whose popularity m
 
 ### (A) From Diagonal Covariance to Jacobian Orthogonality
 
-The VAE fits a latent variable model $$p_\theta(x) =\int_z p_\theta(x\mid z)p(z)$$ to  the data distribution $$p(x)$$ by maximising the Evidence Lower Bound (ELBO),[^ELBO]
+The VAE fits a latent variable model $$p_\theta(x) =\int_z p_\theta(x\mid z)p(z)$$ to  the data distribution $$p(x)$$ by maximising the Evidence Lower Bound (ELBO),
 
 $$\ell(\theta, \phi) \quad =\quad \int p(x) \int q_\phi(z\mid x) 
 \ \{\ \log p_\theta(x\mid z) \,-\, \beta \log \tfrac{q_\phi(z\mid x)}{p(z)} \ \}\ dz dx\ ,$$
@@ -101,9 +101,10 @@ where the ELBO has $$\beta=1$$ but [$$\beta>1$$ is found to improve disentanglem
 * $$q_\phi(z\mid x)=\mathcal{N}(z;\,e(x),\Sigma_x)\quad$$ with *encoder* $$e$$ and learned variance $$\Sigma_x$$; and
 * $$p(z)\quad\ \ \ =\mathcal{N}(z;\,0,I)\quad$$ where $$z_i$$ are *independent* with $$p(z_i)=\mathcal{N}(z_i;0,1)$$.
 
-Note:
-* the VAE decoder $$d$$ maps latent variables $$z\in\mathcal{Z}$$ to means $$\mu_z=\mathbb{E}[x\mid z]\in \mathcal{X}$$
-* if $$J_z$$ denotes $$d$$'s Jacobian evaluated at $$z$$, then $$J_{i,j} = \tfrac{\partial d(z)_i}{\partial z_j}$$ defines how a perturbation in the latent space (in direction $$z_j$$) translates to variation in the data space (in direction $$x_i$$).
+> **Maximising the ELBO = _maximum-likelihood$$^{++}$$_**:  Maximising the likelihood $$\int p(x)\log p_\theta(x)$$ minimises the KL divergence between the data and model distributions, but this is often intractible for a latent variable model. Maximising the ELBO minimises the KL divergences between $$p(x)q_\phi(z\mid x)$$ *and* $$p_\theta(x)p_\theta(z\mid x)\doteq p_\theta(x\mid z)p(z)$$, aligning two models of the joint distribution.
+> Note:
+> * the VAE decoder $$d$$ maps latent variables $$z\in\mathcal{Z}$$ to means $$\mu_z=\mathbb{E}[x\mid z]\in \mathcal{X}$$
+> * if $$J_z$$ denotes $$d$$'s Jacobian evaluated at $$z$$, then $$J_{i,j} = \tfrac{\partial d(z)_i}{\partial z_j}$$ defines how a perturbation in the latent space (in direction $$z_j$$) translates to variation in the data space (in direction $$x_i$$).
 
 The optimal $$\Sigma_x$$ is defined by the Hessian of $$\log p_\theta(x\mid z)$$ ([Opper & Archambeau](http://www0.cs.ucl.ac.uk/staff/c.archambeau/publ/neco_mo09_web.pdf)), meaning that if the decoder's second derivatives are small almost everywhere, e.g. as in a Relu network [(see Abhishek & Kumar, 2020)](https://arxiv.org/pdf/2002.00041), we have:
 
@@ -141,7 +142,7 @@ and the ELBO is maximised for diagonal $$\Sigma_x$$ when **columns of $$J_z$$ ar
 
 ### (B) From Orthogonality to Statistical Independence
 
-Having seen that diagonal covariances promote column-orthogonality in the decoder Jacobian, the question is how this geometric proprety leads to the statistical property of disentanglement. To understand it, we consider the *push-forward* distribution defined by the decoder, which is supported over a manifold $$\mathcal{M}_d\subseteq\mathcal{X}$$. 
+Understanding that diagonal posterior covariance promotes column-orthogonality in the decoder Jacobian, the question then is how does that _geometric_ proprety leads to the _statistical_ property of disentanglement. For that we consider the *push-forward* distribution defined by the decoder, supported over a manifold $$\mathcal{M}_d\subseteq\mathcal{X}$$. 
 
 > A **push-forward distribution** describes the probability distribution of the output of a deterministic function given an input distribution. A VAE decoder latent samples of the prior $$p(z)$$ to the data space, defining a push-forward distribution  over $$\mathcal{M}_d$$. 
 
@@ -236,4 +237,3 @@ Conversely, decreasing β reduces the likelihood variance, mitigating the issue 
 [^kumarpoole]: [On Implicit Regularization in β-VAEs; Kumar \& Poole (ICML, 2020)](https://arxiv.org/pdf/2002.00041)
 [^locatello]: [Challenging Common Assumptions in the Unsupervised Learning of Disentangled Representations; Locatello et al. (ICML, 2019)](https://arxiv.org/pdf/1811.12359)
 [^khemakem]: [Variational Autoencoders and Nonlinear ICA: A Unifying Framework; Khemakhem et al. (AIStats, 2020)](https://proceedings.mlr.press/v108/khemakhem20a/khemakhem20a.pdf)
-[^ELBO]: Maximising the ELBO = _maximum-likelihood$$^{++}$$_:  Maximising the likelihood $$\int p(x)\log p_\theta(x)$$ minimises the KL divergence between the data and model distributions, but this is often intractible for a latent variable model. Maximising the ELBO minimises the KL divergences between $$p(x)q_\phi(z\mid x)$$ *and* $$p_\theta(x)p_\theta(z\mid x)\doteq p_\theta(x\mid z)p(z)$$, aligning two models of the joint distribution.
