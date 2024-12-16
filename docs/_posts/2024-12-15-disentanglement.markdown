@@ -10,21 +10,16 @@ categories: Theory
 ---
 {% include_relative _includes/head.html %}
 
-
-figcaption {
-  text-align: center;
-}
-
 **Disentanglement** is an intriguing phenomenon in  machine learning observed in generative models, particularly Variational Autoencoders (VAEs). Disentanglement is not a rigorously defined term but refers to when semantically meaningful factors of the data map to distinct dimensions in the latent space. This allows, for example, face images to be generated that vary only in orientation or hair colour by changing a *single latent dimension*.
 
-<figure>
+<p align="center">
         <img src="/assets/disentanglement/faces.png" 
                 alt="Faces" 
                 width="420" 
                 height="130" 
                 style="display: block; margin: 0 auto"  />
-        <figcaption>Figs from $\beta$-VAE (Higgins et al, 2017)</figcaption>
-</figure>
+        Figs from $\beta$-VAE (Higgins et al, 2017)
+</p>
 
 **Motivation**: Disentanglement is particularly intriguing because VAEs were not designed to achieve it, thus its understanding may provide new insight into how and what VAEs learn. More generally, the ability to separate independent aspects of the data could be useful in many machine learning domains and, by teasing apart their generative factors, potentially offer fundamental insights into the underlying data itself. Understanding disentanglement is of further interest since it occurs in settings (e.g. spherically symmetric prior) in which disentanglement has been considered impossible.
 
@@ -158,7 +153,7 @@ As previously, we claim that independent dimensions $$z_i\in\mathcal{Z}$$ flow u
 
 Thus, following the same argument as in the linear case, the distribution over the decoder manifold factorises as a product of independent univariate push-foward distributions ($$p(u_i)$$), each corresponding to a distinct latent dimension ($$z_i$$). Again, if the true data distribution follows this generative process and so factorises and those factors are unique, then the ELBO is maximised when components of the model fit to those of the data and $$p(x)$$ is **disentangled** as a product of *independent components* aligned with each latent dimension. Each component is supported on a sub-manifold orthogonal to the others, capturing the variations along a single latent dimension.
 
-We recommend reading [the full paper][the paper] for further details, such as:
+We recommend reading [the full paper][paper] for further details, such as:
 * consideration of whether orthogonality is strictly _necessary_ for disentanglement (the argument above shows it is _sufficient_)
 * _identifiability_ of the model, i.e. up to what symmetries can the VAE identify the ground truth generative factors
 * the role of parameter $\beta$ in a [$\beta$-VAE][betaVAE]
@@ -179,9 +174,6 @@ Conversely, decreasing β reduces the likelihood variance, mitigating the issue 
 [Allen (2024)][paper] provides a compelling theoretical argument for the link between diagonal posterior covariance, Jacobian orthogonality, and disentanglement in VAEs. The analysis clarifies how a simple design choice, motivated by computational efficiency, leads to the learning of statistically independent data components. We hope that understanding this connection gives new insight into how VAEs work, how understanding of linear models may extend surprisingly well to non-linear models and may lead to new training algorithms that can more reliably achieve disentangelement.
 
 
-
----
-### Notes
 
 [paper]: https://arxiv.org/pdf/2410.22559
 [betaVAE]: https://openreview.net/forum?id=Sy2fzU9gl
