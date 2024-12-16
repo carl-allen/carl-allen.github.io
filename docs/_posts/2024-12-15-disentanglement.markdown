@@ -83,9 +83,7 @@ The VAE fits a latent variable model $$p_\theta(x) =\int_z p_\theta(x\mid z)p(z)
 $$\ell(\theta, \phi) \quad =\quad \int p(x) \int q_\phi(z\mid x) 
 \ \{\ \log p_\theta(x\mid z) \,-\, \beta \log \tfrac{q_\phi(z\mid x)}{p(z)} \ \}\ dz dx\ ,$$
 
-where the standard ELBO has $$\beta=1$$ and [$$\beta>1$$ is found to improve disentanglement][betaVAE].
-
-VAE assumptions:
+where the ELBO has $$\beta=1$$ but [$$\beta>1$$ is found to improve disentanglement][betaVAE]. We assume common VAE assumptions:
 * $$p_\theta(x\mid z) =\mathcal{N}(x;\,d(x),\sigma^2)\quad$$ with *decoder*  $$d$$ and fixed variance $$\sigma^2$$;
 * $$q_\phi(z\mid x)=\mathcal{N}(z;\,e(x),\Sigma_x)\quad$$ with *encoder* $$e$$ and learned variance $$\Sigma_x$$; and
 * $$p(z)\quad\ \ \ =\mathcal{N}(z;\,0,I)\quad$$ where $$z_i$$ are *independent* with $$p(z_i)=\mathcal{N}(z_i;0,1)$$.
