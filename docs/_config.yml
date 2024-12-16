@@ -42,9 +42,13 @@ theme: minima
 kramdown:
   math_engine: mathjax
 
-GFM: 
-  math_engine: math-jax
+format:
+  gfm:
+    html-math-method: mathjax
 
+gfm:
+  html-math-method: mathjax    
+  
 # plugins:
 #   - jekyll-include-cache
 
