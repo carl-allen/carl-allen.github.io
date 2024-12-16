@@ -10,6 +10,7 @@ categories: Theory
 ---
 {% include_relative _includes/head.html %}
 
+|---|
 |In this post, we summarise [Unpicking Data at the Seams: VAEs, Disentanglement and Independent Components (Allen, 2024)][paper], which explains **why disentangelement arises in generative latent variable models**. Although disentanglement is often associated with particular model families (e.g. VAE, $\beta$-VAE, GANs) whose popularity may ebb and flow, we show that the phenomenon **relates to the latent structure of the data** and is more fundamental than any particular model class that exposes it.|
 |---|
 
@@ -52,11 +53,11 @@ Notation: un-subscripted probability distributions denote the ground truth and s
 ---
 
 
-## High-level Summary: 
+## TL;DR: 
 * Disentanglement provably occurs in the _linear_ case ($$p_\theta(x\mid z) = \mathcal{N}(x; Dz,\sigma^2I),\ D\in\mathbb{R}^{n\times m})$$ where analytic solutions are given by [probabilistic PCA (PPCA)][PPCA] but a VAE with diagonal posterior covariance finds only those solutions in which latent dimensions $$z_i$$ *map to independent factors of variation* in the data distribution.
 * Perhaps surprisingly, the rationale behind that (described below) extends to non-linear VAEs where diagonal posterior covariances encourage columns of the decoder's Jacobian to be orthogonal, causing independent latent variables to pass through the decoder separably and emerge in $$\mathcal{X}$$ over statistically independent sub-manifolds of the decoder-defined manifold.
 * That is, independent latent variables over which $p(z)$ factorises are mapped by the decoder to independent components over which $p(x)$ factorises (over the decoder manifold).
-* Since the VAE's objective is maximised if the model distribution matches that of the data, if the data distribution has statistically independent factors, then statistically independent components of the model (each corresponding to a distinct latent variable) align with those of the data, resulting in disentanglement.
+* Since the VAE's objective is maximised if the model distribution matches that of the data, if the data is generated under the model (and its distribution therefore factorises into statistically independent factors) then the ELBO is maximised if statistically independent components of the model (corresponding to distinct latent variables) align with those of the data, resulting in disentanglement.
 
 ---
 
