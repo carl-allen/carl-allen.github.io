@@ -78,21 +78,14 @@ $$
 $$
 ### A: From Diagonal Covariance to Jacobian Orthogonality
 
-The VAE fits a latent variable model $$p_\theta(x) =\int_z p_\theta(x\mid z)p(z)$$ to  the data distribution $$p(x)$$ by maximising the Evidence Lower Bound (ELBO),
+The VAE fits a latent variable model $$p_\theta(x) =\int_z p_\theta(x\mid z)p(z)$$ to  the data distribution $$p(x)$$ by maximising the Evidence Lower Bound (ELBO),[^ELBO]
 
 $$\ell(\theta, \phi) \quad =\quad \int p(x) \int q_\phi(z\mid x) 
 \ \{\ \log p_\theta(x\mid z) \,-\, \beta \log \tfrac{q_\phi(z\mid x)}{p(z)} \ \}\ dz dx\ ,$$
 
 where the standard ELBO has $$\beta=1$$ and [$$\beta>1$$ is found to improve disentanglement][betaVAE].
 
-<details>
-  <summary><b>Maximising the ELBO = <i>maximum-likelihood$^{++}$</i></b>:</summary> 
-  Maximising the likelihood $\int p(x)\log p_\theta(x)$ minimises the KL divergence between the data and model distributions, but this is often intractible for a latent variable model. Maximising the ELBO minimises the KL divergences between $p(x)q_\phi(z\mid x)$ *and* $p_\theta(x)p_\theta(z\mid x)\doteq p_\theta(x\mid z)p(z)$, aligning two models of the joint distribution.
-</details>
-
-<br>
-
-A Guassian VAE makes the following assumptons:
+A Guassian VAE assumes:
 * $$p_\theta(x\mid z) =\mathcal{N}(x;\,d(x),\sigma^2)\quad$$ with *decoder*  $$d$$ and fixed variance $$\sigma^2$$;
 * $$q_\phi(z\mid x)=\mathcal{N}(z;\,e(x),\Sigma_x)\quad$$ with *encoder* $$e$$ and learned variance $$\Sigma_x$$; and
 * $$p(z)\quad\ \ \ =\mathcal{N}(z;\,0,I)\quad$$ where $$z_i$$ are *independent* with $$p(z_i)=\mathcal{N}(z_i;0,1)$$
@@ -224,3 +217,4 @@ Conversely, decreasing β reduces the likelihood variance, mitigating the issue 
 [^kumarpoole]: [On Implicit Regularization in β-VAEs; Kumar \& Poole (ICML, 2020)](https://arxiv.org/pdf/2002.00041)
 [^locatello]: [Challenging Common Assumptions in the Unsupervised Learning of Disentangled Representations; Locatello et al. (ICML, 2019)](https://arxiv.org/pdf/1811.12359)
 [^khemakem]: [Variational Autoencoders and Nonlinear ICA: A Unifying Framework; Khemakhem et al. (AIStats, 2020)](https://proceedings.mlr.press/v108/khemakhem20a/khemakhem20a.pdf)
+[^ELBO]: Maximising the ELBO = _maximum-likelihood$$^{++}$$_:  Maximising the likelihood $$\int p(x)\log p_\theta(x)$$ minimises the KL divergence between the data and model distributions, but this is often intractible for a latent variable model. Maximising the ELBO minimises the KL divergences between $$p(x)q_\phi(z\mid x)$$ *and* $$p_\theta(x)p_\theta(z\mid x)\doteq p_\theta(x\mid z)p(z)$$, aligning two models of the joint distribution.
