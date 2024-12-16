@@ -33,18 +33,18 @@ github_username: carl-allen
 markdown: GFM
 # markdown: kramdown
 
-kramdown:
-  math_engine: math-jax
+###kramdown:
+###  math_engine: math-jax
 
-### theme: minimal-mistakes-jekyll 
+###### theme: minimal-mistakes-jekyll 
 theme: minima
 
-kramdown:
-  math_engine: mathjax
+###kramdown:
+###  math_engine: mathjax
 
-format:
-  gfm:
-    html-math-method: mathjax
+###format:
+###  gfm:
+###    html-math-method: mathjax
 
 gfm:
   html-math-method: mathjax    
