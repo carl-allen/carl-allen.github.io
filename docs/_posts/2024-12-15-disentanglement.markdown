@@ -82,8 +82,8 @@ $$\ell(\theta, \phi) \quad =\quad \int p(x) \int q_\phi(z\mid x)
 where the standard ELBO has $$\beta=1$$ and [$$\beta>1$$ is found to improve disentanglement][betaVAE].
 
 <details>
-  <summary><b>Maximising the ELBO = <i>maximum-likelihood$$^{++}$$</i></b>:</summary> 
-  Maximising the likelihood $$\int p(x)\log p_\theta(x)$$ minimises the KL divergence between the data and model distributions, but this is often intractible for a latent variable model. Maximising the ELBO minimises the KL divergences between $$p(x)q_\phi(z\mid x)$$ *and* $$p_\theta(x)p_\theta(z\mid x)\doteq p_\theta(x\mid z)p(z)$$, aligning two models of the joint distribution.
+  <summary><b>Maximising the ELBO = <i>maximum-likelihood$^{++}$</i></b>:</summary> 
+  Maximising the likelihood $\int p(x)\log p_\theta(x)$ minimises the KL divergence between the data and model distributions, but this is often intractible for a latent variable model. Maximising the ELBO minimises the KL divergences between $p(x)q_\phi(z\mid x)$ *and* $p_\theta(x)p_\theta(z\mid x)\doteq p_\theta(x\mid z)p(z)$, aligning two models of the joint distribution.
 </details>
 
 
