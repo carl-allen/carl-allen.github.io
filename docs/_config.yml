@@ -42,9 +42,9 @@ theme: minima
 ###kramdown:
 ###  math_engine: mathjax
 
-###format:
-###  gfm:
-###    html-math-method: mathjax
+format:
+  gfm:
+    html-math-method: webtex
 
 gfm:
   html-math-method: webtex    
