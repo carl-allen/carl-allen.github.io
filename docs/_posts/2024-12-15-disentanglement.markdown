@@ -23,7 +23,7 @@ While disentanglement is often associated with certain models whose popularity m
 
 <style>
 #left {
-   float:left;
+   float:right;
    width: 60%;
 }
 
@@ -36,7 +36,6 @@ While disentanglement is often associated with certain models whose popularity m
 <p align="center">
 
 <div id="left">
-  &nbsp;&nbsp;&nbsp;&nbsp;
   <img src="/assets/disentanglement/faces2.png" 
                   alt="faces" 
                   width="420" 
