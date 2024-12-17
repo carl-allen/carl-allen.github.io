@@ -231,7 +231,7 @@ This is not necessarily surprising in the linear case, since we know from the ou
 
 We now take an analogous approach for a general VAE ($$x=d(z)$$, $$d\in\mathcal{C}^2$$) with column-orthogonal decoder Jacobian. Note that the Jacobian and its factors, $$J_z=U_zS_zV_z^\top$$, may vary with $$z$$, however column-orthogonality implies $$V_z=I,\ \forall z\in \mathcal{Z}$$ and $$U_z$$, $$S_z$$ are continuous w.r.t. $$z$$ (since $$d\in\mathcal{C}^2$$). 
 
-As in the linear case, for a point $$z^*\in \mathcal{Z}$$, we define lines $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ passing through $$z^*$$ parallel to the standard basis (blue-dashed, axis-aligned), and their images under $$d$$, $$\mathcal{M}_d^{(i)}\subset\mathcal{M_d}$$, which are potentially curved sub-manifolds following (local) left singular vectors of $$J_{z^*}$$ (red-dashed lines).
+As in the linear case, for a point $$z^*\in \mathcal{Z}$$, we define lines $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ passing through $$z^*$$ parallel to the standard basis (blue dashed, axis-aligned), and their images under $$d$$, $$\mathcal{M}_d^{(i)}\subset\mathcal{M_d}$$, which are potentially curved sub-manifolds following (local) left singular vectors of $$J_{z^*}$$ (red dashed lines).
 
 We again consider $$x=d(z)$$ in the local $$U$$-basis (defined by columns of $$U_z$$) as $$x^{(U)}=U_z^\top x$$ and again have $$\tfrac{\partial x^{(U)}_i}{\partial z_j} =\{s_i \text{ if }i=j; 0 \text{ o/w}\}$$.
 
@@ -276,9 +276,9 @@ This work throws up many interesting questions, e.g.:
 * given this result is for continuous data domains, how does it translate to discrete data such as text?
 * how does this insight translate to other modelling paradigms, such as supervised, semi-supervised and self-supervised learning?
 
-If any of these or related questions are of interest and you would like to collaborate, please free to get in touch (by email, twitter or blue-sky).
+If any of these or related questions are of interest and you would like to collaborate, please free to get in touch (by email, twitter or bluesky).
 
-Lastly, we welcome any constructive feedback or discussion on this post on blue-sky (@carl-allen.bsky.social - I will pin a link in my profile).
+Lastly, we welcome any constructive feedback or discussion on this post on bluesky (@carl-allen.bsky.social - I will pin a link in my profile).
 
 Thanks for reading!
 
