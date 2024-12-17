@@ -224,7 +224,7 @@ This may not seem a surprise in the linear case since it is known from the outse
         width="420" 
         height="200" 
         style="display: block; margin: 0 auto"  />
-  <small>Illustration of non-linear decoder $d:\mathcal{X}\to\mathcal{Z}$. The latent Gaussian prior is mapped to a push-forward distribution in the data space over a non-linear manifold. </small>
+  <small>Figure 3. Illustration of non-linear decoder $d:\mathcal{X}\to\mathcal{Z}$. The latent Gaussian prior is mapped to a push-forward distribution in the data space over a non-linear manifold. </small>
 </p>
 
 
