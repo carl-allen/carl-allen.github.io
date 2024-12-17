@@ -23,18 +23,20 @@ While disentanglement is often associated with certain models whose popularity m
 
 <p align="center">
     <p float="left">
-        <img src="/assets/disentanglement/faces2.png" 
-                alt="faces" 
-                width="420" 
-                height="60"/>
-        <img src="/assets/disentanglement/numbers.png" 
-                alt="numbers" 
-                width="420" 
-                height="60"/>
-        <img src="/assets/disentanglement/frogs.png" 
-                alt="frogs" 
-                width="420" 
-                height="60"/>
+        <div class="parent">
+          <img src="/assets/disentanglement/faces2.png" 
+                  alt="faces" 
+                  width="420" 
+                  height="60"/>
+          <img src="/assets/disentanglement/numbers.png" 
+                  alt="numbers" 
+                  width="420" 
+                  height="60"/>
+          <img src="/assets/disentanglement/frogs.png" 
+                  alt="frogs" 
+                  width="420" 
+                  height="60"/>
+        </div>
         <img src="/assets/disentanglement/diffusion_church.png" 
                 alt="frogs" 
                 width="160" 
