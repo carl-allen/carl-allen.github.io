@@ -34,6 +34,7 @@ While disentanglement is often associated with certain models whose popularity m
 </style>
 
 <p align="center">
+  &nbsp;&nbsp;&nbsp;&nbsp;
 <div id="left">
 <img src="/assets/disentanglement/faces2.png" 
                   alt="faces" 
@@ -41,7 +42,7 @@ While disentanglement is often associated with certain models whose popularity m
                   height="60"/>
           <img src="/assets/disentanglement/numbers.png" 
                   alt="numbers" 
-                  width="425" 
+                  width="422" 
                   height="60"/>
           <img src="/assets/disentanglement/frogs.png" 
                   alt="frogs" 
