@@ -193,22 +193,22 @@ Since $D$ is the Jacobian of $d$, the latter expression is in fact a special cas
           width="440" 
           height="190" 
           style="display: block; margin: 0 auto"  />
-  <small>Illustration of linear decoder $d:\mathcal{X}\to\mathcal{Z}$. The latent Gaussian prior is mapped to a Gaussian distribution in the data space over a linear manifold. </small>
+  <small>Figure 2. Illustration of linear decoder $d:\mathcal{X}\to\mathcal{Z}$. The latent Gaussian prior is mapped to a Gaussian distribution in the data space over a linear manifold. </small>
 </p>
 
 
-We aim to understand how independent dimensions $$z_i\in\mathcal{Z}$$, and the probability density over them, pass through the decoder. For a given point $$z^*\in \mathcal{Z}$$, we: 
-* define lines $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ passing through $$z^*$$ parallel to each standard basis vector $$e_i$$ (blue dashed lines), and their images under $$d$$, $$\mathcal{M}_D^{(i)}\subset\mathcal{M_d}$$ (red dashed lines that follow $$D$$'s left singular vectors $$\mathbf{u}_i$$); and
-* consider $$x^{(U)}=U^\top x=U^\top Dz^*$$  (i.e. $x$ in the basis defined by columns of $$U$$), noting that: $$\tfrac{\partial x^{(U)}_i}{\partial z_j} =\{s_i \text{ if }i=j; 0 \text{ o/w}\}$$ (since $$\tfrac{dx}{dz} = \tfrac{dx}{dx^{(U)}}\tfrac{dx^{(U)}}{dz} = US$$ and $$\tfrac{dx}{dx^{(U)}} = U$$).
+The aim now is to understand how independent dimensions $$z_i\in\mathcal{Z}$$, and the probability density over them, pass through the decoder. For a given point $$z^*\in \mathcal{Z}$$, let: 
+* $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ be lines passing through $$z^*$$ parallel to each standard basis vector $$e_i$$ (blue dashed lines), and $$\mathcal{M}_D^{(i)}\subset\mathcal{M_d}$$  be their images under $$d$$ that follow $$D$$'s left singular vectors $$\mathbf{u}_i$$ (red dashed lines); and
+* $$x^{(U)}=U^\top x=U^\top Dz^*$$  be $x$ in the basis defined by columns of $$U$$
 
-By considering $$x$$ from this perspective (the "$$U$$-basis") we see that independent $$z_i$$ map to independent components $$x^{(U)}_i$$ since:
-1. each $$x^{(U)}_i$$ varies only with a distinct $z_i$ (from $$\tfrac{\partial x^{(U)}_i}{\partial z_j}$$ above) and so are *independent*;
+Crucially, the Jacobian of the mapping from $$z$$ to $$x^{(U)}$$ is simply a diagonal matrix $$S$$ (since $$\tfrac{dx}{dz} = \tfrac{dx}{dx^{(U)}}\tfrac{dx^{(U)}}{dz} = US$$ and $$\tfrac{dx}{dx^{(U)}} = U$$). It then follows that independent $$z_i$$ map to independent components $$x^{(U)}_i$$ since:
+1. each $$x^{(U)}_i$$ varies only with a distinct $$z_i$$ (from  $$\tfrac{\partial x^{(U)}_i}{\partial z_j} =\{s_i\doteq S_{i,i} \text{ if }i=j; 0 \text{ o/w}\}$$) and so are *independent*;
 2. the push-forward of $$d$$ restricted to $$\mathcal{Z^{(i)}}$$ has density $$p(x^{(U)}_i) = s_i^{-1}p(z_i)$$ over $$\mathcal{M}_D^{(i)}$$; and
-3. the full push-forward satisfies $$p(Dz) = \mid\!D\!\mid ^{-1}p(z) = \prod_i s_i^{-1}p(z_i) = \prod _ip(x^{(U)}_i)$$.
+3. the full push-forward distribution is given by $$p(Dz) = \mid\!D\!\mid ^{-1}p(z) = \prod_i s_i^{-1}p(z_i) = \prod _ip(x^{(U)}_i)$$.
 
-This shows that the push-forward distribution defined by the decoder factorises as a product of independent univariate distributions ($$p(x^{(U)}_i)$$), each corresponding to a distinct latent dimension $$z_i$$. Thus, if the data follows that generative process and itself factorises with unique factors (as determined by ground truth singular values of $$D$$, $$s_i$$), then the ELBO is maximised when independent components of the model distributions align with those of the data and so p(x) is **disentangled** as a product of *independent components* aligned with each latent dimension.
+This shows that the push-forward distribution defined by the decoder factorises as a product of independent univariate distributions ($$p(x^{(U)}_i)$$), which each correspond to a distinct latent dimension $$z_i$$. Thus, if the data follows that generative process and so factorises (with factors determined by singular value decomposition of ground truth $$D$$), then the ELBO is maximised when independent factors of the model ($$x^{(U)}_i$$) align with those of the data and so p(x) is **disentangled** as a product of *independent components* that align with latent dimensions.
 
-This is not necessarily surprising in the linear case, since we know from the outset that the push-forward distribution is Gaussian and so factorises as a product of univariate Gaussians. However, we did not use that knowledge or rely on the linearity of $$d$$ at any stage.
+This may not seem a surprise in the linear case since it is known from the outset that the push-forward distribution is Gaussian and so factorises as a product of univariate Gaussians. However, neither that fact nor the linearity of $$d$$ was used at any stage.
 
 <!-- From $$J_z =\tfrac{d x}{d z}=US, \tfrac{d x}{d u} = U$$, we have $$\tfrac{d u}{d z} =S$$, so $$\tfrac{\partial u_i}{\partial z_j} = \{s_i$$ if $$i= j$$, otherwise $$0\}$$ and each $$u_i$$ depends on a distinct independent r.v. so are *independent*.
 2. restricting $$D$$ to $$z_i\in \mathcal{Z}^{(i)}$$ and so $$u_i\in\mathcal{M_D^{(i)}}$$, $$p(u_i)= s_i^{-1}p(z_i)$$ (defined over $$\mathcal{M_D^{(i)}}$$)
