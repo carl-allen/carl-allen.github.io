@@ -23,12 +23,12 @@ While disentanglement is often associated with certain models whose popularity m
 
 <style>
 #left {
-   width: 60%;
+   width: 70%;
     float:left;
 }
 
 #rightAside {
-    width: 40%;
+    width: 30%;
     float:right;
 }
 </style>
