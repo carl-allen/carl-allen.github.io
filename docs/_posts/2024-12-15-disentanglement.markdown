@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Disentangling Disentanglement: How VAEs Learn Independent Components"
+title:      "Disentangling Disentanglement: how VAEs learn Independent Components"
 date:       2024-12-15 21:39:00 +0100
 author:     Carl Allen
 paper-link: https://arxiv.org/pdf/2410.22559
