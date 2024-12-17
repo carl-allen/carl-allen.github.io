@@ -23,12 +23,12 @@ While disentanglement is often associated with certain models whose popularity m
 
 <style>
 #left {
-   width: 70%;
+   width: 75%;
     float:left;
 }
 
 #rightAside {
-    width: 30%;
+    width: 25%;
     float:right;
 }
 </style>
@@ -42,7 +42,7 @@ While disentanglement is often associated with certain models whose popularity m
                   height="70"/>
           <img src="/assets/disentanglement/numbers.png" 
                   alt="numbers" 
-                  width="495" 
+                  width="492" 
                   height="70"/>
           <img src="/assets/disentanglement/frogs.png" 
                   alt="frogs" 
