@@ -230,16 +230,16 @@ This may not seem a surprise in the linear case since it is known from the outse
 
 We now take an analogous approach for a general VAE ($$x=d(z)$$, $$d\in\mathcal{C}^2$$) _with column-orthogonal decoder Jacobian_. The Jacobian and its factors, $$J_z=U_zS_zV_z^\top$$, may now vary with $$z$$, however column-orthogonality restricts $$V_z=I,\ \forall z\in \mathcal{Z}$$ and $$U_z$$, $$S_z$$ are continuous w.r.t. $$z$$ (from $$d\in\mathcal{C}^2$$ and [Papadopoulo & Lourakis (2006)](https://inria.hal.science/inria-00072686/file/RR-3961.pdf)). 
 
-As in the linear case, for a point $$z^*\in \mathcal{Z}$$, we can define lines $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ passing through $$z^*$$ parallel to the standard basis (blue dashed lines in Fig. 3), and their images under $$d$$, $$\mathcal{M}_d^{(i)}\subset\mathcal{M_d}$$, which are potentially curved sub-manifolds following (local) left singular vectors of $$J_{z^*}$$ (red dashed lines).
+As in the linear case, for any $$z^*\in \mathcal{Z}$$, we can define lines $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ passing through $$z^*$$ parallel to the standard basis (blue dashed lines in Fig. 3), and their images under $$d$$, $$\mathcal{M}_d^{(i)}\subset\mathcal{M_d}$$, which are potentially curved sub-manifolds following (local) left singular vectors of $$J_{z^*}$$ (red dashed lines).
 
-We again consider $$x=d(z)$$ in the local $$U$$-basis (defined by columns of $$U_z$$) as $$x^{(U)}=U_z^\top x$$ and again have $$\tfrac{\partial x^{(U)}_i}{\partial z_j} =\{s_i \text{ if }i=j; 0 \text{ o/w}\}$$.
+We again consider $$x=d(z)$$ in the local $$U$$-basis (defined by columns of $$U_z$$) as $$x^{(U)}=U_z^\top x$$ and have know that that the Jobian of the mapping from $$z$$ to $$U_z^\top x^{(U)}$$ is given by $$S_z$$.
 
-We claim that, as before, independent dimensions $$z_i\in\mathcal{Z}$$ flow through the decoder to become independent components $$x^{(U)}_i$$ since:
+As before, independent dimensions $$z_i\in\mathcal{Z}$$ flow through the decoder to become independent components $$x^{(U)}_i$$ since:
 1. $$\{x^{(U)}_i\}_i$$ are *independent* (by consideration of partial derivatives $$\tfrac{\partial x^{(U)}_i}{\partial z_j}$$);
 2. the push-forward of $$d$$ restricted to $$\mathcal{Z^{(i)}}$$ has density $$p(x^{(U)}_i) = s_i^{-1}p(z_i)$$ over $$\mathcal{M}_d^{(i)}$$; and
 3. the full push-forward satisfies $$p(d(z)) = \mid J_z\mid ^{-1}p(z) = \prod_i s_i^{-1}p(z_i) = \prod _ip(x^{(U)}_i)$$.
 
-Thus, following the same argument as in the linear case, we see that the distribution over the decoder manifold factorises as a product of independent univariate push-forward distributions ($$p(x^{(U)}_i)$$), each corresponding to a distinct latent dimension $$z_i$$. 
+Thus, by the same argument as in the linear case, the distribution over the decoder manifold factorises as a product of independent univariate push-forward distributions ($$p(x^{(U)}_i)$$), each corresponding to a distinct latent dimension $$z_i$$. 
 
 We now put everything together:
 * The ELBO is maximised if the model distribution fits the data distribution, so if we assume that the data distribution has independent factors by being generated under the considered model or otherwise, then the ELBO is maximised if the model distribution factorises similarly.
