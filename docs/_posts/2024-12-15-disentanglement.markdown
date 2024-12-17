@@ -17,7 +17,7 @@ categories: Theory
   </tr>
 </table>
 
-**Disentanglement** is an intriguing phenomenon observed in generative latent variable models, such as [_Variational Autoencoders_ (VAEs)][VAE] (our focus), [Generative Adversarial Networks (GANs)](https://www.youtube.com/watch?v=DbQNKdtoqUw) and [latent Diffusion models](https://openaccess.thecvf.com/content/CVPR2023/papers/Wu_Uncovering_the_Disentanglement_Capability_in_Text-to-Image_Diffusion_Models_CVPR_2023_paper.pdf). Although disentanglement has not been rigorously defined, it refers to when semantically meaningful factors of the data map to distinct dimensions in latent space. This allows, for example, images to be generated that vary in a specific feature (e.g. hair style, orientation) by changing a *single latent dimension* (see Figure 1). 
+**Disentanglement** is an intriguing phenomenon observed in generative latent variable models, such as [_Variational Autoencoders_ (VAEs)][VAE] (our focus), [Generative Adversarial Networks (GANs)](https://arxiv.org/pdf/1406.2661) and [latent Diffusion models](https://openaccess.thecvf.com/content/CVPR2023/papers/Wu_Uncovering_the_Disentanglement_Capability_in_Text-to-Image_Diffusion_Models_CVPR_2023_paper.pdf). Although disentanglement has not been rigorously defined, it refers to when semantically meaningful factors of the data map to distinct dimensions in latent space. This allows, for example, images to be generated that vary in a specific feature (e.g. hair style, orientation) by changing a *single latent dimension* (see Figure 1 and [this video that nicely describes disentanglement in GANs](https://www.youtube.com/watch?v=DbQNKdtoqUw)). 
 
 While disentanglement is often associated with certain models whose popularity may ebb and flow (e.g. VAEs, $\beta$-VAEs, GANs), we show that the phenomenon itself **relates to the latent structure of the data** and is more fundamental than any model that may expose it.
 
@@ -62,7 +62,7 @@ While disentanglement is often associated with certain models whose popularity m
 
 $$\bullet$$ **Motivation**: Disentanglement is particularly intriguing because models such as VAEs are not intentionally designed to achieve it, and it occurs even where it is deemed impossible.[^locatello]$$^,$$[^khemakem] Thus understanding disentanglement may offer new insights into how and what these models learn and revise our understanding on what is learnable. More broadly, the ability to separate out independent aspects of the data is relevant to many areas of machine learning and, by teasing apart its generative factors, may offer fundamental insights into the data itself. 
 
-Machine learning has made incredible break-throughs in recent years but our theoretical understanding lags notably behind, which may have serious implications as models transfer from academic labs to the public sphere. Thus, a fundamental motivation is to take steps towards unravelling the mystery of machine learning, hence we emphasise that the phenomenon of disentanglement is not specific to any model architecture, but looks through to the data itself and is likely to have broad relevance.
+Machine learning has made incredible breakthroughs in recent years but our theoretical understanding lags notably behind, which may have serious implications as models transfer from academic labs to the public sphere. Thus, a fundamental motivation is to take steps towards unravelling the mystery of machine learning, hence we emphasise that the phenomenon of disentanglement is not specific to any model architecture, but looks through to the data itself and is likely to have broad relevance.
 
 $$\bullet$$ **Approach**: Recent works suggest that disentanglement arises in VAEs because commonly used *diagonal posterior covariance matrices* promote *column-orthogonality in the decoder's Jacobian matrix*. On the empirical side, columns of the decoder Jacobian are shown to be more orthogonal in VAEs with diagonal covariance than those with full covariance or general auto-encoders;[^rolinek] while imposing such orthogonality directly is shown to induce disentanglement.[^kumarpoole] On the theoretical side, approximate relationships are derived between the posterior covariance and the decoder Jacobian.[^rolinek]$$^,$$[^kumarpoole] Building on this, [Allen (2024)][paper]: (A) clarifies the connection between diagonal covariance and column-orthogonality and (B) explains how that leads to disentanglement, ultimately **defining disentanglement as factorising the data distribution into *statistically independent components***.
 
@@ -272,7 +272,6 @@ This work throws up many interesting questions, e.g.:
 * can this be used to automatically identify independent factors in the latent space of other models, e.g. GANs?
 * given this result is for continuous data domains, how does it translate to discrete data such as text?
 * how does this insight translate to other modelling paradigms, such as supervised, semi-supervised and self-supervised learning?
-* etc ...
 
 If any of these or related questions are of interest and you would like to collaborate, please free to get in touch (by email, twitter or blue-sky).
 
