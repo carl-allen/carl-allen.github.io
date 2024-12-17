@@ -185,7 +185,7 @@ $$
 \end{equation}
 $$
 
-This can be seen as a special case of \eqref{eq:one}, thus the ELBO is maximised if $$\Sigma_x=M,\ \forall x\in\mathcal{X}$$, and using diagonal posteriors $$\Sigma_x$$ again implies $$V=I$$ (for SVD $$D=USV^\top$$). 
+This can be seen as a special case of \eqref{eq:one}, thus the ELBO is maximised when $$\Sigma_x=M,\ \forall x\in\mathcal{X}$$ and so for diagonal $$\Sigma_x$$ when $$V=I$$ (where $$D=USV^\top$$ is the SVD of the Jacobian of $d$). 
 
 <p align="center">
   <img src="/assets/disentanglement/linear.png" 
