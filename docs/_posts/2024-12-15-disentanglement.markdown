@@ -68,7 +68,6 @@ $$\bullet$$ **Problem set-up**: As in a VAE (or GAN), we assume that data $$x\in
 
 ---
 ---
-<br>
 
 **TL;DR**: 
 * Disentanglement provably occurs in the _linear_ case ($$p_\theta(x\mid z) = \mathcal{N}(x; Dz,\sigma^2I),\ D\in\mathbb{R}^{n\times m})$$ where analytic solutions are given by [probabilistic PCA (PPCA)][PPCA]. However, a VAE with diagonal posterior covariance finds a subset of PPCA's solutions in which latent dimensions $$z_i$$ *map to independent factors of variation* in the data distribution (disentanglement).
