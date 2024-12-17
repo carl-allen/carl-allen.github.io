@@ -228,7 +228,7 @@ This is not necessarily surprising in the linear case, since we know from the ou
 </p>
 
 
-We now take an analogous approach for a general VAE ($$x=d(z)$$, $$d\in\mathcal{C}^2$$) with column-orthogonal decoder Jacobian. Note that the Jacobian and its factors, $$J_z=U_zS_zV_z^\top$$, may vary with $$z$$, however column-orthogonality implies $$V_z=I,\ \forall z\in \mathcal{Z}$$ and $$U_z$$, $$S_z$$ are continuous w.r.t. $$z$$ (since $$d\in\mathcal{C}^2$$). 
+We now take an analogous approach for a general VAE ($$x=d(z)$$, $$d\in\mathcal{C}^2$$) with column-orthogonal decoder Jacobian. Note that the Jacobian and its factors, $$J_z=U_zS_zV_z^\top$$, may vary with $$z$$, however column-orthogonality implies $$V_z=I,\ \forall z\in \mathcal{Z}$$ and $$U_z$$, $$S_z$$ are continuous w.r.t. $$z$$ (from $$d\in\mathcal{C}^2$$ and [Papadopoulo & Lourakis (2006)](https://inria.hal.science/inria-00072686/file/RR-3961.pdf)). 
 
 As in the linear case, for a point $$z^*\in \mathcal{Z}$$, we define lines $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ passing through $$z^*$$ parallel to the standard basis (blue dashed, axis-aligned), and their images under $$d$$, $$\mathcal{M}_d^{(i)}\subset\mathcal{M_d}$$, which are potentially curved sub-manifolds following (local) left singular vectors of $$J_{z^*}$$ (red dashed lines).
 
@@ -239,7 +239,12 @@ We claim that, as before, independent dimensions $$z_i\in\mathcal{Z}$$ flow thro
 2. the push-forward of $$d$$ restricted to $$\mathcal{Z^{(i)}}$$ has density $$p(x^{(U)}_i) = s_i^{-1}p(z_i)$$ over $$\mathcal{M}_d^{(i)}$$; and
 3. the full push-forward satisfies $$p(d(z)) = \mid J_z\mid ^{-1}p(z) = \prod_i s_i^{-1}p(z_i) = \prod _ip(x^{(U)}_i)$$.
 
-Thus, following the same argument as in the linear case, we see that the distribution over the decoder manifold factorises as a product of independent univariate push-forward distributions ($$p(x^{(U)}_i)$$), each corresponding to a distinct latent dimension $$z_i$$. If the true data distribution follows this generative process and so factorises, then the ELBO is maximised when independent components under the model fit to those of the data, i.e. when **$$p(x)$$ is disentangled as a product of *independent components* aligned with each latent dimension**. (Identifiability is subject to uniqueness of independent factor distributions, analogous to the linear case).
+Thus, following the same argument as in the linear case, we see that the distribution over the decoder manifold factorises as a product of independent univariate push-forward distributions ($$p(x^{(U)}_i)$$), each corresponding to a distinct latent dimension $$z_i$$. 
+
+We now put everything together:
+* The ELBO is maximised if the model distribution fits the data distribution, so if we assume that the data distribution has independent factors by being generated under the considered model or otherwise, then the ELBO is maximised if the model distribution factorises similarly.
+* We know that diagonal covariance matrices encourage the decoder's Jacobian to be (approximately) column-orthgonal (part A) and, where so, the push-foward distribution over the model manifold factorises into components that align with latent dimensions (part B).
+* Thus the ELBO is maximised if independent components of the data distribution align with those the model aligned with latent dimensions, i.e. the data distribution **factorises as a product of independent components aligned with latent dimensions**, i.e. is **disentangled**. (Identifiability of components is subject to uniqueness of their independent distributions, analogous to the linear case).
 
 > **Key insight**: the above results hinge on the SVD of the Jacobian $$J_z = U_zS_zV_z^\top$$. By differentiability of $$d$$, the bases defined by columns of $$U_z$$ and $$V_z$$ (in $$\mathcal{X}$$ and $$\mathcal{Z}$$ resp.) are continuous and basis vectors form continuous sub-manifolds in each domain. Traversing a submanifold in one domain corresponds to traversing a corresponding submanifold in the other. The diagonal matrix $$S_z$$ defines the Jacobian of the mapping between them (i.e. between $$x$$ considered in the $$U$$-basis and $$z$$ considered in the $$V$$ basis) and so separably maps probability density from each submanifold in $$\mathcal{Z}$$ to its counterpart in $$\mathcal{X}$$. Hence independent components in $$\mathcal{Z}$$ map to independent components in $$\mathcal{X}$$.
 
