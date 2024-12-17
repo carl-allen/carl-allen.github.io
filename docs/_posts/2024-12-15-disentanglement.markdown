@@ -95,7 +95,7 @@ $$\bullet$$ **Problem set-up**: As in a VAE (or GAN), we assume that data $$x\in
 * Disentanglement provably occurs in the _linear_ case, $$p_\theta(x\mid z) = \mathcal{N}(x; Dz,\sigma^2I),\ D\in\mathbb{R}^{n\times m}$$, corresponding to [probabilistic PCA (PPCA)][PPCA]. While solutions are known analytically, a VAE with diagonal posterior covariance finds a specific subset of those in which **latent dimensions $$z_i$$ map to independent factors of variation** in the data distribution, and so disentangles $$p(x)$$.
 * Surprisingly, the rationale behind the linear case (described below) extends to non-linear VAEs where diagonal posterior covariances encourage columns of the decoder's Jacobian to be orthogonal, meaning that independent latent variables pass through the decoder separably and emerge in $$\mathcal{X}$$ over statistically independent sub-manifolds of the full decoder-defined manifold.
 * In other words, the decoder maps independent factors of $p(z)$ to independent components that factorise the push-forward distribution over the manifold.
-* Since a VAE's objective is maximised if the model distribution matches that of the data, if the data distribution factorises (e.g. by being generated under that model) then independent components of the data must fit to independent components of the model that correspond to distinct latent variables, disentangling $$p(x)$$.
+* Since a VAE's objective is maximised if the model distribution matches that of the data, if the data distribution factorises (e.g. if generated under that model for some particular ground truth parameters) then independent components of the data must fit to independent components of the model that correspond to distinct latent variables, disentangling $$p(x)$$.
 
 ---
 ---
