@@ -201,8 +201,8 @@ The aim now is to understand how independent dimensions $$z_i\in\mathcal{Z}$$, a
 * $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ be lines passing through $$z^*$$ parallel to each standard basis vector $$e_i$$ (blue dashed lines in Fig. 2), and $$\mathcal{M}_D^{(i)}\subset\mathcal{M_d}$$  be their images under $$d$$ that follow $$D$$'s left singular vectors $$\mathbf{u}_i$$ (red dashed lines); and
 * $$x^{(U)}=U^\top x=U^\top Dz^*$$  be $x$ in the basis defined by columns of $$U$$
 
-Crucially, the Jacobian of the mapping from $$z$$ to $$x^{(U)}$$ is simply a diagonal matrix $$S$$ (since $$\tfrac{dx}{dz} = \tfrac{dx}{dx^{(U)}}\tfrac{dx^{(U)}}{dz} = US$$ and $$\tfrac{dx}{dx^{(U)}} = U$$). It then follows that independent $$z_i$$ map to independent components $$x^{(U)}_i$$ since:
-1. each $$x^{(U)}_i$$ varies only with a distinct $$z_i$$ (from  $$\tfrac{\partial x^{(U)}_i}{\partial z_j} =\{s_i\doteq S_{i,i} \text{ if }i=j; 0 \text{ o/w}\}$$) and so are *independent*;
+Crucially, the Jacobian of the mapping from $$z$$ to $$x^{(U)}$$ is a diagonal matrix $$S$$, that is $$\tfrac{\partial x^{(U)}_i}{\partial z_j} =\{s_i\doteq S_{i,i} \text{ if }i=j; 0 \text{ o/w}\}$$. It then follows that independent $$z_i$$ map to independent components $$x^{(U)}_i$$ since:
+1. each $$x^{(U)}_i$$ varies only with a distinct $$z_i$$ by considering  $$\tfrac{\partial x^{(U)}_i}{\partial z_j}$$ and so are *independent*;
 2. the push-forward of $$d$$ restricted to $$\mathcal{Z^{(i)}}$$ has density $$p(x^{(U)}_i) = s_i^{-1}p(z_i)$$ over $$\mathcal{M}_D^{(i)}$$; and
 3. the full push-forward distribution is given by $$p(Dz) = \mid\!D\!\mid ^{-1}p(z) = \prod_i s_i^{-1}p(z_i) = \prod _ip(x^{(U)}_i)$$.
 
