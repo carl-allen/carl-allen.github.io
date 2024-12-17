@@ -21,6 +21,41 @@ categories: Theory
 
 While disentanglement is often associated with certain models whose popularity may ebb and flow (e.g. VAEs, $\beta$-VAEs, GANs), we show that the phenomenon itself **relates to the latent structure of the data** and is more fundamental than any model that may expose it.
 
+<style>
+#left
+{
+float:left;
+ width: 32%;
+}
+#leftTop {
+    background-color: green;
+    color: silver;
+    width: 100%;
+    height: 110px;
+}
+
+#leftBottom {
+    background-color: red;
+    color: yellow;
+    width: 100%;
+    height: 540px;
+}
+
+#rightAside {
+    background-color: blue;
+    color: pink;
+    width: 60%;
+    height: 650px;
+    float:left;;
+}
+</style>
+<div id="left">
+<div id="leftTop"></div>
+<div id="leftBottom"></div>
+</div>
+<div id="rightAside"></div>
+
+
 <table>
   <tr>
     <td><img src="/assets/disentanglement/faces2.png" 
