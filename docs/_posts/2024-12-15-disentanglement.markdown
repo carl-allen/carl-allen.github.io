@@ -13,7 +13,7 @@ categories: Theory
 
 <table>
   <tr>
-    <th>This post summarises <a href="[url](<https://arxiv.org/pdf/2410.22559>)">Unpicking Data at the Seams: VAEs, Disentanglement and Independent Components (Allen, 2024)</a>, which explains <b>why disentanglement arises in generative latent variable models</b>. </th>
+    <th>This post [summarises](https://arxiv.org/pdf/2410.22559) <a href="[url](<https://arxiv.org/pdf/2410.22559>)">Unpicking Data at the Seams: VAEs, Disentanglement and Independent Components (Allen, 2024)</a>, which explains <b>why disentanglement arises in generative latent variable models</b>. </th>
   </tr>
 </table>
 
