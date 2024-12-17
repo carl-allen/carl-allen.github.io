@@ -198,7 +198,7 @@ Since $D$ is the Jacobian of $d$, the latter expression is in fact a special cas
 
 
 The aim now is to understand how independent dimensions $$z_i\in\mathcal{Z}$$, and the probability density over them, pass through the decoder. For a given point $$z^*\in \mathcal{Z}$$, let: 
-* $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ be lines passing through $$z^*$$ parallel to each standard basis vector $$e_i$$ (blue dashed lines), and $$\mathcal{M}_D^{(i)}\subset\mathcal{M_d}$$  be their images under $$d$$ that follow $$D$$'s left singular vectors $$\mathbf{u}_i$$ (red dashed lines); and
+* $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ be lines passing through $$z^*$$ parallel to each standard basis vector $$e_i$$ (blue dashed lines in Fig. 2), and $$\mathcal{M}_D^{(i)}\subset\mathcal{M_d}$$  be their images under $$d$$ that follow $$D$$'s left singular vectors $$\mathbf{u}_i$$ (red dashed lines); and
 * $$x^{(U)}=U^\top x=U^\top Dz^*$$  be $x$ in the basis defined by columns of $$U$$
 
 Crucially, the Jacobian of the mapping from $$z$$ to $$x^{(U)}$$ is simply a diagonal matrix $$S$$ (since $$\tfrac{dx}{dz} = \tfrac{dx}{dx^{(U)}}\tfrac{dx^{(U)}}{dz} = US$$ and $$\tfrac{dx}{dx^{(U)}} = U$$). It then follows that independent $$z_i$$ map to independent components $$x^{(U)}_i$$ since:
@@ -230,7 +230,7 @@ This may not seem a surprise in the linear case since it is known from the outse
 
 We now take an analogous approach for a general VAE ($$x=d(z)$$, $$d\in\mathcal{C}^2$$) _with column-orthogonal decoder Jacobian_. The Jacobian and its factors, $$J_z=U_zS_zV_z^\top$$, may now vary with $$z$$, however column-orthogonality restricts $$V_z=I,\ \forall z\in \mathcal{Z}$$ and $$U_z$$, $$S_z$$ are continuous w.r.t. $$z$$ (from $$d\in\mathcal{C}^2$$ and [Papadopoulo & Lourakis (2006)](https://inria.hal.science/inria-00072686/file/RR-3961.pdf)). 
 
-As in the linear case, for a point $$z^*\in \mathcal{Z}$$, we can define lines $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ passing through $$z^*$$ parallel to the standard basis (blue dashed lines), and their images under $$d$$, $$\mathcal{M}_d^{(i)}\subset\mathcal{M_d}$$, which are potentially curved sub-manifolds following (local) left singular vectors of $$J_{z^*}$$ (red dashed lines).
+As in the linear case, for a point $$z^*\in \mathcal{Z}$$, we can define lines $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ passing through $$z^*$$ parallel to the standard basis (blue dashed lines in Fig. 3), and their images under $$d$$, $$\mathcal{M}_d^{(i)}\subset\mathcal{M_d}$$, which are potentially curved sub-manifolds following (local) left singular vectors of $$J_{z^*}$$ (red dashed lines).
 
 We again consider $$x=d(z)$$ in the local $$U$$-basis (defined by columns of $$U_z$$) as $$x^{(U)}=U_z^\top x$$ and again have $$\tfrac{\partial x^{(U)}_i}{\partial z_j} =\{s_i \text{ if }i=j; 0 \text{ o/w}\}$$.
 
