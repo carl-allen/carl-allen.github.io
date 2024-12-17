@@ -41,7 +41,7 @@ While disentanglement is often associated with certain models whose popularity m
                   height="60"/>
           <img src="/assets/disentanglement/numbers.png" 
                   alt="numbers" 
-                  width="420" 
+                  width="425" 
                   height="60"/>
           <img src="/assets/disentanglement/frogs.png" 
                   alt="frogs" 
