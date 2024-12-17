@@ -22,15 +22,13 @@ categories: Theory
 While disentanglement is often associated with certain models whose popularity may ebb and flow (e.g. VAEs, $\beta$-VAEs, GANs), we show that the phenomenon itself **relates to the latent structure of the data** and is more fundamental than any model that may expose it.
 
 <style>
-#left
-{
-float:left;
- width: 60%;
+#left {
+   float:left;
+   width: 60%;
 }
 
 #rightAside {
-    width: 60%;
-    height: 650px;
+    width: 40%;
     float:left;;
 }
 </style>
