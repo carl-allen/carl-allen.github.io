@@ -3,7 +3,6 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: home
-title:  "About me"
 ---
 
 I am a [Laplace Junior Chair](https://data-ens.github.io/jobs/) in Machine Learning at École Normale Supérieure, Paris in the group of Stéphane Mallat, Giulio Biroli and Garbiele Peyré. I was previously a postdoctoral fellow at [ETH Zurich](https://ai.ethz.ch/) and finished my PhD in Machine Learning in 2021 at the [University of Edinburgh](https://www.ed.ac.uk/informatics), supervised by Profs [Tim 
