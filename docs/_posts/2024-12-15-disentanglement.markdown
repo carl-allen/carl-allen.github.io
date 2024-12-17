@@ -185,7 +185,7 @@ $$
 \end{equation}
 $$
 
-Since $D$ is the Jacobian of $d$, the second expression is a special case of \eqref{eq:one}. Thus the ELBO is maximised when $$\Sigma_x=M,\ \forall x\in\mathcal{X}$$ and so, for diagonal $$\Sigma_x$$, when $$V=I$$ (where $$D=USV^\top$$ is the SVD). 
+Since $D$ is the Jacobian of $d$, the latter expression is in fact a special case of \eqref{eq:one}. Hence if $$D=USV^\top$$ is the SVD, the ELBO is maximised when $$\Sigma_x=M,\ \forall x\in\mathcal{X}$$ and so, for diagonal $$\Sigma_x$$, when $$V=I$$. 
 
 <p align="center">
   <img src="/assets/disentanglement/linear.png" 
