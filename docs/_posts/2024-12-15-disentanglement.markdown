@@ -271,7 +271,7 @@ We hope this post provides intuitive insight into how a seemingly innocuous desi
 This work throws up many interesting questions, e.g.:
 * if the VAE objective aims to disentangle, why is disentanglement not observed more reliably, e.g. as observed by [Locatello et al. (2019)](https://arxiv.org/pdf/1811.12359)?
 * how does this finding fit with VAE extensions that enhance entanglement, such as [FactorVAE](https://arxiv.org/abs/1802.05983) and [TC-VAE](https://arxiv.org/abs/1802.04942)?
-* can this be used to automatically identify independent factors in the latent space of other models, e.g. GANs?
+* can this be used to automatically identify independent factors in the latent space of other models, e.g. GANs and latent diffusion models?
 * given this result is for continuous data domains, how does it translate to discrete data such as text?
 * how does this insight translate to other modelling paradigms, such as supervised, semi-supervised and self-supervised learning?
 
