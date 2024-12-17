@@ -137,7 +137,7 @@ $$
 \begin{equation}
   \Sigma_x 
     \ \ \overset{O\&A}{=}\ \ I - \mathbb{E}_{q(z\mid x)}[\tfrac{\partial^2\log p_\theta(x\mid z)}{\partial z_i\partial z_j}]
-    \ \ \approx\ \ I + \tfrac{1}{\beta\sigma^2}J_z^\top J_z\ ,
+    \ \ \approx\ \ I + \mathbb{E}_{q(z\mid x)}[\tfrac{1}{\beta\sigma^2}J_z^\top J_z]\ ,
   \tag{1}\label{eq:one}
 \end{equation}
 $$
