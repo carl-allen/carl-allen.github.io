@@ -13,7 +13,7 @@ categories: Theory
 
 
 <p align="center">
-  <img src="/assets/disentanglement/banner.jpeg" 
+  <img src="/assets/disentanglement/banner.jpg" 
         alt="woooh" 
         width="100%" 
         height="100" 
