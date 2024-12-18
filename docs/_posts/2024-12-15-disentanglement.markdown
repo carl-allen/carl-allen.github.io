@@ -240,7 +240,7 @@ Considering $$x=d(z)$$ in the local $$U$$-basis (i.e. columns of $$U_z$$), denot
 
 Thus, by the same argument as in the linear case, the distribution over the decoder manifold factorises as a product of independent univariate push-forward distributions $$p(x^{(U)}_i)$$, each corresponding to a distinct latent dimension $$z_i$$. 
 
-We can now put everything together:
+Putting everything together:
 * The ELBO is maximised if the model distribution fits the data distribution, so assuming that the data distribution has independent factors (by being generated under the considered model or otherwise) the model distribution must factorise similarly.
 * From part A, diagonal covariance matrices encourage the decoder's Jacobian to be (approximately) column-orthgonal and, where so, the push-foward distribution over the model manifold factorises into components aligned with latent dimensions (from part B).
 * Thus the ELBO is maximised if independent components of the data distribution align with those of the model and those of the model align with latent dimensions, thus the VAE **identifies independent components that factorise the data distribution and aligns them with latent dimensions**, defining **disentanglement**.
