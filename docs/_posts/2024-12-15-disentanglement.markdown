@@ -102,7 +102,7 @@ $$\bullet$$ **Problem set-up**: As in a VAE (or GAN), we assume that data $$x\in
 
 **TL;DR**: 
 1. Disentanglement provably occurs in the _linear_ case, $$p_\theta(x\mid z) = \mathcal{N}(x; Dz,\sigma^2I),\ D\in\mathbb{R}^{n\times m}$$, corresponding to [probabilistic PCA (PPCA)][PPCA]. Of the infinite set of known solutions, a VAE with diagonal posterior covariance finds only those in which latent dimensions $$z_i$$ map to independent factors of variation in the data distribution, which defines _disentanglement_.
-2. Surprisingly, the rationale for the linear case (described later in this post) extends to non-linear VAEs with diagonal posterior covariance. The latter property encourages columns of the decoder's Jacobian to be (approximately) orthogonal, which in turn means independent latent variables $$z_i$$ pass through the decoder and emerge (in $$\mathcal{X}$$) as statistically independent components that factorise the full push-forward distrubtion over the decoder-defined manifold.
+2. Surprisingly, the rationale for the linear case (described later in this post) extends to non-linear VAEs with diagonal posterior covariance. The latter property encourages columns of the decoder's Jacobian to be (approximately) orthogonal, which in turn means independent latent variables $$z_i$$ pass through the decoder and emerge (in $$\mathcal{X}$$) as statistically independent components that factorise the full push-forward distribution over the decoder-defined manifold.
    * i.e. diagonal covariances cause the decoder to map independent factors in the latent space to independent components in the data space.
 3. A VAE's objective is maximised if the model distribution matches that of the data, hence if the data distribution factorises into independent components then the model distribution must similarly factorise. So independent factors of the data align with independent factors of the model, which (approximately) align with latent variables $$z_i$$ (from 2.) and so independent factors of $$p(x)$$ map to distinct latent variables of the model, i.e. $$p(x)$$ is _disentangled_.
 
@@ -247,7 +247,7 @@ Thus, by the same argument as in the linear case, the distribution over the deco
 
 Putting everything together:
 * The ELBO is maximised if the model distribution fits the data distribution, so assuming that the data distribution has independent factors (by being generated under the considered model or otherwise) the model distribution must factorise similarly.
-* From part A, diagonal covariance matrices encourage the decoder's Jacobian to be (approximately) column-orthgonal and, where so, the push-foward distribution over the model manifold factorises into components aligned with latent dimensions (from part B).
+* From part A, diagonal covariance matrices encourage the decoder's Jacobian to be (approximately) column-orthogonal and, where so, the push-forward distribution over the model manifold factorises into components aligned with latent dimensions (from part B).
 * Thus the ELBO is maximised if independent components of the data distribution align with those of the model and if those of the model align with latent dimensions, thus the VAE **aligns independent components that factorise the data distribution with latent dimensions**, which defines *disentanglement*.
    * (Identifiability depends on uniqueness of independent component distributions, analogous to uniqueness of singular values in the linear case).
 
@@ -296,7 +296,7 @@ Thanks for reading! We welcome any constructive feedback or discussion on this p
 [betaVAE]: https://openreview.net/forum?id=Sy2fzU9gl
 [PPCA]: https://academic.oup.com/jrsssb/article-abstract/61/3/611/7083217
 
-[^notation]: Note that we use slightly different notation to the [orginal paper][paper].
+[^notation]: Note that we use slightly different notation to the [original paper][paper].
 [^suggested]: As previously suggested more additional approximation steps and assumptions.[^rolinek]$$^,$$[^kumarpoole]
 [^conditions]: When second derivatives of the decoder are small almost everywhere, e.g. as in ReLU networks ([see Abhishek & Kumar, 2020](https://arxiv.org/pdf/2002.00041)).
 [^rolinek]: [Variational Autoencoders Pursue PCA Directions (by Accident); Rolinek et al. (2019)](https://arxiv.org/pdf/1812.06775)
