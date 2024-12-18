@@ -15,7 +15,7 @@ categories: Theory
 <p align="center">
   <img src="/assets/disentanglement/banner.jpeg" 
         alt="woooh" 
-        width="500" 
+        width="100%" 
         height="100" 
         style="display: block; margin: 0 auto"  />
 </p>
