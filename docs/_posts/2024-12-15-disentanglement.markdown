@@ -233,12 +233,12 @@ We now take an analogous approach for a general VAE ($$x=d(z)$$, $$d\in\mathcal{
 
 As in the linear case, for any $$z^*\in \mathcal{Z}$$, we can define lines $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ passing through $$z^*$$ parallel to the standard basis (blue dashed lines in Fig. 3), and their images under $$d$$, $$\mathcal{M}_d^{(i)}\subset\mathcal{M_d}$$, which are potentially curved sub-manifolds following (local) left singular vectors of $$J_{z^*}$$ (red dashed lines).
 
-Considering $$x=d(z)$$ in the local $$U$$-basis (i.e. columns of $$U_z$$), denoted $$x^{(U)}=U_z^\top x$$, the Jacobian of the map from $$z$$ to $$U_z^\top x^{(U)}$$ is again _diagonal_ $$S_z$$. Hence independent $$z_i\in\mathcal{Z}$$ map to independent components $$x^{(U)}_i$$ as in the linear case:
+Considering $$x=d(z)$$ in the local $$U$$-basis (i.e. columns of $$U_z$$), denoted $$x^{(U)}=U_z^\top x$$, the Jacobian of the map from $$z$$ to $$U_z^\top x^{(U)}$$ is again _diagonal_ $$S_z$$. Hence,  as in the linear case, independent $$z_i\in\mathcal{Z}$$ map to independent components $$x^{(U)}_i$$ and:
 1. $$\{x^{(U)}_i\}_i$$ are *independent* (by consideration of partial derivatives $$\tfrac{\partial x^{(U)}_i}{\partial z_j}$$);
 2. the push-forward of $$d$$ restricted to $$\mathcal{Z^{(i)}}$$ has density $$p(x^{(U)}_i) = \mid\! s_i\!\mid^{-1}p(z_i)$$ over $$\mathcal{M}_d^{(i)}$$; and
 3. the full push-forward satisfies $$p(d(z)) = \mid J_z\mid ^{-1}p(z) = \prod_i \mid\! s_i\!\mid^{-1}p(z_i) = \prod _ip(x^{(U)}_i)$$.
 
-Thus, by the same argument as in the linear case, the distribution over the decoder manifold factorises as a product of independent univariate push-forward distributions ($$p(x^{(U)}_i)$$), each corresponding to a distinct latent dimension $$z_i$$. 
+Thus, by the same argument as in the linear case, the distribution over the decoder manifold factorises as a product of independent univariate push-forward distributions $$p(x^{(U)}_i)$$, each corresponding to a distinct latent dimension $$z_i$$. 
 
 We can now put everything together:
 * The ELBO is maximised if the model distribution fits the data distribution, so assuming that the data distribution has independent factors (by being generated under the considered model or otherwise) the model distribution must factorise similarly.
