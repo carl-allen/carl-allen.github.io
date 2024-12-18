@@ -93,7 +93,7 @@ $$\bullet$$ **Problem set-up**: As in a VAE (or GAN), we assume that data $$x\in
 
 **TL;DR**: 
 1. Disentanglement provably occurs in the _linear_ case, $$p_\theta(x\mid z) = \mathcal{N}(x; Dz,\sigma^2I),\ D\in\mathbb{R}^{n\times m}$$, corresponding to [probabilistic PCA (PPCA)][PPCA]. Of the infinite set of known solutions, a VAE with diagonal posterior covariance finds only those in which latent dimensions $$z_i$$ map to independent factors of variation in the data distribution, i.e. where $$p(x)$$ is  _disentangled_.
-2. Somewhat surprisingly, the rationale for the linear case (described later in this post) extends to non-linear VAEs with diagonal posterior covariance. The latter property encourages columns of the decoder's Jacobian to be (approximately) orthogonal, which in turn means independent latent variables $$z_i$$ pass through the decoder and emerge (in $$\mathcal{X}$$) as statistically independent components that factorise the full push-forward distrubtion over the decoder-defined manifold.
+2. Surprisingly, the rationale for the linear case (described later in this post) extends to non-linear VAEs with diagonal posterior covariance. The latter property encourages columns of the decoder's Jacobian to be (approximately) orthogonal, which in turn means independent latent variables $$z_i$$ pass through the decoder and emerge (in $$\mathcal{X}$$) as statistically independent components that factorise the full push-forward distrubtion over the decoder-defined manifold.
    * i.e. diagonal covariances cause the decoder to map independent factors in the latent space to independent components in the data space.
 3. A VAE's objective is maximised if the model distribution matches that of the data, hence if the data distribution factorises into independent components then the model distribution must similarly factorise. But, from 2, independent factors of the model (approximately) align with latent variables $$z_i$$ and so independent factors of $$p(x)$$ map through to distinct latent variables of the model, i.e. $$p(x)$$ is _disentangled_.
 
@@ -126,10 +126,14 @@ where the ELBO has $$\beta=1$$ and [$$\beta>1$$ is found to improve disentanglem
 * $$q_\phi(z\mid x)=\mathcal{N}(z;\,e(x),\Sigma_x)\quad$$ with *encoder* $$e$$ and learned variance $$\Sigma_x$$; and
 * $$p(z)\quad\ \ \ =\mathcal{N}(z;\,0,I)\quad$$ where $$z_i$$ are *independent* with $$p(z_i)=\mathcal{N}(z_i;0,1)$$.
 
-> **Maximising the ELBO = _maximum-likelihood$$^{++}$$_**:  Maximising the likelihood $$\int p(x)\log p_\theta(x)$$ minimises the KL divergence between the data and model distributions, but this is often intractable for a latent variable model. Maximising the ELBO minimises the KL divergences between $$p(x)q_\phi(z\mid x)$$ *and* $$p_\theta(x)p_\theta(z\mid x)\doteq p_\theta(x\mid z)p(z)$$, aligning two models of the joint distribution.
+<details><summary>**Maximising the ELBO = _maximum-likelihood$$^{++}$$_**:</summary>
+
+>   Maximising the likelihood $$\int p(x)\log p_\theta(x)$$ minimises the KL divergence between the data and model distributions, but this is often intractable for a latent variable model. Maximising the ELBO minimises the KL divergences between $$p(x)q_\phi(z\mid x)$$ *and* $$p_\theta(x)p_\theta(z\mid x)\doteq p_\theta(x\mid z)p(z)$$, aligning two models of the joint distribution.
 > Note:
 > * the VAE decoder $$d$$ maps latent variables $$z\in\mathcal{Z}$$ to means $$\mu_z=\mathbb{E}[x\mid z]\in \mathcal{X}$$
 > * if $$J_z$$ denotes $$d$$'s Jacobian evaluated at $$z$$, then $$J_{i,j} = \tfrac{\partial d(z)_i}{\partial z_j}$$ defines how a perturbation in the latent space (in direction $$z_j$$) translates to variation in the data space (in direction $$x_i$$).
+
+</details>
 
 It is known that the ELBO is optimised when $$\Sigma_x$$ relates to the Hessian of $$\log p_\theta(x\mid z)$$ ([Opper & Archambeau](http://www0.cs.ucl.ac.uk/staff/c.archambeau/publ/neco_mo09_web.pdf)), and so if the decoder's second derivatives are small almost everywhere, e.g. as in a ReLU network [(see Abhishek & Kumar, 2020)](https://arxiv.org/pdf/2002.00041), when:
 
