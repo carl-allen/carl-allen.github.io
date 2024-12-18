@@ -143,7 +143,7 @@ $$
 \end{equation}
 $$
 
-For this to hold with diagonal $$\Sigma_x$$, **columns of $$J_z$$ must be (approximately) orthogonal**, $$\forall z$$ (as suggested previously by different arguments[^rolinek]$$^,$$[^kumarpoole]). If $$J_z=U_zS_zV_z^\top$$ is the singular value decomposition (SVD), then $$J_z$$ is column-orthgonal $$\quad$$ _iff_ $$\quad J_z^\top J_z = V_zS_z^2V_z^\top$$ is diagonal $$\quad$$  _iff_ $$\quad V_z=I$$. Hence diagonal covariances mean that perturbations in latent space in standard basis vectors $$z_i$$ (right singular vectors of $J_z$) correspond to perturbations in data space in directions $$\mathbf{u}_i$$ (column $$i$$ of $$U_z$$, left singular vectors of $$J_z$$), with no effect in any other $$\mathbf{u}_{j\ne i}$$. Note that this makes axis-aligned directions in the latent space *special* (for want of a better word), breaking the rotational symmetry suggested by the Gaussian prior.
+For this to hold with diagonal $$\Sigma_x$$, **columns of $$J_z$$ must be (approximately) orthogonal**, $$\forall z$$.[^suggested] If $$J_z=U_zS_zV_z^\top$$ is the singular value decomposition (SVD), then $$J_z$$ is column-orthgonal $$\quad$$ _iff_ $$\quad J_z^\top J_z = V_zS_z^2V_z^\top$$ is diagonal $$\quad$$  _iff_ $$\quad V_z=I$$. Hence diagonal covariances mean that perturbations in latent space in standard basis vectors $$z_i$$ (right singular vectors of $J_z$) correspond to perturbations in data space in directions $$\mathbf{u}_i$$ (column $$i$$ of $$U_z$$, left singular vectors of $$J_z$$), with no effect in any other $$\mathbf{u}_{j\ne i}$$. Note that this makes axis-aligned directions in the latent space *special* (for want of a better word), breaking the rotational symmetry suggested by the Gaussian prior.
 
 
 > **Take-away**: the ELBO is maximised as approximate posterior covariances $$\Sigma_x$$ tend to optimal posterior covariances defined by derivatives of $$\log p_\theta(x\mid z)$$. Diagonal covariances do not necessarily imply column-orthgonality in the decoder Jacobian, but _if they exist_, the VAE looks for solutions where the Hessian is diagonal hence where columns of the Jacobian are ($\approx$) orthogonal.
@@ -293,7 +293,8 @@ Thanks for reading!
 [betaVAE]: https://openreview.net/forum?id=Sy2fzU9gl
 [PPCA]: https://academic.oup.com/jrsssb/article-abstract/61/3/611/7083217
 
-[^conditions]: when second derivatives of the decoder are small almost everywhere, e.g. as in ReLU networks ([see Abhishek & Kumar, 2020](https://arxiv.org/pdf/2002.00041)).
+[^suggested]: As suggested previously but looser arguments requiring more assumptions.[^rolinek]$$^,$$[^kumarpoole])
+[^conditions]: When second derivatives of the decoder are small almost everywhere, e.g. as in ReLU networks ([see Abhishek & Kumar, 2020](https://arxiv.org/pdf/2002.00041)).
 [^rolinek]: [Variational Autoencoders Pursue PCA Directions (by Accident); Rolinek et al. (2019)](https://arxiv.org/pdf/1812.06775)
 [^kumarpoole]: [On Implicit Regularization in β-VAEs; Kumar \& Poole (2020)](https://arxiv.org/pdf/2002.00041)
 [^locatello]: [Challenging Common Assumptions in the Unsupervised Learning of Disentangled Representations; Locatello et al. (2019)](https://arxiv.org/pdf/1811.12359)
