@@ -137,22 +137,18 @@ where the ELBO has $$\beta=1$$ and [$$\beta>1$$ is found to improve disentanglem
 
 > **Maximising the ELBO = _maximum-likelihood$$^{++}$$_**: Maximising the likelihood $$\int p(x)\log p_\theta(x)$$ minimises the KL divergence between the data and model distributions, but this is often intractable for a latent variable model. Maximising the ELBO minimises the KL divergences between $$p(x)q_\phi(z\mid x)$$ *and* $$p_\theta(x)p_\theta(z\mid x)\doteq p_\theta(x\mid z)p(z)$$, aligning two models of the joint distribution.
 
-Note that:
-* the VAE decoder $$d$$ maps latent variables $$z\in\mathcal{Z}$$ to means $$\mu_z=\mathbb{E}[x\mid z]\in \mathcal{X}$$
-* if $$J_z$$ denotes $$d$$'s Jacobian evaluated at $$z$$, then $$J_{i,j} = \tfrac{\partial d(z)_i}{\partial z_j}$$ defines how a perturbation in the latent space (in direction $$z_j$$) translates to variation in the data space (in direction $$x_i$$).
-
 The ELBO is optimised when $$\Sigma_x$$ relates to the Hessian of $$\log p_\theta(x\mid z)$$ ([Opper & Archambeau](http://www0.cs.ucl.ac.uk/staff/c.archambeau/publ/neco_mo09_web.pdf)) hence under certain conditions[^conditions] when:
 
 $$
 \begin{equation}
   \Sigma_x^{-1} 
     \ \ \overset{O\&A}{=}\ \ I - \mathbb{E}_{q(z\mid x)}[\tfrac{\partial^2\log p_\theta(x\mid z)}{\partial z_i\partial z_j}]
-    \ \ \approx\ \ I + \mathbb{E}_{q(z\mid x)}[\tfrac{1}{\beta\sigma^2}J_z^\top J_z]\ .
+    \ \ \approx\ \ I + \mathbb{E}_{q(z\mid x)}[\tfrac{1}{\beta\sigma^2}J_z^\top J_z]\ ,
   \tag{1}\label{eq:one}
 \end{equation}
 $$
 
-For this to hold with diagonal $$\Sigma_x$$, **columns of $$J_z$$ must be (approximately) orthogonal**, $$\forall z$$.[^suggested] If $$J_z=U_zS_zV_z^\top$$ is the singular value decomposition (SVD), then $$J_z$$ is column-orthogonal $$\quad $$ _iff_ $$\ \  J_z^\top J_z = V_zS_z^2V_z^\top$$ is diagonal $$\quad$$  _iff_ $$\ \ V_z=I$$. Hence diagonal covariances mean that perturbations in latent space in standard basis vectors $$z_i$$ (right singular vectors of $J_z$) correspond to perturbations in data space in directions $$\mathbf{u}_i$$ (column $$i$$ of $$U_z$$, left singular vectors of $$J_z$$), with no effect in any other $$\mathbf{u}_{j\ne i}$$. Note that this singles out axis-aligned directions in the latent space as "special", breaking the rotational symmetry implied by the Gaussian prior.
+where $$J_z$$ is the Jacobian of $$d$$ evaluated at $$z$$. For this to hold with diagonal $$\Sigma_x$$, **columns of $$J_z$$ must be (approximately) orthogonal**, $$\forall z$$.[^suggested] If $$J_z=U_zS_zV_z^\top$$ is the singular value decomposition (SVD), then $$J_z$$ is column-orthogonal $$\quad $$ _iff_ $$\ \  J_z^\top J_z = V_zS_z^2V_z^\top$$ is diagonal $$\quad$$  _iff_ $$\ \ V_z=I$$. Hence, by the definition of the Jacobian, diagonal covariances mean that perturbations in latent space in standard basis vectors $$z_i$$ (right singular vectors of $J_z$) correspond to perturbations in data space in directions $$\mathbf{u}_i$$ (column $$i$$ of $$U_z$$, left singular vectors of $$J_z$$), with no effect in any other $$\mathbf{u}_{j\ne i}$$. Note that this singles out axis-aligned directions in the latent space as "special", breaking the rotational symmetry implied by the Gaussian prior.
 
 
 > **Take-away**: the ELBO is maximised as approximate posterior covariances $$\Sigma_x$$ tend to optimal posterior covariances defined by derivatives of $$\log p_\theta(x\mid z)$$. Diagonal covariances do not necessarily imply column-orthogonality in the decoder Jacobian, but _if they exist_, the VAE looks for solutions where the Hessian is diagonal hence where columns of the Jacobian are ($\approx$) orthogonal.
