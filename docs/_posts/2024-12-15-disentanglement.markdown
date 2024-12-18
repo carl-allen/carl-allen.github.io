@@ -205,7 +205,7 @@ The aim is to understand how that constraint affects how independent dimensions 
 Crucially, the Jacobian of the map from $$z$$ to $$x^{(U)}$$ is the _diagonal_ matrix $$S$$, i.e. $$\tfrac{\partial x^{(U)}_i}{\partial z_j} =\{s_i\doteq S_{i,i} \text{ if }i=j; 0 \text{ o/w}\}$$. It then follows that independent $$z_i$$ map to independent components $$x^{(U)}_i$$ since:
 1. each $$x^{(U)}_i$$ varies only with a distinct $$z_i$$ by considering  $$\tfrac{\partial x^{(U)}_i}{\partial z_j}$$ and so are *independent*;
 2. the push-forward of $$d$$ restricted to $$\mathcal{Z^{(i)}}$$ has density $$p(x^{(U)}_i) = \mid\! s_i\!\mid ^{-1}p(z_i)$$ over $$\mathcal{M}_d^{(i)}$$; and
-3. the full push-forward distribution is given by $$p(Dz) = \mid\!D\!\mid ^{-1}p(z) = \prod_i \mid\! s_i\!\mid^{-1}p(z_i) = \prod _ip(x^{(U)}_i)$$.
+3. the full push-forward distribution is $$p(Dz) = \mid\!D\!\mid ^{-1}p(z) = \prod_i \mid\! s_i\!\mid^{-1}p(z_i) = \prod _ip(x^{(U)}_i)$$.
 
 This shows that the push-forward distribution defined by the decoder factorises as a product of independent univariate distributions $$p(x^{(U)}_i)$$, which each correspond to a distinct latent dimension $$z_i$$. Thus, if the data follows that generative process and so factorises (with factors determined by the SVD of ground truth $$D$$), then the ELBO is maximised when independent factors of the model align with those of the data and so p(x) is **disentangled** as a product of *independent components* that align with latent dimensions.
 
