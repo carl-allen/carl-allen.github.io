@@ -19,7 +19,7 @@ categories: Theory
 
 **Disentanglement** is an intriguing phenomenon observed in generative latent variable models, such as [_Variational Autoencoders_ (VAEs)][VAE] (our focus), [Generative Adversarial Networks (GANs)](https://arxiv.org/pdf/1406.2661) and [latent Diffusion models](https://openaccess.thecvf.com/content/CVPR2022/papers/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.pdf). Although disentanglement has not been rigorously defined, it refers to when semantically meaningful factors of the data map to distinct dimensions in latent space. This allows, for example, images to be generated that vary by a particular feature by changing a *single* latent dimension (Figure 1 (left), or [this video on disentanglement in GANs](https://www.youtube.com/watch?v=DbQNKdtoqUw)). It also allows a form of embedding arithmetic, e.g. the vector difference between embeddings of two images that vary in style can be added to that of a third image to transform its style (Figure 1, right).
 
-While disentanglement is often associated with particular model families whose popularity may vary (e.g. VAEs, $\beta$-VAEs, GANs), we show that the phenomenon itself **relates to the latent structure of the data** and is more fundamental than any model that may expose it.
+While disentanglement is often associated with particular model families whose popularity may come and go (e.g. VAEs, $\beta$-VAEs, GANs), we show that the phenomenon itself **relates to the latent structure of the data** and is more fundamental than any model that may expose it.
 
 <br>
 <style>
