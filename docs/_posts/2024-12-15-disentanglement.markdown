@@ -11,14 +11,17 @@ categories: Theory
 
 {% include_relative _includes/head.html %}
 
-<p align="center">
-  <img src="/assets/disentanglement/banner.jpeg" 
-          alt="linear2" 
-          width="440" 
-          height="190" 
-          style="display: block; margin: 0 auto"  />
-  <small>Figure 2. Illustration of linear decoder $d:\mathcal{X}\to\mathcal{Z}$. The latent Gaussian prior is mapped to a Gaussian distribution in the data space over a linear manifold. </small>
-</p>
+.fill {
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+}
+<div 
+    class="fill" 
+    style="background-image: url('/assets/disentanglement/banner.jpeg');">
+</div>
+
 
 <table>
   <tr>
