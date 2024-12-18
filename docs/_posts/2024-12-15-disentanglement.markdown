@@ -293,9 +293,7 @@ This work throws up many interesting questions, e.g.:
 
 If any of these or related questions are of interest and you would like to collaborate, please free to get in touch (by email, twitter or bluesky).
 
-Lastly, we welcome any constructive feedback or discussion on this post on bluesky (@carl-allen.bsky.social - I will pin a link in my profile).
-
-Thanks for reading!
+Thanks for reading! We welcome any constructive feedback or discussion on this post on bluesky (I have pinned a link @carl-allen.bsky.social).
 
 [paper]: https://arxiv.org/pdf/2410.22559
 [VAE]: https://arxiv.org/pdf/1312.6114v11
