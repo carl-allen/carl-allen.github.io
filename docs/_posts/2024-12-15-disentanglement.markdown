@@ -143,7 +143,7 @@ $$
 \end{equation}
 $$
 
-For this to hold with diagonal $$\Sigma_x$$, **columns of $$J_z$$ must be (approximately) orthogonal**, $$\forall z$$.[^suggested] If $$J_z=U_zS_zV_z^\top$$ is the singular value decomposition (SVD), then $$J_z$$ is column-orthgonal $$\ \ $$ _iff_ $$\ \  J_z^\top J_z = V_zS_z^2V_z^\top$$ is diagonal $$\ \ $$  _iff_ $$\ \ V_z=I$$. Hence diagonal covariances mean that perturbations in latent space in standard basis vectors $$z_i$$ (right singular vectors of $J_z$) correspond to perturbations in data space in directions $$\mathbf{u}_i$$ (column $$i$$ of $$U_z$$, left singular vectors of $$J_z$$), with no effect in any other $$\mathbf{u}_{j\ne i}$$. Note that this singles out axis-aligned directions in the latent space, making them in a sense *special* and so breaking the rotational symmetry implied by the Gaussian prior.
+For this to hold with diagonal $$\Sigma_x$$, **columns of $$J_z$$ must be (approximately) orthogonal**, $$\forall z$$.[^suggested] If $$J_z=U_zS_zV_z^\top$$ is the singular value decomposition (SVD), then $$J_z$$ is column-orthgonal $$\quad $$ _iff_ $$\ \  J_z^\top J_z = V_zS_z^2V_z^\top$$ is diagonal $$\quad$$  _iff_ $$\ \ V_z=I$$. Hence diagonal covariances mean that perturbations in latent space in standard basis vectors $$z_i$$ (right singular vectors of $J_z$) correspond to perturbations in data space in directions $$\mathbf{u}_i$$ (column $$i$$ of $$U_z$$, left singular vectors of $$J_z$$), with no effect in any other $$\mathbf{u}_{j\ne i}$$. Note that this singles out axis-aligned directions in the latent space, making them in a sense *special* and so breaking the rotational symmetry implied by the Gaussian prior.
 
 
 > **Take-away**: the ELBO is maximised as approximate posterior covariances $$\Sigma_x$$ tend to optimal posterior covariances defined by derivatives of $$\log p_\theta(x\mid z)$$. Diagonal covariances do not necessarily imply column-orthgonality in the decoder Jacobian, but _if they exist_, the VAE looks for solutions where the Hessian is diagonal hence where columns of the Jacobian are ($\approx$) orthogonal.
@@ -235,8 +235,8 @@ As in the linear case, for any $$z^*\in \mathcal{Z}$$, we can define lines $$\ma
 
 Considering $$x=d(z)$$ in the local $$U$$-basis (i.e. columns of $$U_z$$), denoted $$x^{(U)}=U_z^\top x$$, the Jacobian of the map from $$z$$ to $$U_z^\top x^{(U)}$$ is again _diagonal_ $$S_z$$. Hence independent $$z_i\in\mathcal{Z}$$ map to independent components $$x^{(U)}_i$$ as in the linear case:
 1. $$\{x^{(U)}_i\}_i$$ are *independent* (by consideration of partial derivatives $$\tfrac{\partial x^{(U)}_i}{\partial z_j}$$);
-2. the push-forward of $$d$$ restricted to $$\mathcal{Z^{(i)}}$$ has density $$p(x^{(U)}_i) = s_i^{-1}p(z_i)$$ over $$\mathcal{M}_d^{(i)}$$; and
-3. the full push-forward satisfies $$p(d(z)) = \mid J_z\mid ^{-1}p(z) = \prod_i s_i^{-1}p(z_i) = \prod _ip(x^{(U)}_i)$$.
+2. the push-forward of $$d$$ restricted to $$\mathcal{Z^{(i)}}$$ has density $$p(x^{(U)}_i) = \mid\! s_i\!\mid^{-1}p(z_i)$$ over $$\mathcal{M}_d^{(i)}$$; and
+3. the full push-forward satisfies $$p(d(z)) = \mid J_z\mid ^{-1}p(z) = \prod_i \mid\! s_i\!\mid^{-1}p(z_i) = \prod _ip(x^{(U)}_i)$$.
 
 Thus, by the same argument as in the linear case, the distribution over the decoder manifold factorises as a product of independent univariate push-forward distributions ($$p(x^{(U)}_i)$$), each corresponding to a distinct latent dimension $$z_i$$. 
 
