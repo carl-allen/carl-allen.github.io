@@ -142,7 +142,7 @@ $$
 \end{equation}
 $$
 
-and  for diagonal $$\Sigma_x$$, the ELBO is maximised when **columns of $$J_z$$ are approximately orthogonal**, $$\forall z$$ (as previously suggested[^rolinek]$$^,$$[^kumarpoole]). But if $$J_z=U_zS_zV_z^\top$$ is the singular value decomposition (SVD), $J_z$ is column-orthgonal _iff_ $$J_x^\top J_x = V_xS_x^2J_x^\top$$ is diagonal _iff_ $$V_z=I$$, i.e. when variation in latent component $$z_i$$ corresponds to a variation in data space in direction $$\mathbf{u}_i$$, the $$i^{th}$$ left singular vector of $$J_z$$ (column $$i$$ of $$U_z$$), with no effect in any other $$\mathbf{u}_{j\ne i}$$.
+and  for diagonal $$\Sigma_x$$, the ELBO is maximised when **columns of $$J_z$$ are approximately orthogonal**, $$\forall z$$ (as previously suggested[^rolinek]$$^,$$[^kumarpoole]). But if $$J_z=U_zS_zV_z^\top$$ is the singular value decomposition (SVD), $J_z$ is column-orthgonal _iff_ $$J_x^\top J_x = V_xS_x^2J_x^\top$$ is diagonal _iff_ $$V_z=I$$, meaning that variations in latent space in standard basis vector $$z_i$$ (a right singular vector of $J_z$) corresponds to variation in the data space in direction $$\mathbf{u}_i$$ (a left singular vector of $$J_z$$, i.e. column $$i$$ of $$U_z$$), with no effect in any other $$\mathbf{u}_{j\ne i}$$.
 
 
 > **Take-away**: the ELBO is maximised if approximate posterior covariances match true posterior covariances, which can be expressed in terms of derivatives of $$p_\theta(x\mid z)$$. Diagonal posterior covariance does not imply that the Hessian is necessarily orthogonal, but if multiple solutions exist, the VAE prefers those where the Hessian is diagonal and so columns of the Jacobian are ($\approx$) orthogonal.
