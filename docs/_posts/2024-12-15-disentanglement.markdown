@@ -11,18 +11,14 @@ categories: Theory
 
 {% include_relative _includes/head.html %}
 
-.fill {
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 100%;
-}
 
-<div 
-    class="fill" 
-    style="background-image: url('/assets/disentanglement/banner.jpeg');">
-</div>
-
+<p align="center">
+  <img src="/assets/disentanglement/banner.jpeg" 
+        alt="woooh" 
+        width="500" 
+        height="100" 
+        style="display: block; margin: 0 auto"  />
+</p>
 
 <table>
   <tr>
