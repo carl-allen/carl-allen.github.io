@@ -293,7 +293,7 @@ Thanks for reading!
 [betaVAE]: https://openreview.net/forum?id=Sy2fzU9gl
 [PPCA]: https://academic.oup.com/jrsssb/article-abstract/61/3/611/7083217
 
-[^suggested]: As suggested previously by arguments involving more approximation steps and assumptions.[^rolinek]$$^,$$[^kumarpoole])
+[^suggested]: As previously suggested more loosely (i.e. with more approximation steps and assumptions).[^rolinek]$$^,$$[^kumarpoole]
 [^conditions]: When second derivatives of the decoder are small almost everywhere, e.g. as in ReLU networks ([see Abhishek & Kumar, 2020](https://arxiv.org/pdf/2002.00041)).
 [^rolinek]: [Variational Autoencoders Pursue PCA Directions (by Accident); Rolinek et al. (2019)](https://arxiv.org/pdf/1812.06775)
 [^kumarpoole]: [On Implicit Regularization in β-VAEs; Kumar \& Poole (2020)](https://arxiv.org/pdf/2002.00041)
