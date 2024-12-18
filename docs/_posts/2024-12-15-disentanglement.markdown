@@ -200,7 +200,7 @@ Since $D$ is the Jacobian of $d$, the latter expression is in fact a special cas
 
 The aim is to understand how that constraint affects how independent dimensions $$z_i\in\mathcal{Z}$$ and the probability density over them pass through the decoder. For a given point $$z^*\in \mathcal{Z}$$, let: 
 * $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ be lines passing through $$z^*$$ parallel to each standard basis vector $$e_i$$ (blue dashed lines in Fig. 2), and $$\mathcal{M}_d^{(i)}\subset\mathcal{M_d}$$  be their images under $$d$$ that follow  $$\mathbf{u}_i$$, the left singular vectors of  $$D$$ (red dashed lines); and
-* $$x^{(U)}=U^\top x=U^\top Dz^*$$  be $x$ in the basis defined by columns of $$U$$
+* $$x^{(U)}=U^\top x=U^\top Dz^*$$  be $x$ in the basis defined by columns of $$U$$[^notation]
 
 Crucially, the Jacobian of the map from $$z$$ to $$x^{(U)}$$ is the _diagonal_ matrix $$S$$, i.e. $$\tfrac{\partial x^{(U)}_i}{\partial z_j} =\{s_i\doteq S_{i,i} \text{ if }i=j; 0 \text{ o/w}\}$$. It then follows that independent $$z_i$$ map to independent components $$x^{(U)}_i$$ since:
 1. each $$x^{(U)}_i$$ varies only with a distinct $$z_i$$ by considering  $$\tfrac{\partial x^{(U)}_i}{\partial z_j}$$ and so are *independent*;
@@ -293,6 +293,7 @@ Thanks for reading!
 [betaVAE]: https://openreview.net/forum?id=Sy2fzU9gl
 [PPCA]: https://academic.oup.com/jrsssb/article-abstract/61/3/611/7083217
 
+[^notation]: Note that we use slightly different notation to the [orginal paper][paper].
 [^suggested]: As previously suggested more loosely (i.e. with more approximation steps and assumptions).[^rolinek]$$^,$$[^kumarpoole]
 [^conditions]: When second derivatives of the decoder are small almost everywhere, e.g. as in ReLU networks ([see Abhishek & Kumar, 2020](https://arxiv.org/pdf/2002.00041)).
 [^rolinek]: [Variational Autoencoders Pursue PCA Directions (by Accident); Rolinek et al. (2019)](https://arxiv.org/pdf/1812.06775)
