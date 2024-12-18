@@ -131,18 +131,18 @@ where the ELBO has $$\beta=1$$ and [$$\beta>1$$ is found to improve disentanglem
 > * the VAE decoder $$d$$ maps latent variables $$z\in\mathcal{Z}$$ to means $$\mu_z=\mathbb{E}[x\mid z]\in \mathcal{X}$$
 > * if $$J_z$$ denotes $$d$$'s Jacobian evaluated at $$z$$, then $$J_{i,j} = \tfrac{\partial d(z)_i}{\partial z_j}$$ defines how a perturbation in the latent space (in direction $$z_j$$) translates to variation in the data space (in direction $$x_i$$).
 
-The optimal $$\Sigma_x$$ is defined by the Hessian of $$\log p_\theta(x\mid z)$$ ([Opper & Archambeau](http://www0.cs.ucl.ac.uk/staff/c.archambeau/publ/neco_mo09_web.pdf)), meaning that if the decoder's second derivatives are small almost everywhere, e.g. as in a ReLU network [(see Abhishek & Kumar, 2020)](https://arxiv.org/pdf/2002.00041), we have:
+It is known that the ELBO is optimised when $$\Sigma_x$$ relates to the Hessian of $$\log p_\theta(x\mid z)$$ ([Opper & Archambeau](http://www0.cs.ucl.ac.uk/staff/c.archambeau/publ/neco_mo09_web.pdf)), and so if the decoder's second derivatives are small almost everywhere, e.g. as in a ReLU network [(see Abhishek & Kumar, 2020)](https://arxiv.org/pdf/2002.00041), when:
 
 $$
 \begin{equation}
   \Sigma_x 
     \ \ \overset{O\&A}{=}\ \ I - \mathbb{E}_{q(z\mid x)}[\tfrac{\partial^2\log p_\theta(x\mid z)}{\partial z_i\partial z_j}]
-    \ \ \approx\ \ I + \mathbb{E}_{q(z\mid x)}[\tfrac{1}{\beta\sigma^2}J_z^\top J_z]\ ,
+    \ \ \approx\ \ I + \mathbb{E}_{q(z\mid x)}[\tfrac{1}{\beta\sigma^2}J_z^\top J_z]\ .
   \tag{1}\label{eq:one}
 \end{equation}
 $$
 
-and  for diagonal $$\Sigma_x$$, the ELBO is maximised when **columns of $$J_z$$ are approximately orthogonal**, $$\forall z$$ (as previously suggested[^rolinek]$$^,$$[^kumarpoole]). But if $$J_z=U_zS_zV_z^\top$$ is the singular value decomposition (SVD), $J_z$ is column-orthgonal _iff_ $$J_x^\top J_x = V_xS_x^2J_x^\top$$ is diagonal _iff_ $$V_z=I$$, meaning that variations in latent space in standard basis vector $$z_i$$ (a right singular vector of $J_z$) corresponds to variation in the data space in direction $$\mathbf{u}_i$$ (a left singular vector of $$J_z$$, i.e. column $$i$$ of $$U_z$$), with no effect in any other $$\mathbf{u}_{j\ne i}$$.
+Thus if $$\Sigma_x$$ is diagonal then **columns of $$J_z$$ must be approximately orthogonal**, $$\forall z$$ (as previously suggested[^rolinek]$$^,$$[^kumarpoole]). But if $$J_z=U_zS_zV_z^\top$$ is the singular value decomposition (SVD), $J_z$ is column-orthgonal _iff_ $$J_x^\top J_x = V_xS_x^2J_x^\top$$ is diagonal _iff_ $$V_z=I$$, meaning that variations in latent space in standard basis vector $$z_i$$ (a right singular vector of $J_z$) corresponds to variation in the data space in direction $$\mathbf{u}_i$$ (a left singular vector of $$J_z$$, i.e. column $$i$$ of $$U_z$$), with no effect in any other $$\mathbf{u}_{j\ne i}$$.
 
 
 > **Take-away**: the ELBO is maximised if approximate posterior covariances match true posterior covariances, which can be expressed in terms of derivatives of $$p_\theta(x\mid z)$$. Diagonal posterior covariance does not imply that the Hessian is necessarily orthogonal, but if multiple solutions exist, the VAE prefers those where the Hessian is diagonal and so columns of the Jacobian are ($\approx$) orthogonal.
