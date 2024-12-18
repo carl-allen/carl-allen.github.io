@@ -17,6 +17,7 @@ categories: Theory
     width: 100%;
     height: 100%;
 }
+
 <div 
     class="fill" 
     style="background-image: url('/assets/disentanglement/banner.jpeg');">
