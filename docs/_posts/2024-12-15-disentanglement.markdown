@@ -11,6 +11,15 @@ categories: Theory
 
 {% include_relative _includes/head.html %}
 
+<p align="center">
+  <img src="/assets/disentanglement/banner.jpeg" 
+          alt="linear2" 
+          width="440" 
+          height="190" 
+          style="display: block; margin: 0 auto"  />
+  <small>Figure 2. Illustration of linear decoder $d:\mathcal{X}\to\mathcal{Z}$. The latent Gaussian prior is mapped to a Gaussian distribution in the data space over a linear manifold. </small>
+</p>
+
 <table>
   <tr>
     <th>This post summarises <a href="https://arxiv.org/pdf/2410.22559">Unpicking Data at the Seams: VAEs, Disentanglement and Independent Components (Allen, 2024)</a>, which explains <b>why disentanglement arises in generative latent variable models</b>. </th>
