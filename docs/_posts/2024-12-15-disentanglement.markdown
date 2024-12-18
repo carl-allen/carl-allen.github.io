@@ -92,10 +92,10 @@ $$\bullet$$ **Problem set-up**: As in a VAE (or GAN), we assume that data $$x\in
 ---
 
 **TL;DR**: 
-1. Disentanglement provably occurs in the _linear_ case, $$p_\theta(x\mid z) = \mathcal{N}(x; Dz,\sigma^2I),\ D\in\mathbb{R}^{n\times m}$$, corresponding to [probabilistic PCA (PPCA)][PPCA]. Of the infinite set of known solutions, a VAE with diagonal posterior covariance finds only those in which latent dimensions $$z_i$$ map to independent factors of variation in the data distribution, i.e. it _disentangles_ $$p(x)$$.
+1. Disentanglement provably occurs in the _linear_ case, $$p_\theta(x\mid z) = \mathcal{N}(x; Dz,\sigma^2I),\ D\in\mathbb{R}^{n\times m}$$, corresponding to [probabilistic PCA (PPCA)][PPCA]. Of the infinite set of known solutions, a VAE with diagonal posterior covariance finds only those in which latent dimensions $$z_i$$ map to independent factors of variation in the data distribution, i.e. where $$p(x)$$ is  _disentangled_.
 2. Somewhat surprisingly, the rationale for the linear case (described later in this post) extends to non-linear VAEs with diagonal posterior covariance. The latter property encourages columns of the decoder's Jacobian to be (approximately) orthogonal, which in turn means independent latent variables $$z_i$$ pass through the decoder and emerge (in $$\mathcal{X}$$) as statistically independent components that factorise the full push-forward distrubtion over the decoder-defined manifold.
    * i.e. diagonal covariances cause the decoder to map independent factors in the latent space to independent components in the data space.
-3. A VAE's objective is maximised if the model distribution matches that of the data, hence if the data distribution factorises into independent components, then the model distribution must similarly factorise. But, from 2, independent factors of the model (approximately) align with latent variables $$z_i$$ and so independent factors of $$p(x)$$ map through to distinct latent variables of the model, i.e. $$p(x)$$ is _disentangled_.
+3. A VAE's objective is maximised if the model distribution matches that of the data, hence if the data distribution factorises into independent components then the model distribution must similarly factorise. But, from 2, independent factors of the model (approximately) align with latent variables $$z_i$$ and so independent factors of $$p(x)$$ map through to distinct latent variables of the model, i.e. $$p(x)$$ is _disentangled_.
 
 ---
 ---
