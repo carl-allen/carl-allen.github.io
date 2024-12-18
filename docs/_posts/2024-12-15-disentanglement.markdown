@@ -128,11 +128,9 @@ where the ELBO has $$\beta=1$$ and [$$\beta>1$$ is found to improve disentanglem
 
 > **Maximising the ELBO = _maximum-likelihood$$^{++}$$_**: Maximising the likelihood $$\int p(x)\log p_\theta(x)$$ minimises the KL divergence between the data and model distributions, but this is often intractable for a latent variable model. Maximising the ELBO minimises the KL divergences between $$p(x)q_\phi(z\mid x)$$ *and* $$p_\theta(x)p_\theta(z\mid x)\doteq p_\theta(x\mid z)p(z)$$, aligning two models of the joint distribution.
 
-Note:
+Note that:
 * the VAE decoder $$d$$ maps latent variables $$z\in\mathcal{Z}$$ to means $$\mu_z=\mathbb{E}[x\mid z]\in \mathcal{X}$$
 * if $$J_z$$ denotes $$d$$'s Jacobian evaluated at $$z$$, then $$J_{i,j} = \tfrac{\partial d(z)_i}{\partial z_j}$$ defines how a perturbation in the latent space (in direction $$z_j$$) translates to variation in the data space (in direction $$x_i$$).
-
-</details>
 
 It is known that the ELBO is optimised when $$\Sigma_x$$ relates to the Hessian of $$\log p_\theta(x\mid z)$$ ([Opper & Archambeau](http://www0.cs.ucl.ac.uk/staff/c.archambeau/publ/neco_mo09_web.pdf)), and so if the decoder's second derivatives are small almost everywhere, e.g. as in a ReLU network [(see Abhishek & Kumar, 2020)](https://arxiv.org/pdf/2002.00041), when:
 
