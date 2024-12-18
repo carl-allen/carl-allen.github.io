@@ -129,9 +129,10 @@ where the ELBO has $$\beta=1$$ and [$$\beta>1$$ is found to improve disentanglem
 > **Maximising the ELBO = _maximum-likelihood$$^{++}_$$**:
 > 
 > Maximising the likelihood $$\int p(x)\log p_\theta(x)$$ minimises the KL divergence between the data and model distributions, but this is often intractable for a latent variable model. Maximising the ELBO minimises the KL divergences between $$p(x)q_\phi(z\mid x)$$ *and* $$p_\theta(x)p_\theta(z\mid x)\doteq p_\theta(x\mid z)p(z)$$, aligning two models of the joint distribution.
-> Note:
-> * the VAE decoder $$d$$ maps latent variables $$z\in\mathcal{Z}$$ to means $$\mu_z=\mathbb{E}[x\mid z]\in \mathcal{X}$$
-> * if $$J_z$$ denotes $$d$$'s Jacobian evaluated at $$z$$, then $$J_{i,j} = \tfrac{\partial d(z)_i}{\partial z_j}$$ defines how a perturbation in the latent space (in direction $$z_j$$) translates to variation in the data space (in direction $$x_i$$).
+
+Note:
+* the VAE decoder $$d$$ maps latent variables $$z\in\mathcal{Z}$$ to means $$\mu_z=\mathbb{E}[x\mid z]\in \mathcal{X}$$
+* if $$J_z$$ denotes $$d$$'s Jacobian evaluated at $$z$$, then $$J_{i,j} = \tfrac{\partial d(z)_i}{\partial z_j}$$ defines how a perturbation in the latent space (in direction $$z_j$$) translates to variation in the data space (in direction $$x_i$$).
 
 </details>
 
