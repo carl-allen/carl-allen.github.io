@@ -249,7 +249,7 @@ Putting everything together:
 > **Key insight**: the above result hinges on the SVD of the Jacobian $$J_z = U_zS_zV_z^\top$$. By differentiability of $$d$$, the bases defined by columns of $$U_z$$ and $$V_z$$ (in $$\mathcal{X}$$ and $$\mathcal{Z}$$ resp.) are continuous in $$z$$ so basis vectors form continuous curves in each domain (these are linear in $$\mathcal{Z}$$ when $$V_z=I$$). By definition of the SVD, traversing a submanifold in one domain corresponds to traversing a corresponding submanifold in the other. The mapping between $$x$$ considered in the $$U$$-basis and $$z$$ considered in the $$V$$ basis has diagonal Jacobian given by $$S_z$$, and so probability densities over submanifolds in $$\mathcal{Z}$$ map separably to their counterpart in $$\mathcal{X}$$. That is to say, independent components in $$\mathcal{Z}$$ map to independent components in $$\mathcal{X}$$.
 
 **Notes**:
-* While we assumed $$d\in\mathcal{C^2}$$ above, the result holds for continuous $d$ that are differentiable almost everywhere, e.g. ReLU networks.
+* While we assume $$d\in\mathcal{C^2}$$, the result also holds for continuous $d$ that are differentiable almost everywhere, e.g. ReLU networks.
 * We recommend reading [the full paper][paper] for further details, such as:
   * consideration of whether orthogonality is strictly _necessary_ for disentanglement (the argument above shows it is _sufficient_);
   * further consideration of model _identifiability_, i.e. up to what symmetries a VAE can identify ground truth generative factors; and
