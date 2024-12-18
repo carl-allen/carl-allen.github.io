@@ -132,7 +132,7 @@ Note that:
 * the VAE decoder $$d$$ maps latent variables $$z\in\mathcal{Z}$$ to means $$\mu_z=\mathbb{E}[x\mid z]\in \mathcal{X}$$
 * if $$J_z$$ denotes $$d$$'s Jacobian evaluated at $$z$$, then $$J_{i,j} = \tfrac{\partial d(z)_i}{\partial z_j}$$ defines how a perturbation in the latent space (in direction $$z_j$$) translates to variation in the data space (in direction $$x_i$$).
 
-The ELBO is optimised when $$\Sigma_x$$ relates to the Hessian of $$\log p_\theta(x\mid z)$$ ([Opper & Archambeau](http://www0.cs.ucl.ac.uk/staff/c.archambeau/publ/neco_mo09_web.pdf)) hence under certain conditions (i.e. if second derivatives of the decoder are small almost everywhere as in ReLU networks, [see Abhishek & Kumar, 2020)](https://arxiv.org/pdf/2002.00041) when:
+The ELBO is optimised when $$\Sigma_x$$ relates to the Hessian of $$\log p_\theta(x\mid z)$$ ([Opper & Archambeau](http://www0.cs.ucl.ac.uk/staff/c.archambeau/publ/neco_mo09_web.pdf)) hence under certain conditions[^conditions] when:
 
 $$
 \begin{equation}
@@ -293,6 +293,7 @@ Thanks for reading!
 [betaVAE]: https://openreview.net/forum?id=Sy2fzU9gl
 [PPCA]: https://academic.oup.com/jrsssb/article-abstract/61/3/611/7083217
 
+[^conditions]: when second derivatives of the decoder are small almost everywhere, e.g. as in ReLU networks ([see Abhishek & Kumar, 2020](https://arxiv.org/pdf/2002.00041)).
 [^rolinek]: [Variational Autoencoders Pursue PCA Directions (by Accident); Rolinek et al. (2019)](https://arxiv.org/pdf/1812.06775)
 [^kumarpoole]: [On Implicit Regularization in β-VAEs; Kumar \& Poole (2020)](https://arxiv.org/pdf/2002.00041)
 [^locatello]: [Challenging Common Assumptions in the Unsupervised Learning of Disentangled Representations; Locatello et al. (2019)](https://arxiv.org/pdf/1811.12359)
