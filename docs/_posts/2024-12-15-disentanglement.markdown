@@ -246,7 +246,7 @@ We can now put everything together:
 * Thus the ELBO is maximised if independent components of the data distribution align with those of the model and those of the model align with latent dimensions, thus the VAE **identifies independent components that factorise the data distribution and aligns them with latent dimensions**, defining **disentanglement**.
    * (Component identifiability requires uniqueness of those independent distributions, analogous to requiring unique singular values in the linear case).
 
-> **Key insight**: the above result hinges on the SVD of the Jacobian $$J_z = U_zS_zV_z^\top$$. By differentiability of $$d$$, the bases defined by columns of $$U_z$$ and $$V_z$$, in $$\mathcal{X}$$ and $$\mathcal{Z}$$ respectively, are continuous in $$z$$ so basis vectors form continuous curves in each domain (these are linear in $$\mathcal{Z}$$ when $$V_z=I$$). By definition of the SVD, traversing a submanifold in one domain corresponds to traversing a corresponding submanifold in the other. The mapping between $$x$$ considered in the $$U$$-basis and $$z$$ considered in the $$V$$ basis has diagonal Jacobian given by $$S_z$$, and so is separable and probability densities over submanifolds in $$\mathcal{Z}$$ map to their counterpart in $$\mathcal{X}$$. In other words, independent components in $$\mathcal{Z}$$ map to independent components in $$\mathcal{X}$$.
+> **Key insight**: the above result hinges on the SVD of the Jacobian $$J_z = U_zS_zV_z^\top$$. By differentiability of $$d$$, the bases defined by columns of $$U_z$$ and $$V_z$$, in $$\mathcal{X}$$ and $$\mathcal{Z}$$ respectively, are continuous in $$z$$ so basis vectors form continuous curves in each domain (these are linear in $$\mathcal{Z}$$ when $$V_z=I$$). By definition of the SVD, traversing a submanifold in one domain corresponds to traversing a corresponding submanifold in the other. The mapping between $$x$$ considered in the $$U$$-basis and $$z$$ considered in the $$V$$ basis has diagonal Jacobian given by $$S_z$$, and so probability densities over submanifolds in $$\mathcal{Z}$$ map separably to their counterpart in $$\mathcal{X}$$. In other words, independent components in $$\mathcal{Z}$$ map to independent components in $$\mathcal{X}$$.
 
 **Notes**:
 * While we assumed $$d\in\mathcal{C^2}$$ above, the result holds for continuous $d$ that are differentiable almost everywhere, e.g. ReLU networks.
@@ -280,7 +280,7 @@ This work throws up many interesting questions, e.g.:
 * how does this finding fit with VAE extensions that enhance entanglement, such as [FactorVAE](https://arxiv.org/abs/1802.05983) and [TC-VAE](https://arxiv.org/abs/1802.04942)?
 * can this be used to automatically identify independent factors in the latent space of other models, e.g. GANs and latent diffusion models?
 * given this result is for continuous data domains, how does it translate to discrete data such as text?
-* how does this insight translate to other modelling paradigms, such as supervised, semi-supervised and self-supervised learning?
+* how does this insight translate to other modelling paradigms, such as supervised, semi-supervised, self-supervised and reinforcement learning?
 
 If any of these or related questions are of interest and you would like to collaborate, please free to get in touch (by email, twitter or bluesky).
 
