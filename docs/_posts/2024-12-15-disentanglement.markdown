@@ -11,6 +11,15 @@ categories: Theory
 
 {% include_relative _includes/head.html %}
 
+
+<p align="center">
+  <img src="/assets/disentanglement/banner.jpeg" 
+        alt="woooh" 
+        width="500" 
+        height="100" 
+        style="display: block; margin: 0 auto"  />
+</p>
+
 <table>
   <tr>
     <th>This post summarises <a href="https://arxiv.org/pdf/2410.22559">Unpicking Data at the Seams: VAEs, Disentanglement and Independent Components (Allen, 2024)</a>, which explains <b>why disentanglement arises in generative latent variable models</b>. </th>
