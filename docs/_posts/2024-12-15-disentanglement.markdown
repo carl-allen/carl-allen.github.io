@@ -198,7 +198,7 @@ Since $D$ is the Jacobian of $d$, the latter expression is in fact a special cas
 </p>
 
 
-The aim now is to understand what that means for how independent dimensions $$z_i\in\mathcal{Z}$$, and the probability density over them, pass through the decoder. For a given point $$z^*\in \mathcal{Z}$$, let: 
+The aim is to understand how that constraint affects how independent dimensions $$z_i\in\mathcal{Z}$$ and the probability density over them pass through the decoder. For a given point $$z^*\in \mathcal{Z}$$, let: 
 * $$\mathcal{Z^{(i)}}\subset\mathcal{Z}$$ be lines passing through $$z^*$$ parallel to each standard basis vector $$e_i$$ (blue dashed lines in Fig. 2), and $$\mathcal{M}_d^{(i)}\subset\mathcal{M_d}$$  be their images under $$d$$ that follow  $$\mathbf{u}_i$$, the left singular vectors of  $$D$$ (red dashed lines); and
 * $$x^{(U)}=U^\top x=U^\top Dz^*$$  be $x$ in the basis defined by columns of $$U$$
 
