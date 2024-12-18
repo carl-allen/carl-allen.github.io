@@ -67,7 +67,7 @@ Machine learning has made incredible breakthroughs in recent years but our theor
 
 $$\bullet$$ **Approach**: Recent works suggest that disentanglement arises in VAEs because commonly used diagonal posterior covariance matrices promote column-orthogonality in the decoder's Jacobian matrix.[^rolinek]$$^,$$[^kumarpoole]. This is supported empirically, e.g. columns of the decoder Jacobian are found to be closer to orthogonal in VAEs with diagonal covariance than those with full covariance or general auto-encoders;[^rolinek] and directly imposing column-orthogonality is shown to induce disentanglement.[^kumarpoole] 
 
-Building on this, [Allen (2024)][paper]: (A) clarifies the connection between diagonal covariance and Jacobian orthogonality and (B) explains how disentanglement follows, showing that it amounts to **factorising the data distribution into *statistically independent components***.
+Building on this, [Allen (2024)][paper]: (A) further clarifies the connection between diagonal covariance and Jacobian orthogonality and (B) explains how disentanglement follows, showing that it amounts to **factorising the data distribution into *statistically independent components***.
 
 
 
